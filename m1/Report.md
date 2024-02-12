@@ -1,12 +1,12 @@
 # Report: Analysis of Smart Meters
 ## Introduction
-An introduction that describes and delineates, as clearly as possible, the case/situation you targeted.
+_An introduction that describes and delineates, as clearly as possible, the case/situation you targeted._
 
 ## Research Method
-A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data.
+_A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data._
 
 ## Results
-A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix.
+_A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
 
 - Beckel et al. (2014); fine-grained electricity consumption data, collected by smart meters, can lead to identifying specific characteristics that may reveal information about a home’s socio-economic status, dwelling and appliances with an accuracy of more than 70% for all households.  
 - Monitoring electricity consumption can allow for others to make inferences about what appliances are being used, whether an individual is home or not, and even what program is being watched on TV. 
@@ -16,14 +16,13 @@ A results section, which provides a well-organized overview of the results you c
 
 
 ## Conclusions
-A conclusions section, which highlight the insights you can derive from the data you collected, with clear links to the evidence.
+_A conclusions section, which highlight the insights you can derive from the data you collected, with clear links to the evidence._
 
 - From Beckel, we can conclude that it is possible to extract information from smart meters that consumers may prefer to keep private, including data related to income, employment status, status of relationship, or social class. 
 - From Loehr, smart meters are able to become surveillance devices that monitor the behavior of customers and track personal routines 
 - From Onzo, it's clear that utility companies utilizing smart meters have the capability to build generous personalized profiles of households. Homeowner data becomes more vulnerable as it is shared or traded. 
 
-
 ## Appendix
-An appendix, which contains larger data sets too cumbersome to put in the results section.
+_An appendix, which contains larger data sets too cumbersome to put in the results section._
 
 ## References
