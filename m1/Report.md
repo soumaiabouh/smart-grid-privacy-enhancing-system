@@ -2,8 +2,16 @@
 ## Introduction
 _An introduction that describes and delineates, as clearly as possible, the case/situation you targeted._
 
+- In Canada, 82% of installed meters are smart meters, with several provinces investing in research labs that focus on smart grids and their related technologies [[1](https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf)].
+- Smart meters do not directly manage energy distribution. Instead, they inform customers about their energy use and assist providers in optimizing energy distribution [[2](https://www.arrow.com/en/research-and-events/articles/what-is-a-smart-grid-and-how-does-it-work)].
+- Smart meters help customers save on electricity bills and enable energy providers to reduce costs by detecting leaks and outages for quicker responses. Additionally, analyzing consumption data helps in understanding customer behavior, planning better services, and making strategic decisions for future investments and emergency planning [[1](https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf)].
+- Traditional systems track electricity use through devices attached to meters or clamps. This data is sent wirelessly to displays or online interfaces. The smart meters adopted in the UK and several other countries improved on this with two-way wireless communication, allowing energy providers, home devices, and displays to interact. These advanced displays can keep track of energy use over time and allow data transfer to computers using USB. Online interfaces provide detailed analysis through automatic graphs and spreadsheets [[3](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5353784)].
+- A home equipped with a Smart Grid system necessarily implies that it contains a smart meter that collects electricity usage data at regular intervals, such as every 30 minutes. This frequent data collection may assist in enhancing grid management for operators and enables energy suppliers to issue accurate and timely bills to their customers [[4](https://ieeexplore.ieee.org/document/8534430)].
+
+
 ## Research Method
 _A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data._
+
 
 ## Results
 _A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
