@@ -16,6 +16,10 @@ While these devices offer unprecedented insights into energy consumption pattern
 ## Research Method
 _A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data._
 
+- Conducted searches using relevant keywords such as “smart meter privacy concerns”, “privacy of energy consumption data”, and “smart grid technology”. 
+- The resulting articles, reports and scholarly publications from academic journals, industry reports, and news sources were reviewed to gather comprehensive insight into smart meter technology, its implementation and its impacts. 
+- The references in certain journal articles were examined to find other relevant articles 
+
 
 ## Results
 _A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
