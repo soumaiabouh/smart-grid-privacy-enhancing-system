@@ -25,6 +25,12 @@ _A research method section that describes, precisely enough to be replicated, th
 ## Results
 _A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
 
+Smart meters not only gauge the overall energy usage of a household but also serve as a gateway to more nuanced insights, specifically with the case of energy disaggregation where usage and energy consumption at the device level is extracted [1]. This is possible because each appliance has a distinctive load signature, representing its power consumption characteristics over time. The two distinct approaches for monitoring energy usage and energy disaggregation are intrusive load monitoring (ILM) and non-intrusive load monitoring (NILM). ILM involves connecting power meters to each appliance in the household, providing accurate results although with high costs and complex installation, thus referred to as intrusive [2]. In NILM, analysis of the changes in voltage and current of the aggregate load are used to deduce the state of operation of individual appliances. The aggregated signal is split into device signals using source separation methods or machine learning-based models to detect the existence of devices. 
+- Energy disaggregation can be formulated as a source separation problem where the aggregated signal is expressed as a linear combination of basis vectors in a matrix factorization framework. This method is referred to as Non-Negative Matrix Factorization (NMF). 
+- Variants of the Hidden Markov Model (HMM) have been adopted to model the state transition patterns of appliances and to recognize the logical switch on and off and different appliances. [2] 
+
+
+
 - Beckel et al. (2014); fine-grained electricity consumption data, collected by smart meters, can lead to identifying specific characteristics that may reveal information about a home’s socio-economic status, dwelling and appliances with an accuracy of more than 70% for all households.  
 - Monitoring electricity consumption can allow for others to make inferences about what appliances are being used, whether an individual is home or not, and even what program is being watched on TV. 
     - Appliances all have different energy usages. Reading these patterns reveals which is being used. 
