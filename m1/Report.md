@@ -51,6 +51,14 @@ In a 2020 study, Schirmer, Mporas and Sheikh-Akbari demonstrate how smart meter 
 ### D: Onzo and Hydro-Quebec
 - Onzo has stated directly that they utilize energy consumption data from smart meters to build a highly personalized profile for every energy customer. They tag the appliances being used in the home and use this virtualized profile to monetise their customer data by selling to third parties for the purpose of targeting customers with products and services relevant for that household. 
 
+Onzo's privacy policy states that they collect user information throughout their website intentionally and automatically. They use tools such as web beacons and clear gifs which allow them to collect information intentionally. They also use trackers which allows them to collect data automatically.
+
+Onzo collects non-personal and personal information about it's customers. In their privacy policy they don't specify all the data that they are collecting from users. They only give a few examples for non-personal information such as "how you use the Website, including pages visited, page response times, time of use and settings."[9] As well as name and email address for personal information. Personal information is very important and they fail to mention other data sets that are potentially being collected such as the users home address and payment information. 
+
+In their privacy policy they state reasons for which they send non-personal data to third parties such as "(i) compliance with various reporting obligations; (ii) for business or marketing purposes; or (iii) to assist such parties in understanding our Clients’, Users’ and Visitors’ interests, habits, and usage patterns for certain programs, content, Websites, and/or functionality available through the Website."[9] However they do not mention why they send personal information (with the consent of users) to third parties. They do not say the purpose for which it is being collected.
+
+
+
 ## Conclusions
 _A conclusions section, which highlight the insights you can derive from the data you collected, with clear links to the evidence._
 
@@ -74,6 +82,7 @@ _An appendix, which contains larger data sets too cumbersome to put in the resul
 6. https://ieeexplore.ieee.org/document/5353784
 7. https://www.arrow.com/en/research-and-events/articles/what-is-a-smart-grid-and-how-does-it-work
 8. https://epic.org/wp-content/uploads/privacy/smartgrid/smart_meter.pdf
+9. https://www.onzo.com/privacy-policy
 
 
 
