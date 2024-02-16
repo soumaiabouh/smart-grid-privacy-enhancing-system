@@ -55,6 +55,14 @@ Onzo collects non-personal and personal information about its customers. In thei
 
 In their privacy policy, they state reasons for which they send non-personal data to third parties such as "(i) compliance with various reporting obligations; (ii) for business or marketing purposes; or (iii) to assist such parties in understanding our Clients’, Users’ and Visitors’ interests, habits, and usage patterns for certain programs, content, Websites, and/or functionality available through the Website."[[9](https://www.onzo.com/privacy-policy)] However, they do not mention why they send personal information (with the consent of users) to third parties. They do not say the purpose for which it is being collected.
 
+### E: Data Protection Act
+Onzo is located in London, therefore they must comply with the Data Protection Act rather than the GDPR. When comparing the Data Protection Act and Onzo's privacy policy, certain considerations arise. Regarding purpose limitation, ONZO specifies the type of data, whether it be personal or non-personal, that they collect in specific scenarios, such as for cookies and analytics. They describe purposes for which automatically collected, aggregated, or non-personal information is sent to third parties. However, they do not specify for what purpose personal data is collected. This does not align with the purpose limitation, stating they must process data for a legitimate purpose specified explicitly to the data subject.
+
+With respect to transparency, ONZO discloses how they collect data in their privacy policy but fails to mention other crucial details. They do not state why personal information is sent to third parties and what these parties use this information for. There is no information on how long these third parties store our data and how users can delete their data from these third parties. And most importantly, who these third parties are. They are not being transparent to the data subject.
+
+Concerning fairness, ONZO sends and collects data automatically using tools that do not ask for the user's consent, such as web beacons and clear gifs. Among the data being collected, there is personal information such as the website a user visited before and after accessing Onzo's website. Users do not expect this information to be collected without consent as it is personal. This is why this does not comply with fairness, which means to collect data in ways only users would expect.
+They can also access the IP address of a user. If they associate this information with the user's IP address, then this is a much more severe infringement on privacy.
+
 
 ## Conclusions
 _A conclusions section, which highlight the insights you can derive from the data you collected, with clear links to the evidence._
