@@ -92,6 +92,19 @@ Enhanced security measures and strict privacy protocols are therefore essential 
 ## Appendix
 _An appendix, which contains larger data sets too cumbersome to put in the results section._
 
+As mentioned in the Results, specifically section C, we generated two additional graphs based on data from January 2nd, 2016, and January 3rd, 2016, pertaining to the same apartment (Apt21). Additionally, we are sharing the Excel sheet that holds the data used for these graphs, which is a subset of the entire data available as described in Research Methods. This Excel sheet can be found under `additional-documents` under the name `apt21-data-subset.xlsx`.
+
+**Figure 3.** Electricity Consumption of Apartment 21 during January 2nd, 2016
+<p align="center">
+  <img src="images/apt21-2026-01-02.png" width=600px />
+</p>
+
+**Figure 4.** Electricity Consumption of Apartment 21 during January 3rd, 2016
+<p align="center">
+  <img src="images/apt21-2026-01-03.png" width=600px />
+</p>
+
+
 ## References
 1. https://arxiv.org/abs/2007.00326
 2. https://www.sciencedirect.com/science/article/pii/S2405896315030566
