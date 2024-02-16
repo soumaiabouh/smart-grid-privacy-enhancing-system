@@ -15,9 +15,14 @@ _short history and some info about why they've been adopted_
 ## Research Method
 _A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data._
 
-- Conducted searches using relevant keywords such as “smart meter privacy concerns”, “privacy of energy consumption data”, and “smart grid technology”. 
-- The resulting articles, reports and scholarly publications from academic journals, industry reports, and news sources were reviewed to gather comprehensive insight into smart meter technology, its implementation and its impacts. 
-- The references in certain journal articles were examined to find other relevant articles 
+We began our research with searches using phrases like "smart meter privacy concerns", "privacy of energy consumption data", and "smart grid technology." These searches brought up a range of materials, including articles, industry reports, and studies from academic journals and news outlets. We went through these documents to get a broad understanding of smart meter technology, its uses, and its effects.
+
+We also explored the references cited in some of the articles we read. This led us to additional relevant articles, enhancing our research with more information on the topic.
+
+Regarding the data for our study, shared in the Results section, we found a publicly available dataset of smart meter readings from 114 apartments over a period from 2014 to 2016. This dataset was available at the UMassTraceRepository, specifically under the "Smart" section of their website [[18](https://traces.cs.umass.edu/index.php/Smart/Smart)]. The specific dataset we used is named "apartment-electrical.tar.gz," found in the "UMass Smart* Dataset - 2017 release" section.
+
+For our experiments, we downloaded this dataset and focused on the readings from apartment 21 in the year 2016. We used the data from January 1st to January 3rd to make the graphs for our analysis.
+
 
 ## Results
 _A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
@@ -135,3 +140,4 @@ _**Figure 4.** Electricity Consumption of Apartment 21 during January 3rd, 2016_
 15. https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/the-principles/lawfulness-fairness-and-transparency/#fairness
 16. https://www.mdpi.com/1099-4300/22/1/71#:~:text=The%20experimental%20results%20showed%20that%20elastic%20matching%20algorithms%20can%20successfully,accuracy%20(87.58%25)%20and%20in
 17. https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9
+18. https://traces.cs.umass.edu/index.php/Smart/Smart
