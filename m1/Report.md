@@ -42,11 +42,15 @@ A study by Beckel et al. finds that the fine-grained energy consumption data col
 
 One such example is demonstrated in Souri et al's paper [[17](https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9)], where they extracted smart meter data from a house during 24 hours and annotated their deductions.
 
-![Energy consumption of a house during 24 hours](images/souri-analysis.png "Energy consumption of a house during 24 hours")
+<p align="center">
+  <img src="images/souri-analysis.png" width=600px />
+</p>
 
 We set out to verify whether we could replicate the findings reported in this research paper by analyzing a public dataset of meter readings. Our aim was to recreate graphs similar to those featured in this kind of study. To accomplish this, we utilized meter readings from the UMassTraceRepository. The methodology for creating the graph presented below is detailed in the Research Method section. For the purpose of clarity, we are including only one graph in this discussion, the others can be found in the appendix.
 
-![Energy consumption of Apt 21 in 01/01/2016 during 24 hours](images/apt21-2026-01-01.png "Energy consumption of Apt 21 in 01/01/2016 during 24 hours")
+<p align="center">
+  <img src="images/apt21-2026-01-01.png" width=600px />
+</p>
 
 Our analysis of the graph allows us to draw conclusions similar to those found in the studies. The relatively low and steady energy consumption between 10 AM and 2 PM suggests that the apartment was probably vacant during these hours. Peaks in energy usage at 8 AM and between 7 to 9 PM likely indicate meal times for the occupants. Additionally, the overall pattern of electricity usage may offer insights into the number of people living in the apartment, as households with more occupants generally have higher energy consumption.
 
