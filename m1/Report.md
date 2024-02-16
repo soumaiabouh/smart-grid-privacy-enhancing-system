@@ -65,14 +65,18 @@ We wanted to verify whether we could replicate the findings reported in this res
 
 _**Figure 2.** Electricity Consumption of Apartment 21 during January 1st, 2016_
 
-The graph shown in Figure 2 displays patterns that are similar to those observed in Figure 1. Specifically, there are noticeable spikes in energy consumption at certain times, while at other intervals, the usage levels off and remains fairly steady. From these observations, we can infer several things. For example, the consistent low energy consumption between 10 AM and 2 PM could imply that the apartment was empty during these hours, or it might indicate that the residents were sleeping. The surges in energy use at 8 AM and again from 7 to 9 PM are likely related to meal preparation and consumption times. Additionally, by examining Figures 3 and 4, which are included in the Appendix, we can make similar inferences about the living habits of the occupants based on the observed energy consumption peaks and periods of steady usage.
+The graph shown in Figure 2 displays patterns that are similar to those observed in Figure 1. Specifically, there are noticeable spikes in energy consumption at certain times, while at other intervals, the usage levels off and remains fairly steady. From these observations, we can infer several things. For example, the consistent low energy consumption between 10 AM and 2 PM could imply that the apartment was empty during these hours, or it might indicate that the residents were sleeping. The surges in energy use at 8 AM and again from 7 to 9 PM are likely related to meal preparation and consumption times. Additionally, by examining Figures 4 and 5, which are included in the Appendix, we can make similar inferences about the living habits of the occupants based on the observed energy consumption peaks and periods of steady usage.
 
-In a 2020 study, Schirmer, Mporas and Sheikh-Akbari demonstrate how smart meter aggregated energy consumption data and real-time appliance recognition algorithms can lead to the identification of multimedia content played by a TV or monitor device. With ILM, elastic matching algorithms were able to identify videos with 100% accuracy. In NILM, identification using the same algorithms still achieved high accuracy with 93.8%, even in “noisy” conditions, meaning evaluation with additional power consumption from other devices [[1](https://arxiv.org/abs/2007.00326)]. Researchers at Muenster University of Applied Sciences in Germany came to the same conclusions with their test results indicating that a five minute chunk of consecutive viewing without major interference by other appliances is sufficient to identify the content. This is possible because of unique lighting patterns - the amount of light and dark emitted on the display for individual frames - for individual TV shows and movies which is reflected in energy consumption data. The figure below shows the actual power consumption from the first five minutes of Star Trek (2009) on a Liquid Crystal Display television set measured using a smart meter. The figure also shows the output of their power consumption prediction function and demonstrates high correlation [[8](https://epic.org/wp-content/uploads/privacy/smartgrid/smart_meter.pdf)]. It is noted that identifying TV content requires a “man in the middle” attack where the light pattern of specific content would have to already be known to compare that with the samples being received from the smart meter. 
+In a 2020 study, Schirmer, Mporas and Sheikh-Akbari demonstrate how smart meter aggregated energy consumption data and real-time appliance recognition algorithms can lead to the identification of multimedia content played by a TV or monitor device. With ILM, elastic matching algorithms were able to identify videos with 100% accuracy. In NILM, identification using the same algorithms still achieved high accuracy with 93.8%, even in “noisy” conditions, meaning evaluation with additional power consumption from other devices [[1](https://arxiv.org/abs/2007.00326)]. Researchers at Muenster University of Applied Sciences in Germany came to the same conclusions with their test results indicating that a five minute chunk of consecutive viewing without major interference by other appliances is sufficient to identify the content. This is possible because of unique lighting patterns - the amount of light and dark emitted on the display for individual frames - for individual TV shows and movies which is reflected in energy consumption data. The figure below shows the actual power consumption from the first five minutes of Star Trek (2009) on a Liquid Crystal Display television set measured using a smart meter. 
 
 <p align="center">
   <img src="images/startrek.png" width=600px />
 </p>
- 
+
+_**Figure 3.** Power Consumption Signature of Star Trek (2009) on an LCD TV Over Five Minutes, Measured by a Smart Meter_
+
+The figure also shows the output of their power consumption prediction function and demonstrates high correlation [[8](https://epic.org/wp-content/uploads/privacy/smartgrid/smart_meter.pdf)]. It is noted that identifying TV content requires a “man in the middle” attack where the light pattern of specific content would have to already be known to compare that with the samples being received from the smart meter. 
+
 As a paper published in 2018 by Cleemput et al. demonstrated, it is possible that an attacker can completely remove the anonymity from users’ detailed metering data by employing a straightforward matching algorithm. The researchers examined whether a supplier could extract additional insights from collected electricity usage data. A supplier would normally have in their possession the smart meter IDs of the customers along with the detailed records of electricity consumed every half hour, which lacks personal identifiers. From the latter, it is trivial to calculate the aggregated monthly data that sums up total consumption per customer. The de-pseudonymization method involves analyzing customers' unique monthly aggregate consumption data, starting with the earliest month available. If a customer's monthly aggregate is unique, their detailed half-hourly data for that month directly identifies them. This process is repeated monthly, focusing on users not yet de-pseudonymized, progressively identifying individuals based on their consumption patterns [[4](https://ieeexplore.ieee.org/document/8534430)].
 
 ### D: Onzo and Hydro-Quebec
@@ -112,7 +116,7 @@ As mentioned in the Results, specifically section C, we generated two additional
   <img src="images/apt21-2026-01-02.png" width=600px />
 </p>
 
-_**Figure 3.** Electricity Consumption of Apartment 21 during January 2nd, 2016_
+_**Figure 4.** Electricity Consumption of Apartment 21 during January 2nd, 2016_
 
 
 
@@ -120,7 +124,7 @@ _**Figure 3.** Electricity Consumption of Apartment 21 during January 2nd, 2016_
   <img src="images/apt21-2026-01-03.png" width=600px />
 </p>
 
-_**Figure 4.** Electricity Consumption of Apartment 21 during January 3rd, 2016_
+_**Figure 5.** Electricity Consumption of Apartment 21 during January 3rd, 2016_
 
 ## References
 1. https://arxiv.org/abs/2007.00326
