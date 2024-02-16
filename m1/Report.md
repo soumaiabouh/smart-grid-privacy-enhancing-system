@@ -42,17 +42,25 @@ A study by Beckel et al. finds that the fine-grained energy consumption data col
 
 One such example is demonstrated in Souri et al's paper [[17](https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9)], where they extracted smart meter data from a house during 24 hours and annotated their deductions.
 
+ 
 <p align="center">
   <img src="images/souri-analysis.png" width=600px />
 </p>
 
-We set out to verify whether we could replicate the findings reported in this research paper by analyzing a public dataset of meter readings. Our aim was to recreate graphs similar to those featured in this kind of study. To accomplish this, we utilized meter readings from the UMassTraceRepository. The methodology for creating the graph presented below is detailed in the Research Method section. For the purpose of clarity, we are including only one graph in this discussion, the others can be found in the appendix.
+_**Figure 1.** Daily energy consumption patterns in a house, from 'Smart Metering Privacy-Preserving Techniques in a Nutshell' by Hajer Souri et al._
+
+The graph in Figure 1 shows the electricity usage in a house during 24 hours. The data reveals distinct patterns: at night, very little energy is used as can be seen by the low amount of power used, while energy consumption spikes at specific times during the day. During the morning, there is a noticeable rise in consumption as the household starts their day. Likewise, energy usage goes up in the evening, corresponding to common domestic tasks like cooking and laundry. The graph also shows the water heater turning on at different times and the refrigerator using a small, steady amount of power all day.
+
+We wanted to verify whether we could replicate the findings reported in this research paper by analyzing a public dataset of meter readings. Our aim was to recreate graphs similar to those featured in this study. To accomplish this, we used meter readings from the UMassTraceRepository. The methodology for creating the graph presented below is detailed in the Research Method section. For the purpose of clarity, we are including only one graph in this discussion, the others can be found in the appendix.
+
 
 <p align="center">
   <img src="images/apt21-2026-01-01.png" width=600px />
 </p>
 
-Our analysis of the graph allows us to draw conclusions similar to those found in the studies. The relatively low and steady energy consumption between 10 AM and 2 PM suggests that the apartment was probably vacant during these hours. Peaks in energy usage at 8 AM and between 7 to 9 PM likely indicate meal times for the occupants. Additionally, the overall pattern of electricity usage may offer insights into the number of people living in the apartment, as households with more occupants generally have higher energy consumption.
+_**Figure 2.** Electricity Consumption of Apartment 21 during January 1st, 2016_
+
+The graph shown in Figure 2 displays patterns that are similar to those observed in Figure 1. Specifically, there are noticeable spikes in energy consumption at certain times, while at other intervals, the usage levels off and remains fairly steady. From these observations, we can infer several things. For example, the consistent low energy consumption between 10 AM and 2 PM could imply that the apartment was empty during these hours, or it might indicate that the residents were sleeping. The surges in energy use at 8 AM and again from 7 to 9 PM are likely related to meal preparation and consumption times. Additionally, by examining Figures 3 and 4, which are included in the Appendix, we can make similar inferences about the living habits of the occupants based on the observed energy consumption peaks and periods of steady usage.
 
 In a 2020 study, Schirmer, Mporas and Sheikh-Akbari demonstrate how smart meter aggregated energy consumption data and real-time appliance recognition algorithms can lead to the identification of multimedia content played by a TV or monitor device. With ILM, elastic matching algorithms were able to identify videos with 100% accuracy. In NILM, identification using the same algorithms still achieved high accuracy with 93.8%, even in “noisy” conditions, meaning evaluation with additional power consumption from other devices [[1](https://arxiv.org/abs/2007.00326)]. Researchers at Muenster University of Applied Sciences in Germany came to the same conclusions with their test results indicating that a five minute chunk of consecutive viewing without major interference by other appliances is sufficient to identify the content. This is possible because of unique lighting patterns - the amount of light and dark emitted on the display for individual frames - for individual TV shows and movies which is reflected in energy consumption data. The figure below shows the actual power consumption from the first five minutes of Star Trek (2009) on a Liquid Crystal Display television set measured using a smart meter. The figure also shows the output of their power consumption prediction function and demonstrates high correlation [[8](https://epic.org/wp-content/uploads/privacy/smartgrid/smart_meter.pdf)]. It is noted that identifying TV content requires a “man in the middle” attack where the light pattern of specific content would have to already be known to compare that with the samples being received from the smart meter. 
 
@@ -94,16 +102,20 @@ _An appendix, which contains larger data sets too cumbersome to put in the resul
 
 As mentioned in the Results, specifically section C, we generated two additional graphs based on data from January 2nd, 2016, and January 3rd, 2016, pertaining to the same apartment (Apt21). Additionally, we are sharing the Excel sheet that holds the data used for these graphs, which is a subset of the entire data available as described in Research Methods. This Excel sheet can be found under `additional-documents` under the name `apt21-data-subset.xlsx`.
 
-**Figure 3.** Electricity Consumption of Apartment 21 during January 2nd, 2016
+
 <p align="center">
   <img src="images/apt21-2026-01-02.png" width=600px />
 </p>
 
-**Figure 4.** Electricity Consumption of Apartment 21 during January 3rd, 2016
+_**Figure 3.** Electricity Consumption of Apartment 21 during January 2nd, 2016_
+
+
+
 <p align="center">
   <img src="images/apt21-2026-01-03.png" width=600px />
 </p>
 
+_**Figure 4.** Electricity Consumption of Apartment 21 during January 3rd, 2016_
 
 ## References
 1. https://arxiv.org/abs/2007.00326
