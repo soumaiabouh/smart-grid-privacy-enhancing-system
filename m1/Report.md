@@ -19,7 +19,7 @@ We began our research with searches using phrases like "smart meter privacy conc
 
 We also explored the references cited in some of the articles we read. This led us to additional relevant articles, enhancing our research with more information on the topic.
 
-Regarding the data for our experiment, which we present in the Results section, we found a publicly available dataset of smart meter readings from 114 apartments over a period from 2014 to 2016. This dataset was available at the UMassTraceRepository, specifically under the "Smart" section of their website [[18](https://traces.cs.umass.edu/index.php/Smart/Smart)]. The specific dataset we used is named "apartment-electrical.tar.gz," found in the "UMass Smart* Dataset - 2017 release" section. 
+Regarding the data for our experiment, which we present in the Results section, we found a publicly available dataset of smart meter readings from 114 apartments over a period from 2014 to 2016. This dataset was available at the UMassTraceRepository, specifically under the "Smart" section of their website [[17](https://traces.cs.umass.edu/index.php/Smart/Smart)]. The specific dataset we used is named "apartment-electrical.tar.gz," found in the "UMass Smart* Dataset - 2017 release" section. 
 
 We downloaded this dataset and focused on the readings from apartment 21 in the year 2016, and we used the data from January 1st to January 3rd to make the graphs for our analysis. This subset of the data can be found in the Excel sheet `apt21-data-subset.xlsx` under the `additional-documents` folder.
 
@@ -45,7 +45,7 @@ With the possible isolation of individual appliances in homeowner consumption da
 ### C: Beyond Energy Monitoring
 A study by Beckel et al. finds that the fine-grained energy consumption data collected by smart meters can lead to identifying specific characteristics that may reveal information about a home’s socio-economic status, dwelling properties and appliances with an accuracy of more than 70% for all households. These characteristics include but are not limited to occupancy, employment status, the number of residents, and the number of appliances. Beckel concludes by stating utilities might need to collect as little as one week of smart meter data, where the interval of smart meter data collection is 30 minutes, to be able to extract household characteristics [[10](https://www.sciencedirect.com/science/article/pii/S0360544214011748)]. Chen et. al similarly indicates the potential for non-intrusive occupancy monitoring by using electricity data from smart meters to infer occupancy. A household’s pattern of electricity usage generally changes when occupants are present due to their interactions with electrical appliances and therefore, energy consumption levels [[11](https://lass.cs.umass.edu/papers/pdf/buildsys13-niom.pdf)]. 
 
-One such example is demonstrated in Souri et al's paper [[17](https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9)], where they extracted smart meter data from a house during 24 hours and annotated their deductions.
+One such example is demonstrated in Souri et al's paper [[13](https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9)], where they extracted smart meter data from a house during 24 hours and annotated their deductions.
 
  
 <p align="center">
@@ -127,21 +127,20 @@ _**Figure 4.** Electricity Consumption of Apartment 21 during January 2nd, 2016_
 _**Figure 5.** Electricity Consumption of Apartment 21 during January 3rd, 2016_
 
 ## References
-1. https://arxiv.org/abs/2007.00326
-2. https://www.sciencedirect.com/science/article/pii/S2405896315030566
-3. https://www.nature.com/articles/s41597-022-01252-2
-4. https://ieeexplore.ieee.org/document/8534430
-5. https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf
-6. https://ieeexplore.ieee.org/document/5353784
-7. https://www.arrow.com/en/research-and-events/articles/what-is-a-smart-grid-and-how-does-it-work
-8. https://epic.org/wp-content/uploads/privacy/smartgrid/smart_meter.pdf
-9. https://www.onzo.com/privacy-policy
-10. https://www.sciencedirect.com/science/article/pii/S0360544214011748 
-11. https://lass.cs.umass.edu/papers/pdf/buildsys13-niom.pdf
-12. https://www.semanticscholar.org/paper/Toward-Unified-Security-and-Privacy-Protection-for-Kalogridis-Sooriyabandara/00ec558a9ef8802cb6d5650662a71a7bd325162f
-13. https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8562aded7d964bd7
-14. https://www.gov.uk/data-protection
-15. https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/the-principles/lawfulness-fairness-and-transparency/#fairness
-16. https://www.mdpi.com/1099-4300/22/1/71#:~:text=The%20experimental%20results%20showed%20that%20elastic%20matching%20algorithms%20can%20successfully,accuracy%20(87.58%25)%20and%20in
-17. https://www.sciencedirect.com/science/article/pii/S1877050914007376?ref=pdf_download&fr=RR-2&rr=8567b14b18df4bb9
-18. https://traces.cs.umass.edu/index.php/Smart/Smart
+1. Schirmer, Pascal A., et al. “Identification of TV Channel Watching from Smart Meter Data Using Energy Disaggregation.” arXiv.Org, 1 July 2020, arxiv.org/abs/2007.00326. 
+2. Aladesanmi , E.J., and K.A. Folly. “Overview of Non-Intrusive Load Monitoring and Identification Techniques.” Science Direct, Elsevier, 31 Dec. 2015, www.sciencedirect.com/science/article/pii/S2405896315030566. 
+3. Pereira, Lucas, et al. “A Residential Labeled Dataset for Smart Meter Data Analytics.” Nature News, Nature Publishing Group, 31 Mar. 2022, www.nature.com/articles/s41597-022-01252-2. 
+4. S. Cleemput, et al. “De-Pseudonymization of Smart Metering Data: Analysis and Countermeasures.” IEEE Xplore, 2018, ieeexplore.ieee.org/document/8534430/. 
+5. “Smart Meters: Designing a Key Part of the Smart Grid Ecosystem.” Arrow.Com, TE Connectivity, 13 Oct. 2022, https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf
+6. K. Allan, "Power to the people [power energy saving]," in Engineering & Technology, vol. 4, no. 18, pp. 46-49, October-November 2009, https://ieeexplore.ieee.org/document/5353784
+7. “Smart Meters: Designing a Key Part of the Smart Grid Ecosystem.” Arrow.Com, TE Connectivity, 13 Oct. 2022, www.arrow.com/en/research-and-events/articles/designing-a-key-part-of-the-smart-grid-ecosystem. 
+8. Greveler, Ulrich et al. “Multimedia Content Identification Through Smart Meter Power Usage Profiles.” Semantic Scholar, 2012, www.researchgate.net/publication/266461208_Multimedia_Content_Identification_Through_Smart_Meter_Power_Usage_Profiles. 
+9. “Privacy Policy.” ONZO, www.onzo.com/privacy-policy. Accessed 16 Feb. 2024. 
+10. Beckel, Christian, et al. “Revealing Household Characteristics From Smart Meter Data.” Energy, vol. 78, Dec. 2014, pp. 397–410. https://www.sciencedirect.com/science/article/pii/S0360544214011748 
+11. Dong, Chen, et al. “Non-Intrusive Occupancy Monitoring Using Smart Meters.” Conference SENSYS, Nov. 2013, https://doi.org/10.1145/2528282.2528294.
+12. Kalogridis, G. Toward Unified Security and Privacy Protection for Smart Meter Networks. 2014, www.semanticscholar.org/paper/Toward-Unified-Security-and-Privacy-Protection-for-Kalogridis-Sooriyabandara/00ec558a9ef8802cb6d5650662a71a7bd325162f.
+13. Souri, Hajer, et al. “Smart Metering Privacy-preserving Techniques in a Nutshell.” Procedia Computer Science, vol. 32, Jan. 2014, pp. 1087–94. https://doi.org/10.1016/j.procs.2014.05.537.
+14. Government Digital Service. “Data Protection.” GOV.UK, 16 Sept. 2015, www.gov.uk/data-protection.
+15. ICO. “Principle (a): Lawfulness, Fairness and Transparency.” ICO, ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/data-protection-principles/a-guide-to-the-data-protection-principles/the-principles/lawfulness-fairness-and-transparency/#fairness.
+16. Schirmer, Pascal A., et al. “Energy Disaggregation Using Elastic Matching Algorithms.” Entropy, vol. 22, no. 1, Jan. 2020, p. 71. https://doi.org/10.3390/e22010071.
+17. Weibel, Thomas. Smart - UMass Trace Repository. traces.cs.umass.edu/index.php/Smart/Smart.
