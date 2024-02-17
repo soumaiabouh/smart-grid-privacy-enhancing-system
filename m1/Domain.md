@@ -15,7 +15,7 @@ The United Kingdom introduced the Smart Meter Implementation Program (SMIP) in t
 
 ## Research Method
 
-We began our research with searches using phrases like "smart meter privacy concerns", "privacy of energy consumption data", and "smart grid technology." These searches brought up a range of materials, including articles, industry reports, and studies from academic journals and news outlets. We went through these documents to get a broad understanding of smart meter technology, its uses, and its effects.
+We began our research with searches using phrases like "smart meter privacy concerns", "privacy of energy consumption data", and "smart grid technology" on Google and Google Scholar. These searches brought up a range of materials, including articles, industry reports, and studies from academic journals and news outlets. We went through these documents to get a broad understanding of smart meter technology, its uses, and its effects.
 
 We also explored the references cited in some of the articles we read. This led us to additional relevant articles, enhancing our research with more information on the topic.
 
