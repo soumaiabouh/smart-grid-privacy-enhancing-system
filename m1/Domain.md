@@ -1,6 +1,5 @@
 # Report: Analysis of Smart Meters
 ## Introduction
-_An introduction that describes and delineates, as clearly as possible, the case/situation you targeted._
 
 The past few decades have seen a prevalent transition from analog meters to smart meters that has revolutionized the efficiency, sustainability and convenience of electricity management and energy consumption. Traditional analog meters measure the total electricity consumption by tracking the amount of electrical energy passing through them. They are purely mechanical devices, and the readings, which are presented on analog dials or displays, require a manual reading by a technician. By design, those basic meters are not able to provide any real-time monitoring capabilities [[1](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5353784)]. Conversely, a smart meter is an electric meter that records granular energy usage data at regular intervals, typically of 30 minutes or less [[2](https://ieeexplore.ieee.org/document/8534430)]. Electronic sensors and microprocessors are utilized to ensure precise measurements of energy consumption, providing more accurate billing to customers. This real-time data is wirelessly transmitted to utility companies, eliminating the need for manual meter readings and the potential for human error in these readings. Many modern systems have adopted two-way wireless communication, allowing energy providers, home devices and displays to interact. Smart meters allow customers to monitor their own utility usage through displays or online interfaces to understand their consumption habits while additionally allowing utility companies to analyze their customer behavior to plan for better services and make strategic decisions for future investments [[1](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5353784)]. Canada stands as a prominent example of the widespread adoption of smart meters with 82% of installed meters being smart meters. Several provinces have made substantial investments in research labs that focus on smart grids and their related technologies [[3](https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf)].
 
@@ -13,7 +12,6 @@ The worldwide adoption of smart meters has been spurred by various factors drivi
 - Onzo was formed in the early days of this policy (2015-2020 UK transition to smart meters). "The Smart Meter Implementation Program (SMIP) lays the legal framework in the United Kingdom so that a smart gas and electricity meter, along with an in-home display, can be installed in every household by 2020. Intended to reduce household energy consumption by 5–15%, the SMIP represents the world's largest and most expensive smart meter rollout. The SMIP will involve installing a combined 104 million pieces of new equipment, including separate electricity and gas meters, in-home display (IHD) monitors and wireless communications networks (Lewis and Kerr, 2014). The combined total cost is expected to be at least £11 billion, or more than £200 per household (Rose and Thed, 2014)." [[3](https://static4.arrow.com/-/media/arrow/files/pdf/0821/te_trend-paper-smart-metering_0521_en.pdf)].
 
 ## Research Method
-_A research method section that describes, precisely enough to be replicated, the procedures you have followed to collect your data._
 
 We began our research with searches using phrases like "smart meter privacy concerns", "privacy of energy consumption data", and "smart grid technology." These searches brought up a range of materials, including articles, industry reports, and studies from academic journals and news outlets. We went through these documents to get a broad understanding of smart meter technology, its uses, and its effects.
 
@@ -26,7 +24,6 @@ We downloaded this dataset and focused on the readings from apartment 21 in the 
 We also gathered information about Onzo and the Data Protection Act using their resspective websites.
 
 ## Results
-_A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
 
 ### A: Smart Meter Data Transmission
 Smart metering is an essential element of the smart grid network, which makes it possible to adjust energy use in real-time and store energy for electric vehicles. Its main purposes are to improve how energy demand is managed and how consumers respond to changes in energy demand. Demand side management encourages people to use less energy by offering them financial benefits, tips for saving energy, and adjusting prices based on real-time data. Demand response controls how much energy people use, for instance by turning off appliances during peak demand periods. However, it is important to understand that smart meters themselves do not control these appliances; they only provide information about how much energy is being used [[4](https://www.semanticscholar.org/paper/Toward-Unified-Security-and-Privacy-Protection-for-Kalogridis-Sooriyabandara/00ec558a9ef8802cb6d5650662a71a7bd325162f)].
@@ -101,7 +98,6 @@ In terms of fairness, Onzo collects and sends data, including personal informati
 
 
 ## Conclusions
-_A conclusions section, which highlight the insights you can derive from the data you collected, with clear links to the evidence._
 
 From this research, we can conclude that there are numerous privacy concerns with smart meter consumption data. The design of smart meters as they are offered presently makes it very easy to abuse customer data. Since the data is transmitted wirelessly, there is a risk of interception or unauthorized access if proper encryption and security protocols are not in place. Additionally, the two-way communication capability, while advantageous for remote management and real-time data access, also increases the potential vectors for cyber attacks. Additionally, the meters’ ability to communicate with other home devices and the provider’s network means that multiple points in the system could be exploited to access consumer data. The web-based interfaces and advanced display units that allow users to track their energy consumption history are potential targets for hackers. If these systems are compromised, detailed user data could be accessed.
 
@@ -112,7 +108,6 @@ Furthermore, without strict data protection policies and transparency from utili
 Enhanced security measures and strict privacy protocols are therefore essential to prevent unauthorized access and ensure that individuals' consumption data remains confidential. These findings underscore the need for robust data protection strategies within smart metering systems to safeguard against potential privacy breaches. 
 
 ## Appendix
-_An appendix, which contains larger data sets too cumbersome to put in the results section._
 
 As mentioned in the Results, specifically section C, we generated two additional graphs based on data from January 2nd, 2016, and January 3rd, 2016, pertaining to the same apartment (Apt21). Additionally, we are sharing the Excel sheet that holds the data used for these graphs, which is a subset of the entire data available as described in Research Methods. This Excel sheet can be found under `additional-documents` under the name `apt21-data-subset.xlsx`.
 
