@@ -23,6 +23,7 @@ Regarding the data for our experiment, which we present in the Results section, 
 
 We downloaded this dataset and focused on the readings from apartment 21 in the year 2016, and we used the data from January 1st to January 3rd to make the graphs for our analysis. This subset of the data can be found in the Excel sheet `apt21-data-subset.xlsx` under the `additional-documents` folder.
 
+We also researched for Onzo and the Data Protection Act: "Onzo's Privacy Policy", "What is fairness in the GDPR", "London GDPR".
 
 ## Results
 _A results section, which provides a well-organized overview of the results you collected, with cross-references to the appendix._
