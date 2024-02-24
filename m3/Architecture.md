@@ -17,10 +17,10 @@ Note: Use footnotes[^0] for references and links to relevant material.
 ## 4. Privacy Requirements
 *List, using a structured format (e.g., enumerated lists organized by section) the main privacy requirements your system will support.*
 
-* For reference, the following activities are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
+> For reference, the following activities are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
 
 ## 5. Stakeholders
-* Clarify who would be using you system, especially if there are different classes of users.*
+*Clarify who would be using you system, especially if there are different classes of users.*
 
 ## 6. Architectural Design Decisions and Models:
 *Elicit a high-level decomposition of your system into components, modes of communication, major technology used, etc. Be sure to represent decisions that have an impact on privacy. Create one or more original diagrams representing the key aspects of the system. UML is strongly recommended. Ad hoc boxologies are not recommended. The model should be consistent with the decisions elicited.*
