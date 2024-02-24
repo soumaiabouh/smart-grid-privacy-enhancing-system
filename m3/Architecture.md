@@ -17,7 +17,7 @@ Note: Use footnotes[^0] for references and links to relevant material.
 ## 4. Privacy Requirements
 *List, using a structured format (e.g., enumerated lists organized by section) the main privacy requirements your system will support.*
 
-> For reference, the following activities are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
+For reference, the following activities 5-6-7 are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
 
 ## 5. Stakeholders
 *Clarify who would be using you system, especially if there are different classes of users.*
