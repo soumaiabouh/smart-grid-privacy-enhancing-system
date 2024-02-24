@@ -1,6 +1,8 @@
 # Title
 **Group 7:** Ella Reck​, Soumaia Bouhouia​, Felicia Sun​, Vanessa Akhras​.
 
+Note: Use footnotes[^0] for references and links to relevant material.
+
 ## 1. System Purpose and Scope
 *Determine the main function of the system and its functional boundaries. For example, is this a podcast listener? An information website? An image sharing tool? Clarify any potential ambiguity about the extent of the functionality it would cover. Identify the main privacy requirements. You are encouraged to stick to the core functionality. Be careful of [scope creep](https://en.wikipedia.org/wiki/Scope_creep), and of including requirements that would be difficult or impossible to prototype in a demonstration application (e.g., automotive software).*
 
@@ -23,3 +25,5 @@
 
 ## 7. Important Scenarios:
 *Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
+
+[^0]: https://gitlab.cs.mcgill.ca/martin/comp555-winter2024/-/blob/main/project/Milestone-3.md
