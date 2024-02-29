@@ -47,6 +47,27 @@ The companies that own the smart meters would be using our system. They would im
 ## 6. Architectural Design Decisions and Models:
 *Elicit a high-level decomposition of your system into components, modes of communication, major technology used, etc. Be sure to represent decisions that have an impact on privacy. Create one or more original diagrams representing the key aspects of the system. UML is strongly recommended. Ad hoc boxologies are not recommended. The model should be consistent with the decisions elicited.*
 
+### 6.1 General Overview of the System
+[Insert overview of the system here]
+
+### 6.2 Algorithm Choice for Data Encryption
+We want to anonymize user data while enabling the suppliers to perform the operations they need on the data, i.e., calculating the billing fees as well as being able to monitor the general energy consumption of particular neighborhoods.  For this purpose, we propose the use of Paillier Encryption.
+
+#### Context and Considerations for Using Paillier Encryption:
+- **Privacy:** Paillier encryption preserves the confidentiality of individual users' data while allowing the aggregation needed for billing and supply forecasting. 
+- **Regulatory Compliance:** Using encryption to protect user data can help in meeting data protection regulations.
+- **Performance:** While homomorphic encryption is generally slower than traditional encryption methods, Paillier is relatively efficient for addition operations, which is the primary operation needed for aggregating energy usage data.
+
+#### Alternatives Considered and Rejected:
+- **Symmetric Encryption:** Rejected due to the single point of failure in key management and lack of support for operations on encrypted data. 
+- **Asymmetric Encryption:** While it provides secure data transmission, it does not support homomorphic properties for processing aggregated data.
+- **Non-encrypted Aggregation:** Not considered due to non-compliance with privacy requirements.
+
+#### Rationale for Choosing Paillier Encryption:
+- It enables additive homomorphic properties, meaning that the system can compute the sum of encrypted user data without decrypting it, which is suitable for generating aggregated statistics.
+- It does not require the sharing of decryption keys with the data processor (supplier), which reduces the risk of exposing individual user data.
+
+
 ## 7. Important Scenarios:
 *Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
 
