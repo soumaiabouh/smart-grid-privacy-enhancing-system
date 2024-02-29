@@ -21,6 +21,7 @@ For reference, the following activities 5-6-7 are described in detail in [Rozans
 
 ## 5. Stakeholders
 *Clarify who would be using you system, especially if there are different classes of users.*
+The companies that own the smart meters would be using our system. They would implement our system between the data flow from the smart meters to their database. If we were to look at the whole process then there's also users that get involved by providing data, but they do not use our system, they just provide data to our system.
 
 ## 6. Architectural Design Decisions and Models:
 *Elicit a high-level decomposition of your system into components, modes of communication, major technology used, etc. Be sure to represent decisions that have an impact on privacy. Create one or more original diagrams representing the key aspects of the system. UML is strongly recommended. Ad hoc boxologies are not recommended. The model should be consistent with the decisions elicited.*
