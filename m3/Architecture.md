@@ -14,7 +14,26 @@ Note: Use footnotes[^0] for references and links to relevant material.
 *To help in your requirement elicitation, make sure to consider the state of the art in terms of systems in the same class. Presumably these would be systems that are _not_ implemented following the principles of Privacy by Design. Envision this section as a kind of comparison between your future system and the existing "competition" (see [the Threema docs](https://threema.ch/en/messenger-comparison) for an example of what this can look like).*
 
 ## 3. Functional Requirements
-*List, using a structured format (e.g., enumerated lists organized by section) the main functional requirements your system will support. Include in this list any required system or user interface requirements.*
+The system must protect consumer privacy by obfuscating personal routines and habits that can be derived from aggregated energy consumption data. The goal is to prevent unauthorized inferences from the energy supplier and possible third parties, while maintaining transparency in energy usage for the consumers.
+
+### 3.1 Data Privacy and Access
+1.	**Private Access to Detailed Data:** The system must allow the customer to access detailed energy consumption data via a private key that is unique to each user and not accessible by anyone else.
+2.	**Restricted Supplier and Third-Party Access:** The system must ensure that suppliers and possible third parties can only access aggregated and anonymized data, with no capability to view individual and detailed customer energy consumption.
+
+### 3.2 Communication and Data Handling
+1.	**Smart Meter to MDMS Communication:** The system must include a secure communication component between the smart meters and the Meter Data Management System (MDMS) that encrypts data transmission.
+2.	**Billing Data Averaging:** For billing purposes, the system must send averaged out data about each customer over longer intervals to prevent fine-grained consumption patterns from being revealed.
+3.	**Supplier-Side Aggregation:** To inform the supplier about energy demands, the system must aggregate more detailed data among members of a neighborhood, ensuring individual user data remains private.
+
+### 3.3 Data Encryption
+1.	**End-to-End Encryption:** The system must encrypt data from the point of capture at the smart meter to the other components, ensuring data integrity and confidentiality.
+2.	**Encryption Standards Compliance:** The system must employ strong encryption standards compliant with industry best practices for data in transit and at rest.
+
+### 3.4 System Reliability and Performance
+1.	**Real-Time Processing:** The system must be capable of processing real-time data for immediate access by the customer using their private key.
+2.	**High Availability:** The system must ensure high availability for the continuous and reliable operation of smart meters and accessibility of MDMS.
+
+
 
 ## 4. Privacy Requirements
 *List, using a structured format (e.g., enumerated lists organized by section) the main privacy requirements your system will support.*
