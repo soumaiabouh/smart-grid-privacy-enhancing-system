@@ -16,13 +16,17 @@ In reference to future milestones, we acknowledge the inability to prototype or 
 
 
 ## 2. Similar Systems
-*To help in your requirement elicitation, make sure to consider the state of the art in terms of systems in the same class. Presumably these would be systems that are _not_ implemented following the principles of Privacy by Design. Envision this section as a kind of comparison between your future system and the existing "competition" (see [the Threema docs](https://threema.ch/en/messenger-comparison) for an example of what this can look like).*
-
 We looked at four other companies and the security measures they take. We focused primarily on encryption, de-identification, privacy by design, and generalization by aggregation, as we will be implementing them into our system.
-The first company is Landis+Gyr, and the Smart Meter we chose from them is the "IoT grid sensing electric meter". We found that in terms of security, they implement encryption through a 256-bit AES, digital image signing by validating all signatures on all firmware and application images, and they implement physical hardening by doing post-security and data-at-rest encryption.
-The second company is Hydro One. They mention that data collected is processed by the Independent Electricity System Operator (IESO) before being used. IESO is a company that protects the privacy of Ontarians and does so by de-identifying data and aggregating it. Their system meets "the internationally recognized principles of Privacy by Design®".
-The third company is EKM Metering Inc. They don't mention that they impement any specific data protection when it comes to data collection done by their meters. The only information they provide is that the data is stored in the cloud.
-Finally, the fourth company is ONZO. ONZO does protect data through "secure data transfer, data encryption, multi-factor authentication, and role-based access controls distributed across a scalable, secure infrastructure, provided by Amazon Web Services". Even though ONZO might protect users' data, we've seen in our first report that they potentially give this data to third parties and that we don't know who these are.
+
+The first company is Landis+Gyr, and the Smart Meter we chose from them is the "IoT grid sensing electric meter"[^1]. We found that in terms of security, they implement encryption through a 256-bit AES, digital image signing by validating all signatures on all firmware and application images, and they implement physical hardening by doing post-security and data-at-rest encryption[^2].
+
+
+The second company is Hydro One. They mention that data collected is processed by the Independent Electricity System Operator (IESO) before being used[^3]. IESO is a company that protects the privacy of Ontarians and does so by de-identifying data and aggregating it[^4]. Their system meets "the internationally recognized principles of Privacy by Design®"[^4].
+
+The third company is EKM Metering Inc. They don't mention that they impement any specific data protection when it comes to data collection done by their meters. The only information they provide is that the data is stored in the cloud[^5].
+
+Finally, the fourth company is ONZO. ONZO does protect data through "secure data transfer, data encryption, multi-factor authentication, and role-based access controls distributed across a scalable, secure infrastructure, provided by Amazon Web Services"[^6]. Even though ONZO might protect users' data, we've seen in our first report that they potentially give this data to third parties and that we don't know who these are.
+
 As for our system and the ways we protect data, refer to section 6 about the architecture.
 
 | Company  | Encryption  | Privacy By Design   |  De-Identification | Generalization by Data Aggregation  |
@@ -104,3 +108,16 @@ We want to anonymize user data while enabling the suppliers to perform the opera
 ## 7. Important Scenarios:
 *Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
 
+
+## References
+[^1]:https://www.landisgyr.com/product/revelo-metering-platform/
+
+[^2]:https://www.landisgyr.com/webfoo/wp-content/uploads/2020/01/2023-11-Revelo-Product-Page-Singles-ForDigital.pdf
+
+[^3]:https://www.hydroone.com/rates-and-billing/meters/smart-meters
+
+[^4]:https://www.ieso.ca/en/Sector-Participants/Smart-Metering-Entity/Data-Sharing
+
+[^5]:https://www.ekmmetering.com/en-ca/pages/meter-data
+
+[^6]: https://www.onzo.com/trust-guide
