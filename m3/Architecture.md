@@ -78,7 +78,6 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 For reference, the following activities 5-6-7 are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
 
 ## 5. Stakeholders
-*Clarify who would be using you system, especially if there are different classes of users.*
 The companies that own the smart meters would be using our system. They would implement our system between the data flow from the smart meters to their database. If we were to look at the whole process then there's also users that get involved by providing data, but they do not use our system, they just provide data to our system.
 
 ## 6. Architectural Design Decisions and Models:
