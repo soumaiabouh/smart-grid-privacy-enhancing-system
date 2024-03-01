@@ -29,6 +29,7 @@ Finally the fourth company is ONZO. ONZO does protect data through "secure data 
 | hydro one  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
 | EKM Metering Inc | :x:  | :x:  | :x:  |  :x:|
 | ONZO | :white_check_mark:  | :x:  | :x:  |  :x:|
+| Our system | :white_check_mark:  | :white_check_mark:  | :white_check_mark:  |  :white_check_mark:|
 
 
 
