@@ -1,18 +1,14 @@
 # Architectural Framework for Privacy by Design in Smart Meter Systems
 **Group 7:** Ella Reck​, Soumaia Bouhouia​, Felicia Sun​, Vanessa Akhras​.
 
-Note: Use footnotes[^0] for references and links to relevant material.
-
-[^0]: https://gitlab.cs.mcgill.ca/martin/comp555-winter2024/-/blob/main/project/Milestone-3.md
-
 ## 1. System Purpose and Scope
-*Determine the main function of the system and its functional boundaries. For example, is this a podcast listener? An information website? An image sharing tool? Clarify any potential ambiguity about the extent of the functionality it would cover. Identify the main privacy requirements. You are encouraged to stick to the core functionality. Be careful of [scope creep](https://en.wikipedia.org/wiki/Scope_creep), and of including requirements that would be difficult or impossible to prototype in a demonstration application (e.g., automotive software).*
 
-Our privacy system is focused on averting the tracking and inference of personal routines through smart meter data while still maintaining original functionality. Our system takes the form of a data concentrator as an intermediary between individual smart meters and the central meter data management system. Data concentrators are typically used in utilities and telecommunications to collect, aggregate and manage data from multiple sources. They facilitate the communication of data between the meters and energy service providers but can also incorporate encryption, authentication and access control mechanisms ([source](https://www.ti.com/lit/wp/spry248a/spry248a.pdf?ts=1709191363299&ref_url=https%253A%252F%252Fwww.google.com%252F#:~:text=A%20data%20concentrator%20is%20the,to%20the%20central%20utility%20database.)). 
+From the aggregated energy consumption data collected by smart meters of individual households, it is possible to infer consumers’ behavior and household properties from the usages of individual appliances, as demonstrated in our case study. Our privacy system, therefore, is focused on averting this tracking and inference of personal routines while still maintaining the original functionality of the smart meter system. Our system takes the form of a data concentrator, serving an intermediary between individual smart meters and the central meter data management system. Data concentrators are typically used in utilities and telecommunications to collect, aggregate and manage data from multiple sources. They facilitate the communication of data between the meters and energy service providers but can also incorporate encryption, authentication and access control mechanisms[^]. 
 
-The core function and privacy requirement of our system is the anonymity of smart meter data. The way our system achieves this is two-pronged. First, through homomorphic encryption mechanisms, specifically Paillier Encryption, we ensure that individual consumption data remains private and cannot be accessed or linked to specific individuals without proper authorization. Following this, our system achieves private access control to detailed data with restricted supplier and third party access. Second, anonymity of smart meter data will be achieved by aggregating consumption data from individual smart meters into neighborhood level data. The purpose of aggregating data is to provide exactly the function of k-anonymity within a data set: pooling individual data into a larger group to hide individual values and reduce the granularity of the data. The aggregated data still will allow useful analysis, such as demand forecasting and accurate billing. 
+The core function and privacy requirement of our system is the anonymity of smart meter data and customer confidentiality. The way our system achieves this is two-pronged. First, through homomorphic encryption mechanisms, specifically Paillier Encryption (defined in detail in section 6), we ensure that individual consumption data remains private and cannot be accessed or linked to specific individuals without proper authorization. Additionally, with this cryptosystem, utility companies are able to perform calculations on the encrypted data without decrypting it. This achieves private access control of detailed data and restricts supplier or third party access to solely necessary data. Second, anonymity of smart meter data will be achieved by aggregating consumption data from individual smart meters into neighborhood level data. The purpose of aggregating data is to provide exactly the function of k-anonymity within a data set: pooling individual data into a larger group to hide individual values and reduce the granularity of the data. The aggregated data still will allow useful analysis, such as demand forecasting and accurate billing. 
 
 In reference to future milestones, we acknowledge the inability to prototype or demonstrate a physical data concentrator or smart meter; however, we plan on generating a simulation of smart meter readings, smart meter to central data management system communication, and our privacy system with public smart meter data sets. 
+
 
 
 ## 2. Similar Systems
@@ -32,7 +28,7 @@ As for our system and the ways we protect data, refer to section 6 about the arc
 | Company  | Encryption  | Privacy By Design   |  De-Identification | Generalization by Data Aggregation  |
 |---|---|---|---|---|
 | Landis+Gyr  |  :white_check_mark: | :x:  | :x:  | :x:  |
-| hydro one  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
+| Hydro One  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
 | EKM Metering Inc | :x:  | :x:  | :x:  |  :x:|
 | ONZO | :white_check_mark:  | :x:  | :x:  |  :x:|
 | Our system | :white_check_mark:  | :white_check_mark:  | :white_check_mark:  |  :white_check_mark:|
@@ -112,13 +108,9 @@ We want to anonymize user data while enabling the suppliers to perform the opera
 
 ## References
 [^1]:https://www.landisgyr.com/product/revelo-metering-platform/
-
 [^2]:https://www.landisgyr.com/webfoo/wp-content/uploads/2020/01/2023-11-Revelo-Product-Page-Singles-ForDigital.pdf
-
 [^3]:https://www.hydroone.com/rates-and-billing/meters/smart-meters
-
 [^4]:https://www.ieso.ca/en/Sector-Participants/Smart-Metering-Entity/Data-Sharing
-
 [^5]:https://www.ekmmetering.com/en-ca/pages/meter-data
-
 [^6]: https://www.onzo.com/trust-guide
+[^7]: https://www.ti.com/lit/wp/spry248a/spry248a.pdf?ts=1709191363299&ref_url=https%253A%252F%252Fwww.google.com%252F#:~:text=A%20data%20concentrator%20is%20the,to%20the%20central%20utility%20database.
