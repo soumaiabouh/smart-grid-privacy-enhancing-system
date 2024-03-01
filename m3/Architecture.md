@@ -23,6 +23,8 @@ The third company is EKM Metering Inc. They don't mention any type of data prote
 
 Finally the fourth company is ONZO. ONZO does protect data through "secure data transfer, data encryption, multi factor authentication and role-based access controls distributed across a scalable, secure infrastructure, provided by Amazon Web Services". Even though ONZO might protect user data we've seen in our first report that they potentially give this data to third parties and that we don't know who these are.
 
+As for our system and the ways we protect data refer to section 6 about the architecture.
+
 | Company  | Encryption  | Privacy By Design   |  De-Identification | Generalization by Data Aggregation  |
 |---|---|---|---|---|
 | Landis+Gyr  |  :white_check_mark: | :x:  | :x:  | :x:  |
