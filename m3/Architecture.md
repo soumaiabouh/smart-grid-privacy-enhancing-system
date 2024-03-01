@@ -21,7 +21,7 @@ The second company is hydro one. They mention that all data that is collect is p
 
 | Company  | Encryption  | Privacy By Design   |  De-Identification | Data Aggregation  |
 |---|---|---|---|---|
-| Revolo  |  :white_check_mark: | :x:  | :x:  | :x:  |
+| Landis+Gyr  |  :white_check_mark: | :x:  | :x:  | :x:  |
 | hydro one  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
 
 
