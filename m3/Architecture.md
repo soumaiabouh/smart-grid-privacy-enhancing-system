@@ -71,3 +71,21 @@ We want to anonymize user data while enabling the suppliers to perform the opera
 ## 7. Important Scenarios:
 *Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
 
+Ideas:
+- Data Concentrator receives enough data to aggregate (receives data, waits until it has enough, aggregates using paillier encryption, sends to MDMS over the wide area network)
+- Customer wishes to check their detailed energy consumption data
+- Note: take the components that we're handling and break them down
+
+Functional Scenario:
+- Overview: 
+- System state: 
+- System environment: 
+- External stimulus: 
+- Required system response: 
+
+System Quality Scenario:
+- Overview: 
+- System state: 
+- System environment: 
+- Environment changes: 
+- Required system behavior: 
