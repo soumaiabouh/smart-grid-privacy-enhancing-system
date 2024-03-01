@@ -1,4 +1,4 @@
-# Title
+# Architectural Framework for Privacy by Design in Smart Meter Systems
 **Group 7:** Ella Reck​, Soumaia Bouhouia​, Felicia Sun​, Vanessa Akhras​.
 
 Note: Use footnotes[^0] for references and links to relevant material.
