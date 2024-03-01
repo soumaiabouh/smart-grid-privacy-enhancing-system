@@ -19,7 +19,7 @@ The first company is Landis+Gyr and the smart meter we chose from them is the "I
 
 The second company is hydro one. They mention that all data that is collect is processed by the Indepedent Electricity System Operator (IESO) before being used. IESO is a company that protects the privacy of Ontarians and does so by de-identifying data and aggregating it. Their system meets "the internationally recognized principles of Privacy by Design®".
 
-| Company  | Encryption  | Privacy By Design   |  De-Identification | Data Aggregation  |
+| Company  | Encryption  | Privacy By Design   |  De-Identification | Generalization by Data Aggregation  |
 |---|---|---|---|---|
 | Landis+Gyr  |  :white_check_mark: | :x:  | :x:  | :x:  |
 | hydro one  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
