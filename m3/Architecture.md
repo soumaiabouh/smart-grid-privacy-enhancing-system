@@ -13,7 +13,7 @@ Note: Use footnotes[^0] for references and links to relevant material.
 ## 2. Similar Systems
 *To help in your requirement elicitation, make sure to consider the state of the art in terms of systems in the same class. Presumably these would be systems that are _not_ implemented following the principles of Privacy by Design. Envision this section as a kind of comparison between your future system and the existing "competition" (see [the Threema docs](https://threema.ch/en/messenger-comparison) for an example of what this can look like).*
 
-We looked at a three other companies and the security measures they take.
+We looked at a four other companies and the security measures they take. We focused primarily on encryption, de-identification, privacy by design and generalization by aggregation. Out of these de-identification and generalization are important to our system as we will implement these.
 
 The first company is Landis+Gyr and the smart meter we chose from them is the "IoT grid sensing electric meter". We found that in terms of security they implement ecryption through a 256-bit AES, digital image signing by validating all signatures on all firmware and pplication images and they implement physical hardening by doing post security and data at rest encryption.
 
@@ -21,11 +21,14 @@ The second company is hydro one. They mention that all data that is collect is p
 
 The third company is EKM Metering Inc. They don't mention any type of data protection hen it comes to data collection done by the meters. The only information they provide is that the data is stored in the cloud. 
 
+Finally the fourth company is ONZO. ONZO does protect data through "secure data transfer, data encryption, multi factor authentication and role-based access controls distributed across a scalable, secure infrastructure, provided by Amazon Web Services". Even though ONZO might protect user data we've seen in our first report that they potentially give this data to third parties and that we don't know who these are.
+
 | Company  | Encryption  | Privacy By Design   |  De-Identification | Generalization by Data Aggregation  |
 |---|---|---|---|---|
 | Landis+Gyr  |  :white_check_mark: | :x:  | :x:  | :x:  |
 | hydro one  | :x:  | :white_check_mark:  |:white_check_mark:   | :white_check_mark:  |
 | EKM Metering Inc | :x:  | :x:  | :x:  |  :x:|
+| ONZO | :white_check_mark:  | :x:  | :x:  |  :x:|
 
 
 
