@@ -43,6 +43,16 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 ## 4. Privacy Requirements
 *List, using a structured format (e.g., enumerated lists organized by section) the main privacy requirements your system will support.*
 
+### 4.1 Data Anonymity and Customer Confidentiality
+1. Ensure personally identifiable information is stripped from collected data to prevent identification
+### 4.2 Encryption
+### 4.3 Data Minimization 
+1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services. 
+### 4.4 Transparency and Consent 
+1. Inform users about the data being collected and obtain explicit consent to do so. 
+2. **User Control**: provide users with the option to control their data
+
+
 For reference, the following activities 5-6-7 are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
 
 ## 5. Stakeholders
