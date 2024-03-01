@@ -59,19 +59,21 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 
 
 ## 4. Privacy Requirements
-*List, using a structured format (e.g., enumerated lists organized by section) the main privacy requirements your system will support.*
 
 ### 4.1 Data Anonymity and Customer Confidentiality
-1. Ensure personally identifiable information is stripped from collected data to prevent identification
-### 4.2 Encryption
-### 4.3 Data Minimization 
-1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services. 
-### 4.4 Transparency and Consent 
+1. **Anonymization**: Ensure personally identifiable information is stripped from collected data to prevent identification. Aggregate individual consumption data into neighborhood-level or anonymized datasets to prevent identification of specific individuals. 
+2. **Encryption**: Data is encrypted in transit and at rest to protect from unauthorized access or interception. 
+
+### 4.2 Data Minimization 
+1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services.
+2. **Data Retention and Deletion:** Regularly review and delete outdated or unnecessary data.
+
+### 4.3 Transparency and Consent 
 1. Inform users about the data being collected and obtain explicit consent to do so. 
-2. **User Control**: provide users with the option to control their data
+2. Maintain transparency about data collection, aggregation, and privacy practices through clear privacy policies, terms of service and data usage agreements 
 
-
-For reference, the following activities 5-6-7 are described in detail in [Rozanski and Woods Ch. 13](https://mcgill.on.worldcat.org/oclc/794554030).
+### 4.4 Regulatory Compliance
+1. Stay informed about updates to privacy regulations and adapt the system accordingly to maintain compliance and mitigate privacy risks. 
 
 ## 5. Stakeholders
 The companies that own the smart meters would be using our system. They would implement our system between the data flow from the smart meters to their databases. This will ensure that data gets generalized before it arrives at the company's databases. These companies should use our system as it protects users' data and therefore attracts more users by demonstrating that third parties or non welcomed parties cannot identify people by their data. Privacy is also an important factor when it comes to smart meter companies, as they collect personal information about users. By using our system, it allows companies to follow privacy regulations better therefore potentially avoiding fines or lawsuits.
