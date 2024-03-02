@@ -11,6 +11,6 @@ Our contribution was equal. We organized the work as such:
 | 6 | Architectural Design Decisions and Models | Soumaia     |
 | 7 | Important Scenarios       | Soumaia, Ella, Felicia |
 | 8 | Contributing.md           |     Felicia, Vanessa                   |
-| 9 | March 23 team meeting       |        Everyone                |
-| 10 | March 25 team meeting       |        Everyone                |
+| 9 | February 23 team meeting       |        Everyone                |
+| 10 | February 25 team meeting       |        Everyone                |
 
