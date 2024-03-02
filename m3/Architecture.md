@@ -148,7 +148,7 @@ This scheme is a type of homomorphic encryption scheme, meaning mathematical ope
     1. The system aggregates the encrypted data at the neighborhood level, preserving the privacy of individual consumers while allowing useful analysis such as demand forecasting.
     2. The system aggregates the encrypted data at the individual level until it has collected 3 hours worth of individual data. This allows the individual data to be sent after longer intervals of time to reduce the sensitivity of the data while still allowing for accurate billing.
 
-The aggregated data is then transmitted securely to the central meter data management system for further analysis and processing.
+  The aggregated data is then transmitted securely to the central meter data management system for further analysis and processing.
 
 
 #### Scenario 2: User Access to Detailed Energy Consumption Data
