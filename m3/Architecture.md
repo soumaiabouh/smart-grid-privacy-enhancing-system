@@ -129,7 +129,7 @@ For this report, detailed implementation specifics and technical terms regarding
 ## 7. Important Scenarios:
 *Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
 
-#### Scenario 1: Smart Meter Data Transmission and Processing
+#### Scenario 1: Smart Meter Data Transmission and Aggregation for Suppliers
 
 - **Overview:** How the system processes the information transmitted from the smart meters in order to give the suppliers the data needed for individual billing and neighborhood-level forecasting.
 
@@ -145,13 +145,22 @@ For this report, detailed implementation specifics and technical terms regarding
 
   The aggregated data is then transmitted securely to the central meter data management system for further analysis and processing.
 
+#### Scenario 2.1: Transmission and Storage of Detailed Energy Consumption for Later User Access
 
-#### Scenario 2: User Access to Detailed Energy Consumption Data
-- **Overview:** 
-- **System state:** 
-- **System environment:** 
-- **External stimulus:** 
-- **Required system response:** 
+- **Overview:** How the user-centric system receives and stores encrypted AES data until the user chooses to access it. 
+- **System state:** The user-centric system is ready to receive the encrypted AES data from smart meters. This system does not have access to the decryption keys.
+- **System environment:** The system environment is operating normally, without problems.
+- **External stimulus:** Individual smart meters transmit AES-encrypted energy consumption data to the user-centric system.
+- **Required system response:** The system stores the encrypted data, and waits for the user to request access to it.
+
+#### Scenario 2.2: User Access to Detailed Energy Consumption Data
+Note: The development and implementation of the UI itself, for instance through an application or website, is out of scope for our project. For the purposes of this scenario, we can assume that the user access is through a website or application. 
+- **Overview:** How the system allows for user access to detailed energy consumption data while maintaining data privacy through client-side encryption.
+- **System state:** The system's user interface is initialized with the original AES-encrypted energy consumption data and is ready to receive user requests for accessing it. The encryption and decryption modules are loaded and operational within the user's browser environment or application.
+- **System environment:** The system environment is operating normally, without problems.
+- **External stimulus:** The user logs in using their credentials or biometric authentication, and requests access to the detailed energy consumption data for their household.
+- **Required system response:** Once authenticated, the application securely retrieves the encrypted energy consumption data associated with the user's account from the server. The encrypted data is decrypted locally on the user's device. 
+
 
 ## References
 [^1]:https://www.landisgyr.com/product/revelo-metering-platform/
