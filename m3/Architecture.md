@@ -86,13 +86,12 @@ In smart meters like the the Revelo model described in section 3, data is secure
 
 To mitigate this risk and enhance user privacy, we propose an architecture that incorporates an additional layer of encryption using the Paillier cryptosystem. Our strategy involves decrypting the AES-encrypted data when it reaches the Data Concentrator and immediately re-encrypting it with Paillier encryption. This approach is designed to maintain the confidentiality of individual user data while still allowing the necessary aggregated computations for billing and monitoring.
 
-Paillier encryption is a type of public-key cryptography notable for its homomorphic property, which allows computations to be performed on encrypted data (ciphertexts) without decrypting it. Specifically, it’s additively homomorphic, meaning that arithmetic operations like addition performed on encrypted values will, when decrypted, yield the same result as if the operations had been performed on the original data. Its security relies on the difficulty of integer factorization, a foundation shared with RSA encryption. Despite its benefits for privacy protection, Paillier encryption is computationally more demanding. For this reason, we will be using TODO: **[talk about the optimized Paillier Encryption]**. 
+Paillier encryption is a type of public-key cryptography notable for its homomorphic property, which allows computations to be performed on encrypted data (ciphertexts) without decrypting it. Specifically, it’s additively homomorphic, meaning that arithmetic operations like addition performed on encrypted values will, when decrypted, yield the same result as if the operations had been performed on the original data. Its security relies on the difficulty of integer factorization, a foundation shared with RSA encryption. Despite its benefits for privacy protection, Paillier encryption is computationally more demanding. For this reason, we will be using ...
+TODO: **[talk about the optimized Paillier Encryption]**. 
 
-In your smart metering system, Paillier encryption enables the utility company to perform necessary operations on encrypted meter readings without compromising individual users' privacy. This means that detailed user data remains confidential throughout the process, while still allowing the utility to perform essential functions like billing and monitoring energy consumption trends.
+In our smart metering system, Paillier encryption enables the utility company to perform necessary operations on encrypted meter readings without compromising individual users' privacy. This means that detailed user data remains confidential throughout the process, while still allowing the utility to perform essential functions like billing and monitoring energy consumption trends.
 
 Furthermore, considering that smart meters send data incrementally, the decryption and re-encryption process at the Data Concentrator involve only small batches of data at a time. This limits the window of vulnerability where user data could be exposed in plaintext form. By minimizing the amount and duration of data in a decrypted state, we significantly reduce the potential impact of any single point of failure in the system's privacy architecture.
-
-TODO: Mofify diagram to include user interaction with the system
 
 <p align="center">
   <img src="component-diagram.png" width=1200px />
@@ -104,6 +103,7 @@ TODO: Mofify diagram to include user interaction with the system
 - **Data Aggregation:** The Data Concentrator aggregates the now Paillier-encrypted data over defined time intervals or by neighborhood, depending on the desired granularity. This aggregation process is designed to work directly on encrypted data, leveraging the homomorphic properties of Paillier encryption.
 - **Secure Transmission to MDMS:** The aggregated, Paillier-encrypted data is transmitted over the Wide Area Network (WAN) to the Meter Data Management System (MDMS). The WAN ensures the secure transmission of this encrypted data using advanced security protocols.
 - **Storage in MDMS:** The MDMS stores the aggregated, Paillier-encrypted data. It can perform certain computations on this data without the need for decryption, preserving the privacy of individual user data.
+- **Data Provision to User Interface Component:** The architecture includes a pathway for metering data to be sent from the Smart Meter to a User Interface (UI) component. This data provision is designed to enable customers to access their individual consumption data securely. It's important to note that our system facilitates the secure transfer of data to the UI component, but the development and implementation of the UI itself is not within the scope of our current project.
 
 
 ### 6.2 Selection of Homomorphic Encryption for Data Privacy and Analysis
