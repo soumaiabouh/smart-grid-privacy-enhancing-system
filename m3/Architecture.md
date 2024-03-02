@@ -110,11 +110,7 @@ TODO: Mofify diagram to include user interaction with the system
 ### 6.2 Selection of Homomorphic Encryption for Data Privacy and Analysis
 We want to anonymize user data while enabling the suppliers to perform the operations they need on the data, i.e., calculating the billing fees as well as being able to monitor the general energy consumption of particular neighborhoods.  For this purpose, we propose the use of Paillier Encryption.
 
-For the purpose of this report, detailed implementation specifics and technical terms regarding Paillier encryption will not be extensively discussed beyond what is necessary for understanding the system’s operation and security mechanisms. 
-
-Paillier encryption is a type of public key cryptography, named after its inventor Pascal Paillier who proposed the system in 1999. The security of this cryptosystem is based on the presumed computational difficulty of certain mathematical problems, specifically the difficulty of factoring large composite numbers into their prime factors and distinguishing between numbers that are quadratic residues modulo a composite number (also known as the Decisional Composite Residuosity Assumption). 
-
-This scheme is a type of homomorphic encryption scheme, meaning mathematical operations are able to be performed on encrypted data without decrypting it first. The Pallier scheme supports the addition operation and is categorized as a semi-homomorphic encryption scheme (since multiplication cannot be performed on ciphertexts in this cryptosystem).  
+For this report, detailed implementation specifics and technical terms regarding Paillier encryption will not be extensively discussed beyond what is necessary for understanding the system’s operation and security mechanisms. 
 
 #### Context and Considerations for Using Paillier Encryption:
 - **Privacy:** Paillier encryption preserves the confidentiality of individual users' data while allowing the aggregation needed for billing and supply forecasting. 
