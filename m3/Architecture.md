@@ -52,8 +52,7 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 
 ### 3.4 System Reliability and Performance
 1.	**Real-Time Processing:** The system must be capable of processing real-time data for immediate access by the customer using their private key.
-2.	**High Availability:** The system must ensure high availability for the continuous and reliable operation of smart meters and accessibility of MDMS.
-
+2.	**Data Integrity and Accuracy:** With the implementation of additional encryption and aggregation steps, the system must maintain the integrity and accuracy of data. This is essential to ensure that billing calculations based on the encrypted and aggregated data are correct and reliable. The system's design must include mechanisms to verify that the encryption and aggregation processes preserve the exactness of the original metered data to prevent any discrepancies in billing or reporting.
 
 
 ## 4. Privacy Requirements
