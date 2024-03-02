@@ -129,7 +129,6 @@ For this report, detailed implementation specifics and technical terms regarding
 
 
 ## 7. Important Scenarios:
-*Identify and describe important scenarios. A scenario is "a well-defined description of an interaction between an external entity and the system. It defines the event that triggers the scenario, the interaction initiated by the external entity, and the response required of the system" [Rozanski and Woods]. You can represent scenarios using plain text or UML Sequence Diagrams. The scenarios you choose should be relevant to the privacy requirements and be generally useful for developing and communicating your system architecture.*
 
 #### Scenario 1: Smart Meter Data Transmission and Aggregation for Suppliers
 
