@@ -96,6 +96,9 @@ Furthermore, considering that smart meters send data incrementally, the decrypti
   <img src="component-diagram.png" width=1200px />
 </p>
 
+_**Figure 1.** UML Component Diagram of the system. The Advanced Metering lnfrastructure (AMI) component is inspired by the paper by Barai et al[^8] and will be simulated, while the "Privacy Enhancement" subsystem is the focus of our project._
+
+
 - **Smart Meter Encryption:** Each Smart Meter encrypts its data using AES encryption before transmission to ensure the security of data in transit.
 - **Data Flow to Data Concentrator:** The AES-encrypted data from the Smart Meters is transmitted through the Neighborhood Area Network to the Data Concentrator.
 - **Data Decryption and Re-encryption at Data Concentrator:** Upon receipt, the Data Concentrator decrypts the AES-encrypted data. It then immediately re-encrypts the data using the Paillier encryption system. This step is crucial to transition from the secure transmission encryption to the encryption method that allows for aggregated computations.
@@ -160,4 +163,4 @@ For this report, detailed implementation specifics and technical terms regarding
 [^5]:https://www.ekmmetering.com/en-ca/pages/meter-data
 [^6]: https://www.onzo.com/trust-guide
 [^7]: https://www.ti.com/lit/wp/spry248a/spry248a.pdf?ts=1709191363299&ref_url=https%253A%252F%252Fwww.google.com%252F#:~:text=A%20data%20concentrator%20is%20the,to%20the%20central%20utility%20database.
-
+[^8]: https://ieeexplore.ieee.org/abstract/document/7379940
