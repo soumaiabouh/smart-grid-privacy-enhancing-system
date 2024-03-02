@@ -3,7 +3,7 @@
 
 ## 1. System Purpose and Scope
 
-From the aggregated energy consumption data collected by smart meters of individual households, it is possible to infer consumers’ behavior and household properties from the usages of individual appliances, as demonstrated in our case study. Our privacy system, therefore, is focused on averting this tracking and inference of personal routines while still maintaining the original functionality of the smart meter system. Our system takes the form of a data concentrator, serving an intermediary between individual smart meters and the central meter data management system. Data concentrators are typically used in utilities and telecommunications to collect, aggregate and manage data from multiple sources. They facilitate the communication of data between the meters and energy service providers but can also incorporate encryption, authentication and access control mechanisms[^]. 
+From the aggregated energy consumption data collected by smart meters of individual households, it is possible to infer consumers’ behavior and household properties from the usages of individual appliances, as demonstrated in our case study. Our privacy system, therefore, is focused on averting this tracking and inference of personal routines while still maintaining the original functionality of the smart meter system. Our system takes the form of a data concentrator, serving an intermediary between individual smart meters and the central meter data management system. Data concentrators are typically used in utilities and telecommunications to collect, aggregate and manage data from multiple sources. They facilitate the communication of data between the meters and energy service providers but can also incorporate encryption, authentication and access control mechanisms [^7]. 
 
 The core function and privacy requirement of our system is the anonymity of smart meter data and customer confidentiality during billing and during analysis. The way our system achieves this is two-pronged. First, through homomorphic encryption mechanisms, specifically Paillier Encryption (defined in detail in section 6), we ensure that individual consumption data remains private and cannot be accessed or linked to specific individuals without proper authorization. With this cryptosystem, utility companies are able to perform calculations on the encrypted data without decrypting it, allowing for accurate billing solely from the encrypted data. This achieves private access control of detailed data and restricts supplier or third party access to only necessary data. Second, anonymity of smart meter data during analysis will be achieved by aggregating consumption data from individual smart meters into neighborhood level data. The purpose of aggregating data is to provide exactly the function of k-anonymity within a data set: pooling individual data into a larger group to hide individual values and reduce the granularity of the data. The aggregated data still will allow useful analysis, such as demand forecasting and peak usage periods. 
 
@@ -31,7 +31,6 @@ As for our system and the ways we protect data, refer to section 6 about the arc
 | EKM Metering Inc | :x:  | :x:  | :x:  |  :x:|
 | ONZO | :white_check_mark:  | :x:  | :x:  |  :x:|
 | Our system | :white_check_mark:  | :white_check_mark:  | :white_check_mark:  |  :white_check_mark:|
-
 
 
 
@@ -81,7 +80,6 @@ Other relevant stakeholders include energy analysts or researchers using the sys
 
 
 ## 6. Architectural Design Decisions and Models:
-*Elicit a high-level decomposition of your system into components, modes of communication, major technology used, etc. Be sure to represent decisions that have an impact on privacy. Create one or more original diagrams representing the key aspects of the system. UML is strongly recommended. Ad hoc boxologies are not recommended. The model should be consistent with the decisions elicited.*
 
 ### 6.1 General Overview of the System
 In smart meters like the the Revelo model described in section 3, data is secured in transit using AES encryption, which provides robust protection against interception. However, this encrypted data must eventually be decrypted for processing, either at the Data Concentrator or the MDMS, so that operations such as billing calculations and consumption monitoring can be performed. This necessary decryption step represents a critical point in the data handling process where user privacy could potentially be compromised.
@@ -163,3 +161,4 @@ For this report, detailed implementation specifics and technical terms regarding
 [^5]:https://www.ekmmetering.com/en-ca/pages/meter-data
 [^6]: https://www.onzo.com/trust-guide
 [^7]: https://www.ti.com/lit/wp/spry248a/spry248a.pdf?ts=1709191363299&ref_url=https%253A%252F%252Fwww.google.com%252F#:~:text=A%20data%20concentrator%20is%20the,to%20the%20central%20utility%20database.
+
