@@ -13,7 +13,7 @@ In reference to future milestones, we acknowledge the inability to prototype or 
 ## 2. Similar Systems
 We looked at four other companies and the security measures they take. We focused primarily on encryption, de-identification, privacy by design, and generalization by aggregation, as we will be implementing them into our system.
 
-The first company is Landis+Gyr, and the Smart Meter we chose from them is the "IoT grid sensing electric meter"[^1]. We found that in terms of security, they implement encryption through a 256-bit AES, digital image signing by validating all signatures on all firmware and application images, and they implement physical hardening by doing post-security and data-at-rest encryption[^2].
+The first company is Landis+Gyr, and the Smart Meter we chose from them is the Revelo "IoT grid sensing electric meter"[^1]. We found that in terms of security, they implement encryption through a 256-bit AES, digital image signing by validating all signatures on all firmware and application images, and they implement physical hardening by doing post-security and data-at-rest encryption[^2].
 
 
 The second company is Hydro One. They mention that data collected is processed by the Independent Electricity System Operator (IESO) before being used[^3]. IESO is a company that protects the privacy of Ontarians and does so by de-identifying data and aggregating it[^4]. Their system meets "the internationally recognized principles of Privacy by Design®"[^4].
@@ -84,7 +84,7 @@ Other relevant stakeholders include energy analysts or researchers using the sys
 *Elicit a high-level decomposition of your system into components, modes of communication, major technology used, etc. Be sure to represent decisions that have an impact on privacy. Create one or more original diagrams representing the key aspects of the system. UML is strongly recommended. Ad hoc boxologies are not recommended. The model should be consistent with the decisions elicited.*
 
 ### 6.1 General Overview of the System
-In smart meters like the the Relevlo model described in section 3, data is secured in transit using AES encryption, which provides robust protection against interception. However, this encrypted data must eventually be decrypted for processing, either at the Data Concentrator or the MDMS, so that operations such as billing calculations and consumption monitoring can be performed. This necessary decryption step represents a critical point in the data handling process where user privacy could potentially be compromised.
+In smart meters like the the Revelo model described in section 3, data is secured in transit using AES encryption, which provides robust protection against interception. However, this encrypted data must eventually be decrypted for processing, either at the Data Concentrator or the MDMS, so that operations such as billing calculations and consumption monitoring can be performed. This necessary decryption step represents a critical point in the data handling process where user privacy could potentially be compromised.
 
 To mitigate this risk and enhance user privacy, we propose an architecture that incorporates an additional layer of encryption using the Paillier cryptosystem. Our strategy involves decrypting the AES-encrypted data when it reaches the Data Concentrator and immediately re-encrypting it with Paillier encryption. This approach is designed to maintain the confidentiality of individual user data while still allowing the necessary aggregated computations for billing and monitoring.
 
