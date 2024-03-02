@@ -76,16 +76,35 @@ Ideas:
 - Customer wishes to check their detailed energy consumption data
 - Note: take the components that we're handling and break them down
 
-Functional Scenario:
-- Overview: 
-- System state: 
-- System environment: 
-- External stimulus: 
-- Required system response: 
+#### Scenario 1: Smart Meter Data Transmission and Processing
+- **Overview:** How the system deals with the information transmitted from the smart meters.
+- **System state:** The Data Concentrator and MDMS have been initialized with the necessary encryption and decryption keys.
+- **System environment:** The system environment is operating normally, without problems.
+- **External stimulus:** Individual smart meters transmit AES-encrypted energy consumption data to the Data Concentrator at regular intervals.
+- **Required system response:** Every time the Data Concentrator receives the AES-encrypted data from individual smart meters, it decrypts it (DataDecryption component) before immediately re-incrypting it using Paillier Encryption (PaillierEncryption component). Then, the data is aggregated in two ways (DataAggregator component):
+  1. The system aggregates the encrypted data at the neighborhood level, preserving the privacy of individual consumers while allowing useful analysis such as demand forecasting.
+  2. The system aggregates the encrypted data at the individual level until it has collected 3 hours worth of individual data. This allows the individual data to be sent after longer intervals of time to reduce the sensitivity of the data while still allowing for accurate billing.
 
-System Quality Scenario:
-- Overview: 
-- System state: 
-- System environment: 
-- Environment changes: 
-- Required system behavior: 
+  The aggregated data is then transmitted securely to the central meter data management system for further analysis and processing.
+
+#### Sub-Scenario 1.1: Billing Individual Customers (Supplier Access to Individual Customer's Energy Consumption Data)
+- **Overview:** 
+- **System state:** 
+- **System environment:** 
+- **External stimulus:** 
+- **Required system response:** 
+
+#### Sub-Scenario 1.2: Sending the Aggregated Neighborhood Energy Consumption Data to the Supplier (Supplier Access to Aggregated Neighborhood Energy Consumption Data)
+- **Overview:** 
+- **System state:** 
+- **System environment:** 
+- **External stimulus:** 
+- **Required system response:** 
+
+#### Scenario 2: User Access to Detailed Energy Consumption Data
+- **Overview:** 
+- **System state:** 
+- **System environment:** 
+- **External stimulus:** 
+- **Required system response:** 
+
