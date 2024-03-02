@@ -85,18 +85,19 @@ In smart meters like the the Revelo model described in section 3, data is secure
 
 To mitigate this risk and enhance user privacy, we propose an architecture that incorporates an additional layer of encryption using the Paillier cryptosystem. Our strategy involves decrypting the AES-encrypted data when it reaches the Data Concentrator and immediately re-encrypting it with Paillier encryption. This approach is designed to maintain the confidentiality of individual user data while still allowing the necessary aggregated computations for billing and monitoring.
 
-Paillier encryption is a type of public-key cryptography notable for its homomorphic property, which allows computations to be performed on encrypted data (ciphertexts) without decrypting it. Specifically, it’s additively homomorphic, meaning that arithmetic operations like addition performed on encrypted values will, when decrypted, yield the same result as if the operations had been performed on the original data. Its security relies on the difficulty of integer factorization, a foundation shared with RSA encryption. Despite its benefits for privacy protection, Paillier encryption is computationally more demanding. For this reason, we will be using ...
-TODO: **[talk about the optimized Paillier Encryption]**. 
+Paillier encryption is a type of public-key cryptography notable for its homomorphic property, which allows computations to be performed on encrypted data (ciphertexts) without decrypting it. Specifically, it is additively homomorphic, meaning that arithmetic operations like addition performed on encrypted values will, when decrypted, yield the same result as if the operations had been performed on the original data. Its security relies on the difficulty of integer factorization, a foundation shared with RSA encryption[^8]. Despite its benefits for privacy protection, Paillier encryption is computationally more demanding. For this reason, we are considering varients of the Paillier algorithm to achieve better performance, such as the one described by Ma et al, who introduce fast encryption and fast decryption algorithms[^8]. 
 
 In our smart metering system, Paillier encryption enables the utility company to perform necessary operations on encrypted meter readings without compromising individual users' privacy. This means that detailed user data remains confidential throughout the process, while still allowing the utility to perform essential functions like billing and monitoring energy consumption trends.
 
 Furthermore, considering that smart meters send data incrementally, the decryption and re-encryption process at the Data Concentrator involve only small batches of data at a time. This limits the window of vulnerability where user data could be exposed in plaintext form. By minimizing the amount and duration of data in a decrypted state, we significantly reduce the potential impact of any single point of failure in the system's privacy architecture.
 
+We present below a UML Component Diagram depicting our "Privacy Enhancement" subsystem and its integration with the Advanced Metering Infrastructure (AMI). This is accompanied by an explanation detailing the interactions among the system's components, demonstrating their collective role in improving data privacy.
+
 <p align="center">
   <img src="component-diagram.png" width=1200px />
 </p>
 
-_**Figure 1.** UML Component Diagram of the system. The Advanced Metering lnfrastructure (AMI) component is inspired by the paper by Barai et al[^8] and will be simulated, while the "Privacy Enhancement" subsystem is the focus of our project._
+_**Figure 1.** UML Component Diagram of the system. The Advanced Metering Infrastructure (AMI) component is inspired by the paper by Barai et al[^9] and will be simulated, while the "Privacy Enhancement" subsystem is the focus of our project._
 
 
 - **Smart Meter Encryption:** Each Smart Meter encrypts its data using AES encryption before transmission to ensure the security of data in transit.
@@ -163,4 +164,5 @@ For this report, detailed implementation specifics and technical terms regarding
 [^5]:https://www.ekmmetering.com/en-ca/pages/meter-data
 [^6]: https://www.onzo.com/trust-guide
 [^7]: https://www.ti.com/lit/wp/spry248a/spry248a.pdf?ts=1709191363299&ref_url=https%253A%252F%252Fwww.google.com%252F#:~:text=A%20data%20concentrator%20is%20the,to%20the%20central%20utility%20database.
-[^8]: https://ieeexplore.ieee.org/abstract/document/7379940
+[^8]: https://dl.acm.org/doi/10.1145/3485832.3485842
+[^9]: https://ieeexplore.ieee.org/abstract/document/7379940
