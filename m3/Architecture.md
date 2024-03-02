@@ -63,7 +63,6 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 
 ### 4.2 Data Minimization 
 1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services.
-2. **Data Retention and Deletion:** Regularly review and delete outdated or unnecessary data.
 
 ### 4.3 Transparency and Consent 
 1. Inform users about the data being collected and obtain explicit consent to do so. 
