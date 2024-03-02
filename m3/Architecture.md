@@ -61,14 +61,14 @@ The system must protect consumer privacy by obfuscating personal routines and ha
 
 ### 4.1 Data Anonymity and Customer Confidentiality
 1. **Anonymization**: Ensure personally identifiable information is stripped from collected data to prevent identification. Aggregate individual consumption data into neighborhood-level or anonymized datasets to prevent identification of specific individuals. 
-2. **Encryption**: Data is encrypted in transit and at rest to protect from unauthorized access or interception. 
+2. **Encryption**: Data is encrypted in transit and at rest to protect from unauthorized access or interception. Our system’s encryption scheme renders it unnecessary for raw individual data to be handled at any time.  
 
 ### 4.2 Data Minimization 
-1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services.
+1. Collect only the necessary data required for billing and system operation. Minimize the collection of personal information beyond what is essential for providing services. Our system achieves this through incrementing the time between data collection. 
 
 ### 4.3 Transparency and Consent 
-1. Inform users about the data being collected and obtain explicit consent to do so. 
-2. Maintain transparency about data collection, aggregation, and privacy practices through clear privacy policies, terms of service and data usage agreements 
+1. **User Access Control**: Inform users about the data being collected and obtain explicit consent to do so. Provide users with mechanisms to view their own consumption data consistently.  
+2. Maintain transparency about data collection, aggregation, and privacy practices through clear privacy policies, terms of service and data usage agreements. 
 
 ### 4.4 Regulatory Compliance
 1. Stay informed about updates to privacy regulations and adapt the system accordingly to maintain compliance and mitigate privacy risks. 
