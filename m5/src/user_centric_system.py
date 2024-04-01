@@ -24,8 +24,8 @@ class UserCentricSystem:
         # Ask user if they want to display data. If yes, prompt user to enter username and password to log in, then call display().
         # Wait for user to log out/end the program.
 
+
         # Rough example:
-        
         if self.username is None:
             self.username = input("Enter your username: ")
             password = input("Enter your password: ")
