@@ -7,3 +7,6 @@ Group 7: Ella Reck​, Soumaia Bouhouia​, Felicia Sun​, Vanessa Akhras​.
 
 ## Paillier Encryption Implementation
 [Explain how it has been implemented, choice of algorithm - walk through the code, how it influenced the choice of the source code language]
+
+
+**Idea: Show a before-after, graphically
