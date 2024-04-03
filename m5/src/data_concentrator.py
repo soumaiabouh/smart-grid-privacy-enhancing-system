@@ -5,6 +5,7 @@ class DataConcentrator:
         self.data_dict = {}  # Dictionary to store data from each smart meter
         self.time = 0  # Initialize time
         self.aggregated_data_dict = {}  # Dictionary to store aggregated data
+        self.decryption_keyAES = None
 
     def add_smart_meter(self, sm):
         self.smList.append(sm)
@@ -23,7 +24,7 @@ class DataConcentrator:
 
         # Aggregate data for each smart meter and store in aggregated_data_dict
         for sm_id, encrypted_data_list in self.data_dict.items():
-            aggregated_data = self.pes.pallierEncrypt(decryption_keyAES, encrypted_data_list)
+            aggregated_data = self.pes.pallierEncrypt(self.decryption_keyAES, encrypted_data_list)
             self.aggregated_data_dict[sm_id] = aggregated_data
 
         # Clear data_dict for the next aggregation
