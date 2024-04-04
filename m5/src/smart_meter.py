@@ -21,7 +21,6 @@ class SmartMeter:
         
     def encrypt_data(self, data):
         # helper function for load_data, takes the data and encrypts it using AES
-        # helper function for load_data, takes the data and encrypts it using AES
         cipher = AES.new(self.key, AES.MODE_CTR) # new object
         ciphertext = cipher.encrypt(data) # encrypt plaintext 
         return ciphertext, cipher.nonce # return cipher and nonce
