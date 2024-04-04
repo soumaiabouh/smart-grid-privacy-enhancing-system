@@ -3,7 +3,7 @@ from smart_meter import SmartMeter
 class UserCentricSystem:
     def __init__(self, sm: SmartMeter):
         self.sm = sm
-        self.encryption_key = None
+        self.encryption_key = sm.getKey
         self.username = None
         
     def display(self):
