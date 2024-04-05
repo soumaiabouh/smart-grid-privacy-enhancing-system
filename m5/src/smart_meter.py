@@ -7,22 +7,19 @@ class SmartMeter:
     def __init__(self, dataCSV):
         self.data_dict = self.load_data(dataCSV)
         self.generate_id()
-        self.generate_keys()
+        self.generate_key()
         
     def load_data(self, filename):
         # load file, get data as dict, encrypt it using encrypt_data() and return it
         pass
         
-    def generate_keys(self):
+    def generate_key(self):
         # Generate a random 256-bit key
         self._key = get_random_bytes(32)
-        
-        # Generate key pair 
-        self.key_pair = RSA.generate(2048)
-
+    
     def generate_id(self):
         # generate id and return it
-        self.id = get_random_bytes(32)
+        self.id = get_random_bytes(16)
         
     def encrypt_data(self, data):
         # helper function for load_data, takes the data and encrypts it using AES
@@ -39,3 +36,5 @@ class SmartMeter:
         cipher_rsa = PKCS1_OAEP.new(public_key)
         encrypted_key = cipher_rsa.encrypt(self._key)
         return encrypted_key
+
+
