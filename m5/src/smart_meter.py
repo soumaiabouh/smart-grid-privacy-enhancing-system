@@ -7,11 +7,13 @@ from Crypto.Cipher import PKCS1_OAEP
 class SmartMeter:
     def __init__(self, pes_public_key, filename):
         self.pes_public_key = RSA.import_key(pes_public_key)
+        self.aes_key = self._generate_key()
+        self.encrypted_aes_key = self._encrypt_aes_key()
+        self.id = self._generate_id()
         self.encrypted_data_list = []
         self._load_data(filename)
-        self.id = self._generate_id()
-        self.aes_key = self._generate_key()
-        
+
+                
     def _load_data(self, filename):
         try:
             with open(filename, mode='r', newline='') as file:
@@ -46,14 +48,17 @@ class SmartMeter:
             'tag': tag
         })
         
-    def get_encrypted_data(self):
-        # public function, return self.data_dict
-        return self.encrypted_data_list
-            
     def _encrypt_aes_key(self):
         # function that encrypts using RSA the smart meter AES key using a public key 
         cipher_rsa = PKCS1_OAEP.new(self.pes_public_key)
         encrypted_key = cipher_rsa.encrypt(self.aes_key)
         return encrypted_key
 
-
+    def get_encrypted_data(self):
+        return self.encrypted_data_list
+            
+    def get_id(self):
+        return self.id
+    
+    def get_encrypted_aes_key(self):
+        return self.encrypted_aes_key
