@@ -16,7 +16,7 @@ class PES:
         # The public key will be used by the smart meters to encrypt their AES key
         return self.rsa_public_key
     
-    def decrypt_data(self, encrypted_aes_key, data_list):
+    def _decrypt_data(self, encrypted_aes_key, data_list):
         # Decrypt the AES key
         cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair) # Creates a new RSA cipher object for decryption
         aes_key = cipher_rsa.decrypt(encrypted_aes_key)
@@ -36,7 +36,7 @@ class PES:
             
         return decrypted_data_list
     
-    def pallier_encrypt_and_store(self, decrypted_data_list):
+    def _pallier_encrypt_and_store(self, decrypted_data_list):
         # For the moment, we want to keep the timestamps
         for reading in decrypted_data_list:
             encrypted_data = self.pallier_public_key.encrypt(int(reading["decrypted_data"]))
@@ -46,7 +46,7 @@ class PES:
             
             self.pallier_encrypted_data.append(encrypted_data_info)
     
-    def aggregate_data(self):
+    def _aggregate_data(self):
         # Ensure there is data to aggregate
         if len(self.pallier_encrypted_data) == 0:
             print("No data to aggregate.")
@@ -63,7 +63,7 @@ class PES:
         
         return aggregated_encrypted
     
-    def aes_encrypt_aggregate(self, aggregate):
+    def _aes_encrypt_aggregate(self, aggregate):
         # TODO: implement
         pass
     
@@ -71,16 +71,16 @@ class PES:
     # Main method, we call everything here - separation of concerns 
     def aggregate_and_encrypt(self, encrypted_aes_key, data_list):        
         # First we decrypt the Smart meter AES encrypted data, and we directly encrypt the data using Pallier 
-        self.pallier_encrypt_and_store(self.decrypt_data(encrypted_aes_key, data_list))
+        self._pallier_encrypt_and_store(self._decrypt_data(encrypted_aes_key, data_list))
         
         # Keeping the first timestamp 
         timestamp = self.pallier_encrypted_data[0]["timestamp"]
         
         # Next we aggregate the data -> Assuming we're only sent the exact number of readings we want to aggregate
-        aggregated_encrypted = self.aggregate_data()
+        aggregated_encrypted = self._aggregate_data()
         
         # Then, we decrypt and reencrypt the data 
-        # TODO: Need to implement aes_encrypt_aggregate
+        # TODO: Need to implement _aes_encrypt_aggregate
         
         pass 
     
