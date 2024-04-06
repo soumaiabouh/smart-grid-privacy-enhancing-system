@@ -1,27 +1,40 @@
 from Crypto.Cipher import AES
-import os
+from Crypto.Random import get_random_bytes
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
 
 class SmartMeter:
     def __init__(self, dataCSV):
         self.data_dict = self.load_data(dataCSV)
-        self.id = self.generate_id()
+        self.generate_id()
+        self.generate_key()
         
     def load_data(self, filename):
         # load file, get data as dict, encrypt it using encrypt_data() and return it
         pass
         
+    def generate_key(self):
+        # Generate a random 256-bit key
+        self._key = get_random_bytes(32)
+    
     def generate_id(self):
         # generate id and return it
-        pass
+        self.id = get_random_bytes(16)
         
-    def encrypt_data(self):
+    def encrypt_data(self, data):
         # helper function for load_data, takes the data and encrypts it using AES
-        pass
+        cipher = AES.new(self._key, AES.MODE_GCM) # new object
+        ciphertext, tag = cipher.encrypt_and_digest(data) # encrypt plaintext 
+        return ciphertext, tag, cipher.nonce # return cipher and nonce
         
     def get_encrypted_data(self):
         # public function, return self.data_dict
-        pass
+        return self.data_dict
             
-    def getKey(self):
-        # return key. This must only be called once by the UCS and once by the DataConcentrator.
-        pass
+    def get_key(self, public_key):
+        # function that encrypts (RSA) smart meter key using a public key 
+        cipher_rsa = PKCS1_OAEP.new(public_key)
+        encrypted_key = cipher_rsa.encrypt(self._key)
+        return encrypted_key
+
+
