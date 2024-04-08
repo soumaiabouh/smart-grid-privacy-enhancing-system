@@ -2,6 +2,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.Random import get_random_bytes
 from phe import paillier
+from tqdm import tqdm
 
 
 class PES:
@@ -41,12 +42,14 @@ class PES:
         return decrypted_data_list
 
     def _pallier_encrypt_and_store(self, decrypted_data_list):
-        # For the moment, we want to keep the timestamps
-        for reading in decrypted_data_list:
+        # Wrap the loop with tqdm for a progress bar
+        for reading in tqdm(decrypted_data_list, desc="Encrypting"):
             encrypted_data = self.pallier_public_key.encrypt(float(reading["decrypted_data"].decode('utf-8')))
 
-            encrypted_data_info = {"timestamp": reading["timestamp"],
-                                   "encrypted_data": encrypted_data}
+            encrypted_data_info = {
+                "timestamp": reading["timestamp"],
+                "encrypted_data": encrypted_data
+            }
 
             self.pallier_encrypted_data_list.append(encrypted_data_info)
 
