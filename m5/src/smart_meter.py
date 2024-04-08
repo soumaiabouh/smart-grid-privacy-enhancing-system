@@ -14,14 +14,14 @@ class SmartMeter:
         self._load_data(filename)
 
                 
-    def _load_data(self, filename):
+    def _load_data(self, filename, time_range = 60):
         try:
             workbook = load_workbook(filename=filename)
             sheet = workbook.active
             
             row_count = 0
             for row in sheet.iter_rows(values_only=True):
-                if row_count >= 4320:  # Stop after 4,320 rows
+                if row_count >= time_range:  # Stop after 4,320 rows
                     break
                 # Assuming your data is in the first two columns
                 timestamp, reading = row[0], row[1]
