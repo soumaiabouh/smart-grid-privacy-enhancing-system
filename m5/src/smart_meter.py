@@ -1,4 +1,4 @@
-import csv
+from openpyxl import load_workbook
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 from Crypto.PublicKey import RSA
@@ -16,13 +16,17 @@ class SmartMeter:
                 
     def _load_data(self, filename):
         try:
-            with open(filename, mode='r', newline='') as file:
-                reader = csv.reader(file)
-                for i, row in enumerate(reader):
-                    if i >= 4320:  # Stop after 4,320 rows
-                        break
-                    timestamp, reading = row[0], row[1]
-                    self._encrypt_data_and_store(timestamp, reading)  # Encrypt each reading with its timestamp
+            workbook = load_workbook(filename=filename)
+            sheet = workbook.active
+            
+            row_count = 0
+            for row in sheet.iter_rows(values_only=True):
+                if row_count >= 4320:  # Stop after 4,320 rows
+                    break
+                # Assuming your data is in the first two columns
+                timestamp, reading = row[0], row[1]
+                self._encrypt_data_and_store(timestamp, reading)  # Encrypt each reading with its timestamp
+                row_count += 1
         except FileNotFoundError:
             print(f"The file {filename} was not found.")
         except Exception as e:
