@@ -40,10 +40,19 @@ class SmartMeter:
         # generate id and return it
         return get_random_bytes(16)
         
-    def _encrypt_data_and_store(self, timestamp, reading):        
-        cipher_aes = AES.new(self.aes_key, AES.MODE_GCM) # Important to generate a new cipher everytime for security reasons
-        encrypted_data, tag = cipher_aes.encrypt_and_digest(reading.encode('utf-8')) # Encrypt data using AES-GCM and converting string to bytes
-        nonce = cipher_aes.nonce # Nonce is needed for decryption in GCM mode
+    def _encrypt_data_and_store(self, timestamp, reading):
+        cipher_aes = AES.new(self.aes_key, AES.MODE_GCM)  # Important to generate a new cipher every time for security reasons
+        
+        # Ensure reading is in a format suitable for encryption (i.e., bytes)
+        if isinstance(reading, (int, float)):
+            reading = str(reading).encode('utf-8')  # Convert numerical values to strings, then to bytes
+        elif isinstance(reading, str):
+            reading = reading.encode('utf-8')  # Encode string values directly
+        else:
+            raise ValueError("Unsupported data type for encryption")
+        
+        encrypted_data, tag = cipher_aes.encrypt_and_digest(reading)  # Encrypt the data
+        nonce = cipher_aes.nonce  # Nonce is needed for decryption in GCM mode
         
         self.encrypted_data_list.append({
             'timestamp': timestamp,
