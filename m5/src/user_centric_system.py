@@ -1,22 +1,50 @@
 from smart_meter import SmartMeter
+from Crypto.Cipher import AES
+import plotly.graph_objects as go
 
 class UserCentricSystem:
     def __init__(self, sm: SmartMeter):
         self.sm = sm
-        self.encryption_key = sm.getKey
         self.username = None
+        self.password = None
         
     def display(self):
         # decrypts sm data from AES
-        # graph
-        # do not keep this data
-        pass
-        
+        data_list = self.sm.get_encrypted_data()
+
+        # Decrypt each piece of reading and store it
+        timestamps = []
+        power = [] 
+
+        for data in data_list:
+            # Format of data: {timestamp, encrypted_data, tag, nonce}
+            decrypted_data = self.decrypt(data)
+            timestamps.append(data['timestamp'])
+            power.append(decrypted_data)
+
+        # time series graph
+        fig = go.Figure() 
+        fig.add_trace(go.Scatter(x=timestamps, y=power, mode='lines', name='Power [kW]'))
+        fig.update_layout(title='Electricity Consumption', xaxis_title='Time', yaxis_title='Power [kW]')
+        fig.show()
+
+    def decrypt(self, data):
+        # helper function that decrypts data
+        cipher_aes = AES.new(self.sm.aes_key, AES.MODE_GCM, nonce=data['nonce'])
+        return cipher_aes.decrypt_and_verify(data['encrypted_data'], data['tag'])
+
     def setCredentials(self, username: str, password: str):
-        # get SmartMeter's key
-        # encrypt it using the user's credentials
-        # store encrypted key in this object (self/class)
-        pass
+        # set username 
+        self.username = username 
+        # set password
+        self.password = password
+        
+    def authenticate(self, password: str):
+        # authenticates the user 
+        if password == self.password:
+            return True
+        else:
+            return False
     
     def login(self):
         # "main" function
@@ -24,12 +52,10 @@ class UserCentricSystem:
         # Ask user if they want to display data. If yes, prompt user to enter username and password to log in, then call display().
         # Wait for user to log out/end the program.
 
-
-        # Rough example:
         if self.username is None:
-            self.username = input("Enter your username: ")
+            username = input("Enter your username: ")
             password = input("Enter your password: ")
-            self.setCredentials(self.username, password)
+            self.setCredentials(username, password)
         
         display_option = input("Display data? (YES/NO): ").upper()
         if display_option == "YES":
@@ -37,11 +63,11 @@ class UserCentricSystem:
             password = input("Enter your password: ")
             if username == self.username:  # Checking if username matches
                 # Implement authentication logic with password
-                self.display()
+                if self.authenticate() == True: 
+                    self.display()
             else:
                 print("Invalid username.")
         elif display_option == "NO":
-            # Do something else
             pass
         else:
             print("Invalid option.")
