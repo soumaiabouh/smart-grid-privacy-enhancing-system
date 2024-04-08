@@ -81,9 +81,12 @@ class PES:
         return {'encrypted_data': encrypted_data, 'nonce': nonce, 'tag': tag}
 
     # Main method, we call everything here - separation of concerns 
-    def aggregate_and_encrypt(self, encrypted_aes_key, data_list):
+    def aggregate_and_encrypt(self, encrypted_aes_key, data_list, start_index=0):
+        # Filter data_list to start from the given index
+        filtered_data_list = data_list[start_index:]
+        
         # First we decrypt the Smart meter AES encrypted data, and we directly encrypt the data using Pallier 
-        self._pallier_encrypt_and_store(self._decrypt_data(encrypted_aes_key, data_list))
+        self._pallier_encrypt_and_store(self._decrypt_data(encrypted_aes_key, filtered_data_list))
 
         timestamp = self.pallier_encrypted_data_list[0]["timestamp"]  # Keeping the first timestamp
 
