@@ -1,4 +1,4 @@
 
-class MDMS_Manager:
+class MdmsManager:
     def __init__():
         pass
