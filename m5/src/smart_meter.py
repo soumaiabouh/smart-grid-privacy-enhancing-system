@@ -11,26 +11,24 @@ class SmartMeter:
         self.encrypted_aes_key = self._encrypt_aes_key()
         self.id = self._generate_id()
         self.encrypted_data_list = []
-        self._load_data(filename)
+        self._load_data(filename, 1, 60) # Initially loading 1 hour worth of data
 
-                
-    def _load_data(self, filename, time_range = 60):
+    def _load_data(self, filename, start_row=1, end_row=None):
         try:
             workbook = load_workbook(filename=filename)
             sheet = workbook.active
             
-            row_count = 0
-            for row in sheet.iter_rows(values_only=True):
-                if row_count >= time_range:  # Stop after 4,320 rows
-                    break
+            for i, row in enumerate(sheet.iter_rows(values_only=True), start=1):
+                if i < start_row or (end_row and i > end_row):  
+                    continue  # Skip rows outside the specified range
                 # Assuming your data is in the first two columns
                 timestamp, reading = row[0], row[1]
                 self._encrypt_data_and_store(timestamp, reading)  # Encrypt each reading with its timestamp
-                row_count += 1
         except FileNotFoundError:
             print(f"The file {filename} was not found.")
         except Exception as e:
             print(f"An error occurred: {e}")
+
         
     def _generate_key(self):
         # Generate a random 256-bit key
@@ -75,3 +73,11 @@ class SmartMeter:
     
     def get_encrypted_aes_key(self):
         return self.encrypted_aes_key
+
+    def generate_data(self, filename, timerange=60):
+        # Determine the next set of rows to load based on the current data list length
+        start_row = len(self.encrypted_data_list) + 1
+        end_row = start_row + timerange - 1  # Adjust the end row based on the timerange
+        
+        # Load and encrypt the new range of data
+        self._load_data(filename, start_row=start_row, end_row=end_row)
