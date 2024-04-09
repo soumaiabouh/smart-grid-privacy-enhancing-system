@@ -81,5 +81,11 @@ TODO: with a big amount of data, verify how significantly the performance change
 ### 3.5 MDMS
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
+### 3.6 User Centric System
+*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+
+### 3.7 UI
+*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+
 ## 4. Conclusion
 *[Main lessons learned, areas to consider for improvement (choice of encryption and encryption algorithm is an example)]*
