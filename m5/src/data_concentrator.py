@@ -11,9 +11,9 @@ class DataConcentrator:
     def add_smart_meter(self, sm: SmartMeter):
         self.smList.append(sm)
 
-    def get_aggregated_data(self, time_range = 60):
+    def get_aggregated_data(self, start_index = 0):
         for sm in self.smList:
-            aggregated_data = self.pes.aggregate_and_encrypt(sm.get_encrypted_aes_key(), sm.get_encrypted_data())
+            aggregated_data = self.pes.aggregate_and_encrypt(sm.get_encrypted_aes_key(), sm.get_encrypted_data(), start_index)
             
             if sm.id not in self.aggregated_data_dict:
                 self.aggregated_data_dict[sm.id] = []  # Initialize list for the smart meter if not present
@@ -21,4 +21,5 @@ class DataConcentrator:
             self.aggregated_data_dict[sm.id].append(aggregated_data)
 
 
-    # TODO: Implement send_to_database (send aggregated data dict)
+    # TODO: Implement send_to_database_manager (send aggregated data dict)
+
