@@ -5,13 +5,13 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
 class SmartMeter:
-    def __init__(self, pes_public_key, filename):
+    def __init__(self, pes_public_key, filename, num_reading_to_load = 60):
         self.pes_public_key = RSA.import_key(pes_public_key)
         self.aes_key = self._generate_key()
         self.encrypted_aes_key = self._encrypt_aes_key()
         self.id = self._generate_id()
         self.encrypted_data_list = []
-        self._load_data(filename, 1, 60) # Initially loading 1 hour worth of data
+        self._load_data(filename, 1, num_reading_to_load) # Initially loading some data
 
     def _load_data(self, filename, start_row=1, end_row=None):
         try:
