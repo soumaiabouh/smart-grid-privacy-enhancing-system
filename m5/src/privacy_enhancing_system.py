@@ -6,22 +6,20 @@ from tqdm import tqdm
 
 
 class PES:
-    def __init__(self, key_size=2048, aes_key_size=16):
+    def __init__(self, mdms_key, key_size=2048, aes_key_size=16):
         self.rsa_key_pair = RSA.generate(key_size)
         self.rsa_public_key = self.rsa_key_pair.publickey().export_key()
-
+        
+        self.mdms_key = RSA.import_key(mdms_key) # MDMS's public key for RSA encryption
+        
         self.pallier_public_key, self.pallier_private_key = paillier.generate_paillier_keypair()
-
-        # TODO: make the MDMS manager generate the key instead 
-        self.aes_key = get_random_bytes(aes_key_size)  # AES key for re-encryption
-
         self.pallier_encrypted_data_list = []  # Store Paillier encrypted data ()
 
     def get_public_key(self):
         # The public key will be used by the smart meters to encrypt their AES key
         return self.rsa_public_key
 
-    def _decrypt_data(self, encrypted_aes_key, data_list):
+    def _decrypt_data_sm(self, encrypted_aes_key, data_list):
         # Decrypt the AES key
         cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair)  # Creates a new RSA cipher object for decryption
         aes_key = cipher_rsa.decrypt(encrypted_aes_key)
@@ -70,15 +68,15 @@ class PES:
 
         return aggregated_encrypted
 
-    def _aes_encrypt_aggregate(self, aggregate, timestamp):
-        cipher_aes = AES.new(self.aes_key, AES.MODE_GCM)  # Generate new cipher
+    def _rsa_encrypt_aggregate(self, aggregate, timestamp):
+        cipher_rsa = PKCS1_OAEP.new(self.mdms_key)  # Initialize the RSA cipher with the MDMS public key
+        
         decrypted_aggregate = self.pallier_private_key.decrypt(aggregate)  # First decrypt the value
-
         combined_data = f"{timestamp}, {decrypted_aggregate}".encode('utf-8')
 
-        encrypted_data, tag = cipher_aes.encrypt_and_digest(combined_data)
-        nonce = cipher_aes.nonce
-        return {'encrypted_data': encrypted_data, 'nonce': nonce, 'tag': tag}
+        encrypted_data = cipher_rsa.encrypt(combined_data)
+        
+        return encrypted_data
 
     # Main method, we call everything here - separation of concerns 
     def aggregate_and_encrypt(self, encrypted_aes_key, data_list, start_index=0):
@@ -86,17 +84,21 @@ class PES:
         filtered_data_list = data_list[start_index:]
         
         # First we decrypt the Smart meter AES encrypted data, and we directly encrypt the data using Pallier 
-        self._pallier_encrypt_and_store(self._decrypt_data(encrypted_aes_key, filtered_data_list))
+        self._pallier_encrypt_and_store(self._decrypt_data_sm(encrypted_aes_key, filtered_data_list))
+        
+        if not self.pallier_encrypted_data_list:
+            print("No new data to aggregate.")
+            return None
 
         timestamp = self.pallier_encrypted_data_list[0]["timestamp"]  # Keeping the first timestamp
 
         # Next we aggregate the data -> Assuming we're only sent the exact number of readings we want to aggregate
         paillier_encrypted_aggregate = self._aggregate_data()
 
-        # Then, we decrypt and reencrypt the data         
-        aes_encrypted_aggregate = self._aes_encrypt_aggregate(paillier_encrypted_aggregate, timestamp)
+        # Use RSA to encrypt the aggregate        
+        rsa_encrypted_aggregate = self._rsa_encrypt_aggregate(paillier_encrypted_aggregate, timestamp)
 
         # Cleaning up (we don't want to keep the data for longer than needed)
         self.pallier_encrypted_data_list.clear()
 
-        return aes_encrypted_aggregate
+        return rsa_encrypted_aggregate
