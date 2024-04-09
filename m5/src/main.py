@@ -1,10 +1,13 @@
 from smart_meter import *
 from privacy_enhancing_system import *
 from data_concentrator import *
+from mdms_manager import *
 
 if __name__=="__main__":
     # Instantiate PES first to generate the key
-    pes = PES(1024)
+    mdms = MdmsManager(1024)
+    mdms_key = mdms.get_public_key()
+    pes = PES(mdms_key, 1024, 16)
     pes_public_key = pes.get_public_key()
     
     filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart1.xlsx"
@@ -26,6 +29,9 @@ if __name__=="__main__":
     sm1.generate_data(filename1, 10)
     data_concentrator.get_aggregated_data()
     
+    aggregated_data_encrypted = data_concentrator.aggregated_data_dict
+    mdms._decrypt_data(aggregated_data_encrypted)
+    print(mdms.decrypted_data_dict)
     
     
     # print(data)
