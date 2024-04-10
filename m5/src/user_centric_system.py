@@ -28,9 +28,6 @@ class UserCentricSystem:
             decrypted_data = self.decrypt(data)
             timestamps.append(data['timestamp'])
             power.append(float(decrypted_data))
-        
-        print(timestamps)
-        print(power)
 
         # time series graph
         fig = go.Figure() 
