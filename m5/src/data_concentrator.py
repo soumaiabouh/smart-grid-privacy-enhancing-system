@@ -11,6 +11,10 @@ class DataConcentrator:
     def add_smart_meter(self, sm: SmartMeter):
         self.smList.append(sm)
 
+    def add_smart_meters(self, smList):
+        for sm in smList:
+            self.smList.append(sm)
+        
     def get_aggregated_data(self):
         for sm in self.smList:
             self._aggregate_data_for_sm(sm)
