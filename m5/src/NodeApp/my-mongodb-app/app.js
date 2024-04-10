@@ -39,7 +39,9 @@ app.post('/process', async (req, res) => {
 
     const ejsContent = fs.readFileSync('views/statistics.ejs', 'utf8');
 
-    const val = `<br><label >The total power consumption is: ${sum} kW</label>`;
+    const consumptionkW = (sum/1000).toFixed(2);
+    const price = (consumptionkW* 0.073*24).toFixed(2);
+    const val = `<br><label >The total power consumption for the last 3 days is: ${consumptionkW} kW</label><br><label >The total price is: ${price} $</label>`;
     const renderedContent = ejsContent.replace('<!-- INSERT_POWER_DATA -->', val);
     
     
@@ -289,8 +291,3 @@ async function fetchData() {
     }
   }
   
-  /*
-  fetchData().then((result) => {
-    // Handle the retrieved data (e.g., send it to your HTML template)
-    console.log(result);
-  });*/
