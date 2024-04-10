@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blue Sidebar Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+        }
+        .header {
+            background-color: #f2f2f2;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+        .sidebar {
+            background-color: #0074D9;
+            color: white;
+            width: 250px;
+            height: 100vh;
+            padding: 20px;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        .tab {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #00549D;
+        }
+        .tab:hover {
+            background-color: #00549D;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow lines */
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        td {
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 style="text-align: left;">Smarter Meters</h1>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="tab" id="smartMeter-tab">Smart Meters</div>
+            <div class="tab" id="statistics-tab">Statistics</div>
+        </div>
+        <div class="content">
+            <table id="tableBody">
+                <tr>
+                    <th>ID</th>
+                    <th>Status</th>
+                    <th>Data</th>
+
+                </tr>
+                
+
+                
+                <!-- INSERT_APARTMENT_DATA -->
+            </table>
+        </div>
+
+	<script>
+            // Check if the authentication token exists in Local Storage
+            const storedToken = localStorage.getItem("authToken");
+
+            if (!storedToken) {
+                // Redirect to the login page if the token is missing
+                window.location.href = "login.html"; // Replace with your login page URL
+            } else {
+                // Validate the token on the server side (not shown here)
+                // If valid, proceed with displaying protected content
+                // Otherwise, redirect to the login page
+            }
+            const tableBody = document.getElementById('tableBody');
+            const statisticsTab = document.getElementById('statistics-tab');
+
+            // Function to populate the table with statistics data
+            
+
+            
+
+            statisticsTab.addEventListener('click', () => {
+                // Call your function here
+                window.location.href = "statistics";
+            });
+        </script>
+    </div>
+</body>
+</html>
