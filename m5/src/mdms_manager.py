@@ -87,3 +87,7 @@ class MdmsManager:
 
         # Return the total consumption
         return total_consumption
+    
+    def delete_all_records(self):
+        # This will delete all documents in the collection
+        self.collection.delete_many({})

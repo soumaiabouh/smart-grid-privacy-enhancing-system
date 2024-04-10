@@ -10,6 +10,8 @@ if __name__=="__main__":
     pes = PES(mdms_key, 1024, 16)
     pes_public_key = pes.get_public_key()
     
+    mdms.delete_all_records()
+    
     filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart1.xlsx" #4320 rows ~ 3days 
     
     sm1 = SmartMeter(pes_public_key, filename1, 10)
