@@ -65,6 +65,12 @@ class SmartMeter:
         encrypted_key = cipher_rsa.encrypt(self.aes_key)
         return encrypted_key
 
+    def _encrypt_key(self, public_key):
+        # function that encrypts using RSA the smart meter AES key using a public key 
+        cipher_rsa = PKCS1_OAEP.new(public_key)
+        encrypted_key = cipher_rsa.encrypt(self.aes_key)
+        return encrypted_key
+
     def get_encrypted_data(self):
         return self.encrypted_data_list
             
