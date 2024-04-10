@@ -10,7 +10,9 @@ if __name__=="__main__":
     pes = PES(mdms_key, 1024, 16)
     pes_public_key = pes.get_public_key()
     
-    filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart1.xlsx"
+    mdms.delete_all_records()
+    
+    filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart1.xlsx" #4320 rows ~ 3days 
     
     sm1 = SmartMeter(pes_public_key, filename1, 10)
     # data = pes.aggregate_and_encrypt(sm1.get_encrypted_aes_key(), sm1.get_encrypted_data())
@@ -33,6 +35,9 @@ if __name__=="__main__":
     mdms._decrypt_data(aggregated_data_encrypted)
     print(mdms.decrypted_data_dict)
     
+    mdms.send_data_to_mdms(aggregated_data_encrypted)
+    # mdms.print_all_data()
+    print(mdms.calculate_smart_meter_total_energy_consumption(sm1.get_id()))
     
     # print(data)
     # Now we have the data. Need to send that to the MDMS, where it could possibly be decrypted. 
