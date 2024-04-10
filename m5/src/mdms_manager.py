@@ -1,8 +1,6 @@
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from pymongo import MongoClient
-from bson import ObjectId
-import base64
 
 
 class MdmsManager:
@@ -63,3 +61,29 @@ class MdmsManager:
                 # Since we have binary data from MongoDB, no need for base64 decoding
                 encrypted_data = entry  # Already a bytes object
                 print(encrypted_data)
+                
+    def calculate_smart_meter_total_energy_consumption(self, sm_id):
+        # Retrieve all data from the database
+        encrypted_data_records = self.collection.find({})
+        
+        total_consumption = 0.0
+        cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair)
+
+        # Iterate through each document to find the matching sm_id
+        for record in encrypted_data_records:
+            # Convert MongoDB Binary to bytes for comparison
+            record_id_bytes = record['id']
+            # Compare with the sm_id we're looking for
+            if record_id_bytes == sm_id:
+                for encrypted_data in record['data']:
+                    # Decrypt each encrypted aggregate using the RSA private key
+                    decrypted_data = cipher_rsa.decrypt(encrypted_data)
+                    # Assuming the decrypted_data is bytes, convert it to a string
+                    decrypted_string = decrypted_data.decode('utf-8')
+                    # Split the string by comma and extract the reading value
+                    timestamp, reading = decrypted_string.split(', ')
+                    # Convert the reading to float and add it to the total consumption
+                    total_consumption += float(reading)
+
+        # Return the total consumption
+        return total_consumption

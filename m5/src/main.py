@@ -34,7 +34,8 @@ if __name__=="__main__":
     print(mdms.decrypted_data_dict)
     
     mdms.send_data_to_mdms(aggregated_data_encrypted)
-    mdms.print_all_data()
+    # mdms.print_all_data()
+    print(mdms.calculate_smart_meter_total_energy_consumption(sm1.get_id()))
     
     # print(data)
     # Now we have the data. Need to send that to the MDMS, where it could possibly be decrypted. 
