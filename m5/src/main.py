@@ -27,7 +27,7 @@ def print_menu():
 
 
 def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrator):
-    filename1 = "data\\demo2\\apart1.xlsx" #4320 rows ~ 3days 
+    filename1 = "data\\demo2\\apart1.xlsx" 
     filename2 = "data\\demo2\\apart2.xlsx"
     filename3 = "data\\demo2\\apart3.xlsx"
     filename4 = "data\\demo2\\apart4.xlsx"
@@ -38,54 +38,37 @@ def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrato
     filename9 = "data\\demo2\\apart9.xlsx"
     filename10 = "data\\demo2\\apart10.xlsx"
     
-    sm1 = SmartMeter(pes_public_key, filename1, 4)
-    sm2 = SmartMeter(pes_public_key, filename2, 4)
-    sm3 = SmartMeter(pes_public_key, filename3, 4)
-    sm4 = SmartMeter(pes_public_key, filename4, 4)
-    sm5 = SmartMeter(pes_public_key, filename5, 4)
-    sm6 = SmartMeter(pes_public_key, filename6, 4)
-    sm7 = SmartMeter(pes_public_key, filename7, 4)
-    sm8 = SmartMeter(pes_public_key, filename8, 4)
-    sm9 = SmartMeter(pes_public_key, filename9, 4)
-    sm10 = SmartMeter(pes_public_key, filename10, 4)
+    # Init smart meters
+    sm1 = SmartMeter(pes_public_key, filename1)
+    sm2 = SmartMeter(pes_public_key, filename2)
+    sm3 = SmartMeter(pes_public_key, filename3)
+    sm4 = SmartMeter(pes_public_key, filename4)
+    sm5 = SmartMeter(pes_public_key, filename5)
+    sm6 = SmartMeter(pes_public_key, filename6)
+    sm7 = SmartMeter(pes_public_key, filename7)
+    sm8 = SmartMeter(pes_public_key, filename8)
+    sm9 = SmartMeter(pes_public_key, filename9)
+    sm10 = SmartMeter(pes_public_key, filename10)
     
     data_concentrator.add_smart_meters([sm1, sm2, sm3, sm4, sm5, sm6, sm7, sm8, sm9, sm10])
     
-    print("\nProcessing first batch of data...")
-    data_concentrator.get_aggregated_data()
-    data_concentrator.send_encrypted_data_to_mdms()
+    for i in tqdm(range(1, 8), desc="Generating the data"):
+        sm1.generate_data(filename1, 2)
+        sm2.generate_data(filename2, 2)
+        sm3.generate_data(filename3, 2)
+        sm4.generate_data(filename4, 2)
+        sm5.generate_data(filename5, 2)
+        sm6.generate_data(filename6, 2)
+        sm7.generate_data(filename7, 2)
+        sm8.generate_data(filename8, 2)
+        sm9.generate_data(filename9, 2)
+        sm10.generate_data(filename10, 2)
+        data_concentrator.get_aggregated_data()
     
-    print("\nProcessing second batch of data...")
-    sm1.generate_data(filename1, 4)
-    sm2.generate_data(filename2, 4)
-    sm3.generate_data(filename3, 4)
-    sm4.generate_data(filename4, 4)
-    sm5.generate_data(filename5, 4)
-    sm6.generate_data(filename6, 4)
-    sm7.generate_data(filename7, 4)
-    sm8.generate_data(filename8, 4)
-    sm9.generate_data(filename9, 4)
-    sm10.generate_data(filename10, 4)
-    data_concentrator.get_aggregated_data()
-    data_concentrator.send_encrypted_data_to_mdms()
-    
-    print("\nProcessing third batch of data...")
-    sm1.generate_data(filename1, 4)
-    sm2.generate_data(filename2, 4)
-    sm3.generate_data(filename3, 4)
-    sm4.generate_data(filename4, 4)
-    sm5.generate_data(filename5, 4)
-    sm6.generate_data(filename6, 4)
-    sm7.generate_data(filename7, 4)
-    sm8.generate_data(filename8, 4)
-    sm9.generate_data(filename9, 4)
-    sm10.generate_data(filename10, 4)
-    data_concentrator.get_aggregated_data()
-    data_concentrator.send_encrypted_data_to_mdms()
-    
-    #print(mdms.calculate_smart_meter_total_energy_consumption(sm1.get_id()))
-    #print(mdms.calculate_smart_meter_total_energy_consumption(sm2.get_id()))
     print("\nSending the data to the database...")
+    data_concentrator.send_encrypted_data_to_mdms()
+    
+    input("\nPress Enter to continue...")  # Wait for user input to continue
     
     print("\nRunning analytics...")
     mdms.generate_consumption_graph() 
@@ -147,4 +130,4 @@ if __name__ == "__main__":
             break
         else:
             print("Invalid choice, please try again.")
-        input("Press Enter to continue...")  # Wait for user input to continue
+        input("\nPress Enter to continue...")  # Wait for user input to continue
