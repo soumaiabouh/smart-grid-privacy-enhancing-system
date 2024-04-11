@@ -20,7 +20,10 @@ class DataConcentrator:
     def get_aggregated_data(self):
         for sm in self.smList:
             self._aggregate_data_for_sm(sm)
-            
+
+    def get_aggregated_data(self, sm):
+        self._aggregate_data_for_sm(sm)
+                        
     def _aggregate_data_for_sm(self, sm: SmartMeter):
         id = sm.get_id()
         encrypted_data = sm.get_encrypted_data()
