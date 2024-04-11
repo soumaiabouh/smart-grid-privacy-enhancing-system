@@ -1,7 +1,30 @@
+import os
+
+# Import your modules here...
 from smart_meter import *
 from privacy_enhancing_system import *
 from data_concentrator import *
 from mdms_manager import *
+
+def clear_screen():
+    # For Windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+    # For macOS and Linux
+    else:
+        _ = os.system('clear')
+
+def print_menu():
+    term_width = os.get_terminal_size().columns  # Get the current terminal width
+    title = "Smart Meter Data Management System"
+    print("=" * term_width)
+    print(title.center(term_width))  # Center the title within the terminal width
+    print("=" * term_width)
+    print("[1] Run Neighborhood Statistics")
+    print("[2] Run Billing Calculations")
+    print("[3] Exit")
+    print("=" * term_width)
+
 
 def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrator):
     filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart1.xlsx" #4320 rows ~ 3days 
@@ -106,18 +129,17 @@ if __name__ == "__main__":
     data_concentrator = DataConcentrator(pes, mdms)
 
     while True:
-        print("Please choose an option:")
-        print("1. Run Neighborhood Statistics")
-        print("2. Run Billing Calculations")
-        print("3. Exit")
-        choice = input("Enter option (1/2/3): ")
+        clear_screen()
+        print_menu()
+        choice = input("Please enter your choice: ")
 
         if choice == '1':
             run_neighborhood_stats(mdms=mdms, data_concentrator=data_concentrator)
         elif choice == '2':
             run_billing_calculations(mdms=mdms, data_concentrator=data_concentrator)
         elif choice == '3':
-            print("Exiting program.")
+            print("\nExiting program...")
             break
         else:
             print("Invalid choice, please try again.")
+        input("Press Enter to continue...")  # Wait for user input to continue
