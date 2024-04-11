@@ -7,6 +7,7 @@ from Crypto.Cipher import AES
 import getpass
 import plotly.graph_objects as go
 
+#TODO: modify command line interface
 class UserCentricSystem:
     def __init__(self, sm: SmartMeter):
         self.sm = sm
