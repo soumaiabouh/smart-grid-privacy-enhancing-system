@@ -75,10 +75,19 @@ Modules considered:
 **Performance check:** The performance depends on the hardware used, as well as the length of the encryption and decryption keys chosen. Best length? 
 TODO: with a big amount of data, verify how significantly the performance changes in terms of time.
 
-### 3.4 MDMS Manager
-*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
-### 3.5 MDMS
+###MDMS
+The MDMS is an interface that will be provided to companies using our software. It ensures that the data that these companies have access to is aggregated and de-identified therfore providing better user privacy. The MDMS' relies on the MDMS Manager UI and the MDMS database.
+
+### 3.4 MDMS Manager
+The MDMS Manager is a Node app. When run, the URL brings the user to a login page. This page represents an admin from the company using our product, logging in with a valid username and password. Once in the MDMS, the admin can look at smart meters and the relative statistics. The statistics link brings the admin to the statistics page and displays the power consumption and bill for the selected smart meter.
+
+In section 2, one of the main requirements is anonymity and confidentiality. These are done in previous steps using AES as well as Pallier. The MDMS manager ensures that the data displayed to the admin does not divulge which smart meter belongs to whom, as the IDs are encrypted. The data is pulled from the MDMS database, further explained in section 3.5. As the data from the database is aggregated and encrypted, this enforces that the admin cannot infer consumer behavior or household routines from the data that they have access to.
+
+ 
+
+### 3.5 MDMS Database
+To simulate data production, data from an open source was used. There are csv files for each apartment that had a smart meter and the power consumption was collected using a 1 minute time interval over a year. This data is aggregated by the PES as explained in section 1. The 
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
 ### 3.6 User Centric System
