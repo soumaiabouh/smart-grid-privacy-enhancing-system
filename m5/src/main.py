@@ -1,6 +1,4 @@
 import os
-
-# Import your modules here...
 from smart_meter import *
 from privacy_enhancing_system import *
 from data_concentrator import *
@@ -75,36 +73,50 @@ def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrato
     
 def run_billing_calculations(mdms: MdmsManager, data_concentrator: DataConcentrator):
     # Setting up the filenames for the 10 sms
-    filename1 = "data\\demo\\apart1.xlsx" #4320 rows ~ 3days 
-    filename2 = "data\\demo\\apart2.xlsx"
-    filename3 = "data\\demo\\apart3.xlsx"
-    filename4 = "data\\demo\\apart4.xlsx"
-    filename5 = "data\\demo\\apart5.xlsx"
-    filename6 = "data\\demo\\apart6.xlsx"
-    filename7 = "data\\demo\\apart7.xlsx"
-    filename8 = "data\\demo\\apart8.xlsx"
-    filename9 = "data\\demo\\apart9.xlsx"
-    filename10 = "data\\demo\\apart10.xlsx"
+    filenames = ["C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart1.xlsx", 
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart2.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart3.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart4.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart5.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart6.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart7.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart8.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart9.xlsx",
+                 "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo\\apart10.xlsx"]
     
-    sm1 = SmartMeter(pes_public_key, filename1, 10)
-    sm2 = SmartMeter(pes_public_key, filename2, 10)
-    sm3 = SmartMeter(pes_public_key, filename3, 10)
-    sm4 = SmartMeter(pes_public_key, filename4, 10)
-    sm5 = SmartMeter(pes_public_key, filename5, 10)
-    sm6 = SmartMeter(pes_public_key, filename6, 10)
-    sm7 = SmartMeter(pes_public_key, filename7, 10)
-    sm8 = SmartMeter(pes_public_key, filename8, 10)
-    sm9 = SmartMeter(pes_public_key, filename9, 10)
-    sm10 = SmartMeter(pes_public_key, filename10, 10)
-    
-    data_concentrator.add_smart_meters([sm1, sm2, sm3, sm4, sm5, sm6, sm7, sm8, sm9, sm10])
-    data_concentrator.get_aggregated_data()
+    # Create SmartMeter instances and store them in a list
+    smart_meters = [SmartMeter(pes_public_key, filename, 10) for filename in filenames]
+
+    # Add smart meters to the data concentrator
+    for sm in tqdm(smart_meters, desc="Generating data"):
+        data_concentrator.add_smart_meters([sm])
+        data_concentrator.get_aggregated_data(sm)
     
     data_concentrator.send_encrypted_data_to_mdms()
-     
-    # TODO: Calculate bill for all users
 
-   
+    # Now run the billing calculations for a chosen smart meter
+    while True:
+        try:
+            index = int(input("Choose a smart meter between 1 and 10: ")) - 1  # Subtract 1 for zero-based index
+            if 0 <= index < len(smart_meters):
+                sm = smart_meters[index]
+                sm_id = sm.get_id()
+                consumption = mdms.calculate_smart_meter_total_energy_consumption(sm_id)
+                price = consumption * 0.073  # Assuming consumption is in Wh
+                
+                print(f"\nSmart Meter ID: {index+1}")
+                print(f"Total Energy Consumption: {consumption:.2f} kW")
+                print(f"Total Bill Based on Current Energy Consumption: ${price:.2f}")
+            else:
+                print("Invalid input. Please enter a number between 1 and 10.")
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
+
+        again = input("\nWould you like to calculate the bill for another meter? (YES/NO): ").upper()
+        if again != "YES":
+            break
+
+
 if __name__ == "__main__":
     # Instantiate PES first to generate the key
     mdms = MdmsManager(1024)
