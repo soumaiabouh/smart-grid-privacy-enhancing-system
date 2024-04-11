@@ -15,7 +15,7 @@ class UserCentricSystem:
         self.username = None
         self.encrypted_aes_key = None
         self.salt = None
-        self.key = None
+        self.hashed_password = None
         self.rsa_key_pair = None
 
     def display(self):
@@ -40,7 +40,7 @@ class UserCentricSystem:
     def setCredentials(self, username: str, password: str):
         self.username = username
         self.salt = get_random_bytes(16)
-        self.key = self.derive_key(password, self.salt)
+        self.hashed_password = self.derive_key(password, self.salt)
         self.rsa_key_pair = RSA.generate(2048)
         self.encrypted_aes_key = self.sm._encrypt_key(self.get_public())
 
@@ -48,7 +48,7 @@ class UserCentricSystem:
         return self.rsa_key_pair.publickey()
 
     def authenticate(self, username, password):
-        if username == self.username and self.derive_key(password, self.salt) == self.key:
+        if username == self.username and self.derive_key(password, self.salt) == self.hashed_password:
             return True
         return False
 
