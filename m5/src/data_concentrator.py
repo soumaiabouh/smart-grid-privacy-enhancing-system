@@ -21,7 +21,7 @@ class DataConcentrator:
         for sm in self.smList:
             self._aggregate_data_for_sm(sm)
 
-    def get_aggregated_data(self, sm):
+    def get_aggregated_data_sm(self, sm):
         self._aggregate_data_for_sm(sm)
                         
     def _aggregate_data_for_sm(self, sm: SmartMeter):

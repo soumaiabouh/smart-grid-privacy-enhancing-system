@@ -90,7 +90,7 @@ def run_billing_calculations(mdms: MdmsManager, data_concentrator: DataConcentra
     # Add smart meters to the data concentrator
     for sm in tqdm(smart_meters, desc="Generating data"):
         data_concentrator.add_smart_meters([sm])
-        data_concentrator.get_aggregated_data(sm)
+        data_concentrator.get_aggregated_data_sm(sm)
     
     data_concentrator.send_encrypted_data_to_mdms()
 
