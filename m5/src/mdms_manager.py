@@ -47,20 +47,7 @@ class MdmsManager:
         for id, data in encrypted_aggregated_data.items():
             post = {"id": id, "data": data}
             self.collection.insert_one(post)
-    
-    # TODO: remove if not needed
-    def print_all_data(self):
-        # Retrieve all data from the database
-        all_data = self.get_all_data()
-        # Iterate through each document and print the data
-        for document in all_data:
-            print(f"ID: {document['_id']}")
-            data_entries = document['data']
-            for entry in data_entries:
-                # Since we have binary data from MongoDB, no need for base64 decoding
-                encrypted_data = entry  # Already a bytes object
-                print(encrypted_data)
-                
+             
     def calculate_smart_meter_total_energy_consumption(self, sm_id):
         # Retrieve all data from the database
         encrypted_data_records = self.collection.find({})
@@ -87,12 +74,6 @@ class MdmsManager:
         # Return the total consumption
         return total_consumption
     
-    # TODO: remove if not needed
-    def get_all_data(self):
-        # Fetch all documents in the collection
-        results = self.collection.find({})
-        return list(results)
-
     def delete_all_records(self):
         # This will delete all documents in the collection
         self.collection.delete_many({})
