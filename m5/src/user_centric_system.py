@@ -102,3 +102,14 @@ class UserCentricSystem:
         derived = PBKDF2(password, salt, dkLen=key_length, count=100000) # password based key derivation function
         return derived
     
+
+# example usage
+mdms = MdmsManager(1024)
+mdms_key = mdms.get_public_key()
+pes = PES(mdms_key, 1024, 16)
+pes_public_key = pes.get_public_key()
+
+filename = "apart1.xlsx"
+sm = SmartMeter(pes_public_key, filename, 1440)
+user = UserCentricSystem(sm)
+user.login()
