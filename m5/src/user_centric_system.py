@@ -99,7 +99,7 @@ class UserCentricSystem:
 
     def derive_key(self, password: str, salt: bytes, key_length= 32):
         # iteration count determines the computational complexity cost of key derivation process
-        derived = PBKDF2(password, salt, dkLen=key_length, count=100000) # password based key derivation function
+        derived = PBKDF2(password, salt, dkLen=key_length, count=1000000) # password based key derivation function
         return derived
     
 
@@ -109,7 +109,7 @@ mdms_key = mdms.get_public_key()
 pes = PES(mdms_key, 1024, 16)
 pes_public_key = pes.get_public_key()
 
-filename = "apart1.xlsx"
+filename = "data\\demo\\apart1.xlsx"
 sm = SmartMeter(pes_public_key, filename, 1440)
 user = UserCentricSystem(sm)
 user.login()
