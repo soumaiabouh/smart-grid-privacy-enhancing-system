@@ -5,7 +5,7 @@ from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 
 class SmartMeter:
-    def __init__(self, pes_public_key, filename, num_reading_to_load = 60):
+    def __init__(self, pes_public_key, filename, num_reading_to_load = 0):
         self.pes_public_key = RSA.import_key(pes_public_key)
         self.aes_key = self._generate_key()
         self.encrypted_aes_key = self._encrypt_aes_key()
@@ -17,18 +17,25 @@ class SmartMeter:
         try:
             workbook = load_workbook(filename=filename)
             sheet = workbook.active
-            
+
+            # Iterate over rows, starting enumeration at 1 for human-readable indexing
             for i, row in enumerate(sheet.iter_rows(values_only=True), start=1):
-                if i < start_row or (end_row and i > end_row):  
-                    continue  # Skip rows outside the specified range
+                # Skip rows before start_row
+                if i < start_row:
+                    continue
+                
+                # Once i exceeds end_row (if end_row is specified), stop processing
+                if end_row is not None and i > end_row:
+                    break  # Exit the loop, since we've processed up to end_row
+                
                 # Assuming your data is in the first two columns
                 timestamp, reading = row[0], row[1]
                 self._encrypt_data_and_store(timestamp, reading)  # Encrypt each reading with its timestamp
+
         except FileNotFoundError:
             print(f"The file {filename} was not found.")
         except Exception as e:
             print(f"An error occurred: {e}")
-
         
     def _generate_key(self):
         # Generate a random 256-bit key
