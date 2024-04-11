@@ -41,7 +41,7 @@ class PES:
 
     def _pallier_encrypt_and_store(self, decrypted_data_list):
         # Wrap the loop with tqdm for a progress bar
-        for reading in tqdm(decrypted_data_list, desc="Encrypting"):
+        for reading in decrypted_data_list:
             encrypted_data = self.pallier_public_key.encrypt(float(reading["decrypted_data"].decode('utf-8')))
 
             encrypted_data_info = {

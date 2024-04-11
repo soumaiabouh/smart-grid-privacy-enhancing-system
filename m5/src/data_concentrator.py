@@ -18,7 +18,7 @@ class DataConcentrator:
             self.smList.append(sm)
         
     def get_aggregated_data(self):
-        for sm in self.smList:
+        for sm in tqdm(self.smList, desc="Aggregating the data"):
             self._aggregate_data_for_sm(sm)
             
         #DEBUG

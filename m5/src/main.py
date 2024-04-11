@@ -51,9 +51,11 @@ def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrato
     
     data_concentrator.add_smart_meters([sm1, sm2, sm3, sm4, sm5, sm6, sm7, sm8, sm9, sm10])
     
+    print("\nProcessing first batch of data...")
     data_concentrator.get_aggregated_data()
     data_concentrator.send_encrypted_data_to_mdms()
     
+    print("\nProcessing second batch of data...")
     sm1.generate_data(filename1, 4)
     sm2.generate_data(filename2, 4)
     sm3.generate_data(filename3, 4)
@@ -67,6 +69,7 @@ def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrato
     data_concentrator.get_aggregated_data()
     data_concentrator.send_encrypted_data_to_mdms()
     
+    print("\nProcessing third batch of data...")
     sm1.generate_data(filename1, 4)
     sm2.generate_data(filename2, 4)
     sm3.generate_data(filename3, 4)
@@ -82,7 +85,9 @@ def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrato
     
     #print(mdms.calculate_smart_meter_total_energy_consumption(sm1.get_id()))
     #print(mdms.calculate_smart_meter_total_energy_consumption(sm2.get_id()))
+    print("\nSending the data to the database...")
     
+    print("\nRunning analytics...")
     mdms.generate_consumption_graph() 
     
 def run_billing_calculations(mdms: MdmsManager, data_concentrator: DataConcentrator):
