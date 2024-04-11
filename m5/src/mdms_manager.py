@@ -1,7 +1,9 @@
 from Crypto.Cipher import PKCS1_OAEP
 from Crypto.PublicKey import RSA
 from pymongo import MongoClient
-
+import matplotlib.pyplot as plt
+from datetime import datetime
+import numpy as np
 
 class MdmsManager:
     def __init__(self, key_size=2048, 
@@ -85,12 +87,58 @@ class MdmsManager:
         # Return the total consumption
         return total_consumption
     
+    # TODO: remove if not needed
     def get_all_data(self):
         # Fetch all documents in the collection
         results = self.collection.find({})
         return list(results)
 
-
     def delete_all_records(self):
         # This will delete all documents in the collection
         self.collection.delete_many({})
+    
+    def calculate_neighborhood_daily_consumption(self):
+        # Initialize a dictionary to hold daily total consumption (key: day, value: total consumption)
+        daily_consumption = {}
+        
+        encrypted_data_records = self.collection.find({})
+        cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair)
+        
+        for record in encrypted_data_records:
+            for encrypted_data in record['data']:
+                decrypted_data = cipher_rsa.decrypt(encrypted_data)
+                decrypted_string = decrypted_data.decode('utf-8')
+                timestamp, reading = decrypted_string.split(', ')
+                
+                # Convert timestamp to datetime object
+                timestamp = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+                day = timestamp.date()
+                
+                # Aggregate consumption by day
+                if day not in daily_consumption:
+                    daily_consumption[day] = 0.0
+                daily_consumption[day] += float(reading)
+        
+        return daily_consumption
+
+    def generate_consumption_graph(self):
+        daily_consumption = self.calculate_neighborhood_daily_consumption()
+        
+        # Sorting the days to ensure the graph is in chronological order
+        days = sorted(daily_consumption.keys())
+        consumptions = [daily_consumption[day] for day in days]
+        
+        # Formatting days for the x-axis
+        day_labels = [day.strftime('%Y-%m-%d') for day in days]
+        
+        # Generating the bar graph
+        plt.figure(figsize=(10, 6))
+        plt.bar(day_labels, consumptions, color='skyblue')
+        
+        plt.title('Neighborhood Daily Electricity Consumption')
+        plt.xlabel('Day')
+        plt.ylabel('Total Consumption (kWh)')
+        plt.xticks(rotation=45)
+        plt.tight_layout()  # Adjust layout to make room for the rotated x-axis labels
+        
+        plt.show()
