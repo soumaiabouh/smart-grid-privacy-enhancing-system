@@ -137,7 +137,7 @@ class MdmsManager:
         
         plt.title('Neighborhood Daily Electricity Consumption')
         plt.xlabel('Day')
-        plt.ylabel('Total Consumption (kWh)')
+        plt.ylabel('Total Consumption (kW)')
         plt.xticks(rotation=45)
         plt.tight_layout()  # Adjust layout to make room for the rotated x-axis labels
         
