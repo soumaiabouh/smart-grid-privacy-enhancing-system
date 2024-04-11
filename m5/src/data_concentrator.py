@@ -18,13 +18,8 @@ class DataConcentrator:
             self.smList.append(sm)
         
     def get_aggregated_data(self):
-        for sm in tqdm(self.smList, desc="Aggregating the data"):
+        for sm in self.smList:
             self._aggregate_data_for_sm(sm)
-            
-        #DEBUG
-        # print("DATA CONCENTRATOR:")
-        # print(self.aggregated_data_dict)
-        # print(self.last_processed_indices)
             
     def _aggregate_data_for_sm(self, sm: SmartMeter):
         id = sm.get_id()
