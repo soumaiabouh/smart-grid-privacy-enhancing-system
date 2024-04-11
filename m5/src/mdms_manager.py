@@ -8,11 +8,10 @@ class MdmsManager:
                  database_url = "mongodb+srv://soumsoumbouh07:Apple100@smartmeters.k0koxzq.mongodb.net/", 
                  database_name = "smart_meter_readings", 
                  collection_name = "demo"):
+        
         self.rsa_key_pair = RSA.generate(key_size)
         self.rsa_public_key = self.rsa_key_pair.publickey().export_key()
-        
         self.aggregated_data_dict = {}  # Dictionary to store aggregated data
-        self.decrypted_data_dict = {}
         
         # MongoDB setup
         self.client = MongoClient(database_url)
@@ -25,10 +24,11 @@ class MdmsManager:
     
     def _decrypt_data(self, aggregated_data: dict):
         cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair)  # Initialize the RSA cipher with the private key
+        decrypted_data_dict = {}
         
         for id, encrypted_aggregates in aggregated_data.items():
             # Check if the ID already exists in the decrypted data dictionary
-            if id not in self.decrypted_data_dict:
+            if id not in decrypted_data_dict:
                 self.decrypted_data_dict[id] = []  # If not, initialize an empty list
                 
             for encrypted_data in encrypted_aggregates:
@@ -36,20 +36,17 @@ class MdmsManager:
                 decrypted_data = cipher_rsa.decrypt(encrypted_data)
                 # Assuming the decrypted_data is bytes, convert it to a string or the desired format as necessary
                 # Append the decrypted data to the list for the corresponding ID
-                self.decrypted_data_dict[id].append(decrypted_data)
-
-      
-    def send_data_to_mdms(self, aggregated_data: dict):
+                decrypted_data_dict[id].append(decrypted_data)
+        
+        return decrypted_data_dict
+         
+    def send_data_to_mdms(self, encrypted_aggregated_data: dict):
         # Insert aggregated data into MongoDB
-        for id, data in aggregated_data.items():
+        for id, data in encrypted_aggregated_data.items():
             post = {"id": id, "data": data}
             self.collection.insert_one(post)
     
-    def get_all_data(self):
-        # Fetch all documents in the collection
-        results = self.collection.find({})
-        return list(results)
-
+    # TODO: remove if not needed
     def print_all_data(self):
         # Retrieve all data from the database
         all_data = self.get_all_data()
@@ -88,6 +85,12 @@ class MdmsManager:
         # Return the total consumption
         return total_consumption
     
+    def get_all_data(self):
+        # Fetch all documents in the collection
+        results = self.collection.find({})
+        return list(results)
+
+
     def delete_all_records(self):
         # This will delete all documents in the collection
         self.collection.delete_many({})
