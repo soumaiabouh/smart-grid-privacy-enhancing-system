@@ -91,10 +91,24 @@ In the c555w24/m5/src/mdms-ui folder, there is a file called app.js. This is the
 Within the app.js file, there are multiple functions that query data from the database, such as "app.get('/statistics'". This function is triggered when the browser does a GET request to get the statistics page. The function then does a query to get apartment IDs and then alters the statistics page to display this data.
 
 
-### 3.6 User Centric System
-*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+### 3.5 User Centric System
+One of our main requirements was the ability for customers to have secure access to their own energy consumption data. This aspect of our system is achieved through the user_centric_system.py class which is accessible within the folder src and referred to in the following sections.  
 
-### 3.7 UI
+When a user first generates their username and password, the setCredentials function on line 40 initializes multiple values. First, the individual’s username is set and saved. Next, a random 16 byte string, referred to as the _salt_, is generated from the Crypto.Random package. Similarly, an RSA key pair is generated where the keys are each 2048 bits of length. The user’s public key is utilized to encrypt the user’s smart meter’s symmetric key. Lastly, the user’s password is hashed using the salt that was previously generated and a helper function derive_key on line 105. 
+
+#### 3.5.1 Hashing Passwords
+
+This helper function uses a password based key derivation function (PBKDF2) also from the Crypto package. It operates by repeatedly applying a pseudorandom function to the input password along with the salt. The function used in this class is a Hash-Based Message Authentication Code (HMAC) that uses SHA-256 cryptographic hash function as the underlying hashing algorithm. SHA-256 is considered widely secure for most cryptographic applications, resulting in our decision to use this hash function over the default SHA-1, which is now considered vulnerable due to collision attacks. The number of iterations corresponds to the computational cost and makes the result more resistant to brute-force attacks. Currently, this code uses 1000000 iterations and generates a hash of length 32 bytes. PBKDF2 performs key derivation according to the second version of Public Key Cryptography Standards (PKCS). This hash is stored as the user _hashed_password_ and we are never storing user passwords directly. In order to authenticate our users, when they enter their password, this hash is regenerated and compared with our stored hashed_password. Since SHA-256 is deterministic and we are also storing the salt value, this allows for these hashes to be regenerated and used for secure authentication.  
+
+Hashing passwords provides an additional layer of security since if a hacker were to obtain the hashed passwords, they are not immediately usable without knowledge of the original passwords. This maintains confidentiality by preventing unauthorized access to sensitive information. Lastly, since a unique salt is generated for every user, the hash of a user password will be unique for every user, even if the user’s have the same password (given the possibility of collisions is extremely low for the many possible salt values and SHA-256 outputs).  
+
+#### 3.5.2 Displaying Data 
+As previously mentioned, there is a smart meter associated with every User Centric System instance. The smart meter’s encryption key can therefore be encrypted with the user’s RSA public key in order for safe transfer of the key between the two components, effectively resolving the key distribution problem. We utilize this process in our display function on line 21. The smart meter’s AES key is decrypted using the user’s private key, allowing for access of the raw consumption data. This data is then graphed using a data visualization library, Plotly.  
+
+We want to emphasize that our system ensures the secure delivery of this data and the creation of an actual interface used by customers to view this data was decided to be out of our scope. This interface will handle the specifics of display and potentially incorporate other functionalities. Our file is simply to demonstrate a simulation of the flow of the data, a basic example of a user system, and ensure that suppliers don’t need to directly observe customer data. 
+
+
+### 3.6 UI
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
 ## 4. Conclusion
