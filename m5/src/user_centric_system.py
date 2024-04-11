@@ -1,13 +1,13 @@
 from smart_meter import *
 from privacy_enhancing_system import *
 from mdms_manager import *
-from Crypto.Protocol.KDF import PBKDF2
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.PublicKey import RSA
 import getpass
 import plotly.graph_objects as go
 import os
+from hashlib import pbkdf2_hmac
 
 class UserCentricSystem:
     def __init__(self, sm: SmartMeter):
@@ -103,7 +103,7 @@ class UserCentricSystem:
                 break
 
     def derive_key(self, password: str, salt: bytes, key_length=32):
-        derived = PBKDF2(password, salt, dkLen=key_length, count=1000000)
+        derived = pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000, dklen=key_length)
         return derived
 
 def clear_console():
