@@ -39,8 +39,9 @@ app.post('/process', async (req, res) => {
 
     const ejsContent = fs.readFileSync('views/statistics.ejs', 'utf8');
 
-    const consumptionkW = (sum/1000).toFixed(2);
-    const price = (consumptionkW* 0.073*24).toFixed(2);
+    const consumptionForPriceCalculation = (sum/1000).toFixed(2);
+    const consumptionkW  = sum.toFixed(2)
+    const price = (consumptionForPriceCalculation* 0.073*24).toFixed(2);
     const val = `<br><label >The total power consumption for the last 3 days is: ${consumptionkW} kW</label><br><label >The total price is: ${price} $</label>`;
     const renderedContent = ejsContent.replace('<!-- INSERT_POWER_DATA -->', val);
     

@@ -27,16 +27,16 @@ def print_menu():
 
 
 def run_neighborhood_stats(mdms: MdmsManager, data_concentrator: DataConcentrator):
-    filename1 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart1.xlsx" #4320 rows ~ 3days 
-    filename2 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart2.xlsx"
-    filename3 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart3.xlsx"
-    filename4 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart4.xlsx"
-    filename5 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart5.xlsx"
-    filename6 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart6.xlsx"
-    filename7 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart7.xlsx"
-    filename8 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart8.xlsx"
-    filename9 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart9.xlsx"
-    filename10 = "C:\\Users\\soums\\Desktop\\University\\W2024\\COMP555\\Project\\c555w24-t7\\m5\\src\\data\\demo2\\apart10.xlsx"
+    filename1 = "data\\demo2\\apart1.xlsx" #4320 rows ~ 3days 
+    filename2 = "data\\demo2\\apart2.xlsx"
+    filename3 = "data\\demo2\\apart3.xlsx"
+    filename4 = "data\\demo2\\apart4.xlsx"
+    filename5 = "data\\demo2\\apart5.xlsx"
+    filename6 = "data\\demo2\\apart6.xlsx"
+    filename7 = "data\\demo2\\apart7.xlsx"
+    filename8 = "data\\demo2\\apart8.xlsx"
+    filename9 = "data\\demo2\\apart9.xlsx"
+    filename10 = "data\\demo2\\apart10.xlsx"
     
     sm1 = SmartMeter(pes_public_key, filename1, 4)
     sm2 = SmartMeter(pes_public_key, filename2, 4)

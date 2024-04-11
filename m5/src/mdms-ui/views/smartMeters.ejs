@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Blue Sidebar Page</title>
+    <title>Database Manager</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,31 +60,21 @@
     </div>
     <div class="container">
         <div class="sidebar">
-            <div class="tab">Smart Meters</div>
-            <div class="tab">Statistics</div>
-            <div class="tab">General Statistics</div>
+            <div class="tab" id="smartMeter-tab">Smart Meters</div>
+            <div class="tab" id="statistics-tab">Statistics</div>
         </div>
         <div class="content">
-            <table>
+            <table id="tableBody">
                 <tr>
                     <th>ID</th>
                     <th>Status</th>
                     <th>Data</th>
 
                 </tr>
-                <tr>
-                    <td>Product A</td>
-                    <td>Electronics</td>
-                    <td>12345</td>
+                
 
-                </tr>
-                <tr>
-                    <td>Product B</td>
-                    <td>Appliances</td>
-                    <td>67890</td>
-
-                </tr>
-                <!-- Add more rows as needed -->
+                
+                <!-- INSERT_APARTMENT_DATA -->
             </table>
         </div>
 
@@ -100,6 +90,18 @@
                 // If valid, proceed with displaying protected content
                 // Otherwise, redirect to the login page
             }
+            const tableBody = document.getElementById('tableBody');
+            const statisticsTab = document.getElementById('statistics-tab');
+
+            // Function to populate the table with statistics data
+            
+
+            
+
+            statisticsTab.addEventListener('click', () => {
+                // Call your function here
+                window.location.href = "statistics";
+            });
         </script>
     </div>
 </body>

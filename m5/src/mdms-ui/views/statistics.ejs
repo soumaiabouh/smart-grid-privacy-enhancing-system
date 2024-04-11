@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Blue Sidebar Page</title>
+    <title>Database Manager</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -64,18 +64,18 @@
             <div class="tab" id="statistics-tab">Statistics</div>
         </div>
         <div class="content">
-            <table id="tableBody">
-                <tr>
-                    <th>ID</th>
-                    <th>Status</th>
-                    <th>Data</th>
+            <label for="apts">Select a Smart Meter</label>
 
-                </tr>
-                
+            
+                <select id="apartmentNums" >
+                    <!-- INSERT_APARTMENT_DATA -->
+                </select>
 
-                
-                <!-- INSERT_APARTMENT_DATA -->
-            </table>
+                <label id="result"></label>
+ 
+            
+            
+            
         </div>
 
 	<script>
@@ -91,17 +91,51 @@
                 // Otherwise, redirect to the login page
             }
             const tableBody = document.getElementById('tableBody');
+            const smartMeterTab = document.getElementById('smartMeter-tab');
             const statisticsTab = document.getElementById('statistics-tab');
 
-            // Function to populate the table with statistics data
             
-
             
-
-            statisticsTab.addEventListener('click', () => {
-                // Call your function here
-                window.location.href = "statistics";
+            smartMeterTab.addEventListener('click', () => {
+                window.location.href = "smartMeters";
             });
+
+
+            
+            document.getElementById('apartmentNums').addEventListener('change', function () {
+            const selectedOption = this.value; // Get the selected value
+
+            // Make an AJAX request to your server
+            fetch('/process', {
+                method: 'POST',
+                body: JSON.stringify({ option: selectedOption }), // Send data to server
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => response.text())
+                .then(html => {
+                // Update the tab content with the new HTML
+                document.getElementById('result').innerHTML = html;
+            })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+
+        const queryString = window.location.search;
+
+        
+        const params = new URLSearchParams(queryString);
+        const valueFromFirstPage = params.get("param1");
+        if(valueFromFirstPage != null)
+        {
+        const intValue = Number(valueFromFirstPage);
+
+        let element = document.getElementById('apartmentNums');
+        element.value = intValue;
+        element.dispatchEvent(new Event('change'));}
+
         </script>
     </div>
 </body>
