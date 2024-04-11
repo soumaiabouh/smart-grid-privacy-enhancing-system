@@ -1,10 +1,12 @@
 from smart_meter import *
 from privacy_enhancing_system import *
+from mdms_manager import *
 
 class DataConcentrator:
-    def __init__(self, pes: PES):
+    def __init__(self, pes: PES, mdms_manager: MdmsManager):
         self.smList = []  # Initialize an empty list of smart meters
         self.pes = pes  # Privacy enhancing system instance
+        self.mdms_manager = mdms_manager
         self.aggregated_data_dict = {}  # Dictionary to store aggregated data
         self.last_processed_indices = {} # Maps smart meter IDs to last processed indices to avoid reaggregating everything
 
@@ -40,5 +42,10 @@ class DataConcentrator:
             self.aggregated_data_dict[id].append(aggregated_data)
 
 
-    # TODO: Implement send_to_database_manager (send aggregated data dict)
-
+    def send_encrypted_data_to_mdms(self):
+        if not self.aggregated_data_dict:
+            print("No aggregated data to send.")
+            return
+        
+        self.mdms_manager.send_data_to_mdms(self.aggregated_data_dict)
+        self.aggregated_data_dict.clear() 

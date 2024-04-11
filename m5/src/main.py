@@ -40,12 +40,7 @@ if __name__=="__main__":
     data_concentrator.add_smart_meters([sm1, sm2, sm3, sm4, sm5, sm6, sm7, sm8, sm9, sm10])
     data_concentrator.get_aggregated_data()
     
-    aggregated_data_encrypted = data_concentrator.aggregated_data_dict
-    mdms._decrypt_data(aggregated_data_encrypted)
-    print(mdms.decrypted_data_dict)
-    
-    mdms.send_data_to_mdms(aggregated_data_encrypted)
-    # mdms.print_all_data()
+    data_concentrator.send_encrypted_data()
     
     print(mdms.calculate_smart_meter_total_energy_consumption(sm1.get_id()))
     print(mdms.calculate_smart_meter_total_energy_consumption(sm2.get_id()))
