@@ -76,7 +76,7 @@ Modules considered:
 TODO: with a big amount of data, verify how significantly the performance changes in terms of time.
 
 
-### 3.4 MDMS Manager
+### 3.4 MDMS
 The MDMS is an interface supplied to companies using our software. It ensures that the data these companies can view is aggregated and de-identified, thus providing better user privacy. The MDMS has two main components: the MDMS UI and the MDMS database.
 
 #### 3.4.1 MDMS Manager
