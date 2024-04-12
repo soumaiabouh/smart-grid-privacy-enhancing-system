@@ -18,6 +18,27 @@ By integrating the PrivacySmart Smart Metering system's PES and secure data tran
 ## 2. Requirements
 [recap on requirements we described in M3 linked to the problem statement detailed in M1 and M3 - also mention the problem statement]
 
+The main goal is to balance consumer privacy with energy suppliers' need for energy consumption data for billing and analysis purposes. Our functional and privacy requirements, detailed in M3, were met through the following design decisions:
+
+### 2.1 Data Privacy and Access: 
+1. **Private Access to Detailed Data:** Our system allows the customer's detailed energy consumption data to be only accessible by the customer.
+2. **Restricted Supplier and Third-Party Access:** The system must ensure that suppliers and possible third parties can only access aggregated and anonymized data, with no capability to view individual and detailed customer energy consumption. [TODO]
+
+### 2.2 Communication and Data Handling
+1.	**Smart Meter to MDMS Communication:** The system must include a secure communication component between the smart meters and the Meter Data Management System (MDMS) that encrypts data transmission.
+2.	**Billing Data Averaging:** For billing purposes, the system must send averaged out data about each customer over longer intervals to prevent fine-grained consumption patterns from being revealed.
+3.	**Supplier-Side Aggregation:** To inform the supplier about energy demands, the system must aggregate more detailed data among members of a neighborhood, ensuring individual user data remains private.
+
+### 3.3 Data Encryption
+1.	**End-to-End Encryption:** The system must encrypt data from the point of capture at the smart meter to the other components, ensuring data integrity and confidentiality.
+2.	**Encryption Standards Compliance:** The system must employ strong encryption standards compliant with industry best practices for data in transit and at rest.
+
+### 3.4 System Reliability and Performance
+1.	**Real-Time Processing:** The system must be capable of processing real-time data for immediate access by the customer using their private key.
+2.	**Data Integrity and Accuracy:** With the implementation of additional encryption and aggregation steps, the system must maintain the integrity and accuracy of data. This is essential to ensure that billing calculations based on the encrypted and aggregated data are correct and reliable. The system's design must include mechanisms to verify that the encryption and aggregation processes preserve the exactness of the original metered data to prevent any discrepancies in billing or reporting.
+
+### 2.1. Data Anonymity and Customer Confidentiality
+
 The most pressing function and privacy requirement of the SmartPrivacy Smart Metering system is the anonymity of smart meter data and customer confidentiality during billing and analysis. Our system achieves this through multiple steps of encryption. Specifically, the data is immediately encrypted with AES at collection and then decrypted and re-encrypted immediately with the Paillier encryption scheme. The Paillier cryptosystem is known for its homomorphic properties that allow computations to be performed on encrypted data without decrypting it. This enables the utility company to perform necessary operations like billing and monitoring energy consumption trends on encrypted meter readings without compromising individual users’ privacy. This scheme renders it unnecessary for raw individual data to be handled at any time. 
 
 [other requirements]
@@ -36,6 +57,7 @@ In order to demonstrate and implement our system, we have generated a simulation
 #### 3.1.1 Source Code Overview
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
+
 #### 3.1.2 AES Encryption Implementation 
 Consistent with current smart meter system implementations, we utilized AES encryption in our simulation in the initial generation and transition of the smart meter data. This was achieved through utilizing a Python package, PyCryptodome, that contains low level cryptographic primitives.
 
@@ -49,6 +71,7 @@ For our meter readings, we specifically used Galois/Counter Mode (GCM). This mod
 
 #### 3.3.1 Source Code Overview
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+
 
 
 ##### [DRAFT] How to ensure the individual data is not retrievable from the database's standpoint?
