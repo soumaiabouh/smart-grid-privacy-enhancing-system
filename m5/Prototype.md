@@ -131,10 +131,12 @@ The UML diagram for the DataConcentrator class provides a representation of its 
 - `__init__(pes: PES, mdms_manager: MdmsManager)`: Initializes the instance of the data concentrator with the inputted instance of a PES and MdmsManager. 
 - `add_smart_meter(sm: SmartMeter)`: Adds smart meters to the smList field indicated above. 
 - `add_smart_meters(smList: SmartMeter)`: Adds a list of smart meters to the smList field indicated above. 
-- `get_aggregated_data()`: For each smart meter in the smList, a request is made to the PES instance to aggregate and encrypt the data. 
-- `get_aggregated_data_sm(sm: SmartMeter)`: Makes a request to the PES instance to aggregate and encrypt the data for a single smart meter. 
+- `get_aggregated_data()`: For each smart meter in the smList,saves encrypted aggregated data to aggregated data dictionary. 
+- `get_aggregated_data_sm(sm: SmartMeter)`: Saves encrypted aggregated data to aggregated data dictionary for a single smart meter. 
 - `send_encrypted_data_to_mdms()`: Sends the aggregated data dictionary to the mdms. 
 
+**Private Methods:**
+- `_aggregate_data_for_sm(sm: SmartMeter)`: Makes a request to the PES instance to aggregate and encrypt the data for a smart meter. 
 
 ### 3.3 Privacy Enhancing System
 The Privacy Enhancing System (PES) serves as an integral part of our system, with the specific purpose of securely aggregating individual energy consumption records. This system integrates with the current smart meter setup, significantly improving user privacy without interrupting the steady stream of data required by energy providers for billing and analysis purposes.
