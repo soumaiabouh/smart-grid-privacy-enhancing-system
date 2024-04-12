@@ -195,7 +195,7 @@ The Meter Data Management System (MDMS) serves as a key interface for companies 
 #### 3.4.1 MDMS Manager
 
 #### 3.4.2 MDMS UI
-The MDMS UI is developed as a Node.js application. Upon launching the app, users are provided with a URL that directs them to a login page. This page is designed for administrators from the company utilizing our software. Once logged into the MDMS, administrators can view smart meters and their related statistics. Selecting the statistics link navigates to a page that displays power consumption and billing information for the chosen smart meter.
+The MDMS UI is developed as a Node.js application. Upon launching the app, users are provided with a URL that directs them to a login page. As we were more focused on the privacy involving the data aggregation and granularity, implementing a login which verifies if the user is a valid based off a database was out of our scope. The login page is designed for administrators from the company utilizing our software. Once logged into the MDMS, administrators can view smart meters and their related statistics. Selecting the statistics link navigates to a page that displays power consumption and billing information for the chosen smart meter. 
 
 Anonymity and confidentiality, essential requirements outlined in section 2, are addressed prior to this stage using AES and Paillier encryption. The MDMS manager ensures the privacy of data displayed to administrators by maintaining encrypted IDs, thereby preventing any association of smart meters to specific individuals. Data is retrieved from the MDMS database, which will be detailed in section 3.4.3. Since the data is aggregated and encrypted, it prevents administrators from deducing individual consumer behavior or household routines.
 
