@@ -116,4 +116,12 @@ We want to emphasize that our system ensures the secure delivery of this data an
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
 ## 4. Conclusion
-*[Main lessons learned, areas to consider for improvement (choice of encryption and encryption algorithm is an example)]*
+### 4.1 Limitations 
+
+We have identified a few limitations regarding the actual implementation of our system architecture. The first is regarding our usage of Paillier encryption. This cryptosystem involves complex mathematical operations and large key sizes in comparison to other encryption schemes like AES. For instance, a typical AES key is 256 bits while the typical key size for Paillier is 2048 bits or higher. As a result, there is a significant computational overhead when utilizing this scheme for encryption and decryption. Ultimately, we decided that for our system, the homomorphic properties and privacy benefits resulting from Paillier encryption outweighed its requirement for more computational resources. 
+
+We also acknowledge a potential point of weakness with our decryption and immediate re-encryption in the privacy enhancing system. Since our smart meter data is sent incrementally, this process within the PES only involves small batches of data to limit this potential window of vulnerability. 
+
+Lastly, we acknowledge the potential for function creep in the implementation of a smart meter system. This is because smart meters themselves are responsible for obtaining energy consumption data and it could be possible to modify the system to store data. To avoid this, we would have to modify the smart meters themselves so that they would do the aggregation internally. Since smart meters are already widely deployed, this fix is not likely which is why we propose our system instead. 
+
+### 4.2 Lessons
