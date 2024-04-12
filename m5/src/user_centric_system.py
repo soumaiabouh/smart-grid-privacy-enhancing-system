@@ -18,25 +18,40 @@ class UserCentricSystem:
         self.hashed_password = None
         self.rsa_key_pair = None
 
+    # function to display user data 
     def display(self):
+        # obtain encrypted data from smart meter 
         data_list = self.sm.get_encrypted_data()
+        
+        # create new cipher object with user's rsa key pair
         cipher_rsa = PKCS1_OAEP.new(self.rsa_key_pair)
+
+        # use user's private key to decrypt the aes key 
         aes_key = cipher_rsa.decrypt(self.encrypted_aes_key)
+
+        # to store timestamps and power usage level
         timestamps = []
         power = []
+
+        # iterate through the decrypted smart meter data 
         for data in data_list:
+            # decrypt data and append to corresponding list 
             decrypted_data = self.decrypt(data, aes_key)
             timestamps.append(data['timestamp'])
             power.append(float(decrypted_data))
+
+        # figure object to generate graph of data 
         fig = go.Figure()
         fig.add_trace(go.Scatter(x=timestamps, y=power, mode='lines', name='Power [kW]'))
         fig.update_layout(title='Electricity Consumption', xaxis_title='Time', yaxis_title='Power [kW]')
         fig.show()
 
+    # helper function to decrypt smart meter data 
     def decrypt(self, data, aes_key):
         cipher_aes = AES.new(aes_key, AES.MODE_GCM, nonce=data['nonce'])
         return cipher_aes.decrypt_and_verify(data['encrypted_data'], data['tag'])
 
+    # function to set the user's fields 
     def setCredentials(self, username: str, password: str):
         self.username = username
         self.salt = get_random_bytes(16)
@@ -44,9 +59,11 @@ class UserCentricSystem:
         self.rsa_key_pair = RSA.generate(2048)
         self.encrypted_aes_key = self.sm._encrypt_key(self.get_public())
 
+    # function to return public key 
     def get_public(self):
         return self.rsa_key_pair.publickey()
 
+    # determines if user is properly authenticated by matching hashed passwords
     def authenticate(self, username, password):
         if username == self.username and self.derive_key(password, self.salt) == self.hashed_password:
             return True
@@ -102,6 +119,7 @@ class UserCentricSystem:
                 print("\nExiting the program...")
                 break
 
+    # generates hash of password using random salt and pbkdf2 
     def derive_key(self, password: str, salt: bytes, key_length=32):
         derived = pbkdf2_hmac('sha256', password.encode('utf-8'), salt, 100000, dklen=key_length)
         return derived
