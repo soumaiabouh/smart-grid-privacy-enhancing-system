@@ -194,6 +194,36 @@ The Meter Data Management System (MDMS) serves as a key interface for companies 
 
 #### 3.4.1 MDMS Manager
 
+<p align="center">
+  <img src="images/mdms-manager-class.JPG" width=500px />
+</p>
+
+
+_**Figure 2:** MdmsManager Class UML Diagram._
+
+
+
+The UML diagram for the MdmsManager class provides a representation of its internal composition, detailing how data is aggregated and anonymized. 
+
+
+**Attributes:**
+- `rsa_key_pair`: An RSA key pair generated for the mdms. 
+- `rsa_public_key`: The public key of the mdms. 
+- `aggregated_data_dict`: Dictionary to store aggregated smart meter data.
+- `client`: 
+- `db`: Dictionary to store the aggregated data. 
+- `collection`: 
+
+
+**Public Methods:**
+- `__init__(key_size: int, database_url: str, database_name: str, collection_name: str)`: Initializes the instance of the mdms by generating RSA key pairs, setting up the MongoDB, and initializing an aggregated data dictionary. 
+- `get_public_key()`: Returns the mdms’s public key, used by the PES to encrypt the aggregates. 
+- `send_data_to_mdms(encrypted_aggregated_data: dict)`: Inserts aggregated data into MongoDB database. 
+- `calculate_smart_meter_total_energy_consumption(sm_id: bytes)`: Finds the corresponding smart meter in the database and returns the total consumption.
+- `delete_all_records()`: Deletes all the documents in the collection. 
+- `calculate_neighborhood_daily_consumption()`: Obtains the daily consumption levels for smart meters in the records.
+- `generate_consumption_graph()`: Generates a graph for the neighborhood daily energy consumption. 
+
 #### 3.4.2 MDMS UI
 The MDMS UI is developed as a Node.js application. Upon launching the app, users are provided with a URL that directs them to a login page. This page is designed for administrators from the company utilizing our software. Once logged into the MDMS, administrators can view smart meters and their related statistics. Selecting the statistics link navigates to a page that displays power consumption and billing information for the chosen smart meter.
 
