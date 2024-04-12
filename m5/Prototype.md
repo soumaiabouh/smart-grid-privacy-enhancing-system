@@ -1,4 +1,4 @@
-# Report on the Implementation of the Proposed Smart Meter Privacy Enhancing System
+# Report on the Implementation of the Smarter Metering System
 
 Group 7: Ella Reck​, Soumaia Bouhouia​, Felicia Sun​, Vanessa Akhras​.
 
