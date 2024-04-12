@@ -181,7 +181,7 @@ Within the app.js file, there are multiple functions that query data from the da
 
 
 ### 3.5 User Centric System
-One of our main requirements was the ability for customers to have secure access to their own energy consumption data. This aspect of our system is achieved through the user_centric_system.py class which is accessible within the folder src and referred to in the following sections. 
+One of our main requirements was the ability for customers to have secure access to their own energy consumption data. This aspect of our system is achieved through the `user_centric_system.py` class which is accessible within the folder `src` and referred to in the following sections. 
 
 <p align="center">
   <img src="images/user-centric-system-class.JPG" width=500px />
@@ -201,17 +201,19 @@ The UML diagram for the UserCentricSystem class provides a representation of its
 
 **Public Methods:**
 - `__init__(sm: SmartMeter):` Initializes the user instance, mainly through associating an inputted smart meter with a user. 
-- `display():` Decrypts the smart meters data with the help of the decrypt function and displays a graph to the user. 
-- `decrypt(data: dict, aes_key: bytes):` Generates a new AES object and decrypts the inputted data with the inputted key. 
-- `setCredentials(username: str, password: str)`: Ssts most of the fields of the UserCentricSystem class. This is where key pairs are generated and the hash of the password is created. 
-- `get_public():`: Returns the user’s public key. 
-- `authenticate(username: str, password: str)`: Checks whether a hash of the user’s inputted password matches that stored in our system. 
-- `prompt_credentials(new_user: bool = False)`: Determines whether an instance is a new or a returning user and runs authentication accordingly. 
-- `user_dashboard()`: Displays options for users to display their data or logout. 
-- `login()`: Function that runs the entire system and initiates prompting for credentials and running the user dashboard. 
-- `derive_key(password: str, salt: bytes, key_length: int)`: Generates a random hash of the user’s password using a random salt and SHA-256 hash. 
+- `run()`: Function that runs the entire system and initiates prompting for credentials and running the user dashboard. 
+- `get_public_key():`: Returns the user’s public key. 
 
-When a user first generates their username and password, the setCredentials function on line 40 initializes multiple values. First, the individual’s username is set and saved. Next, a random 16 byte string, referred to as the _salt_, is generated from the Crypto.Random package. Similarly, an RSA key pair is generated where the keys are each 2048 bits of length. The user’s public key is utilized to encrypt the user’s smart meter’s symmetric key. Lastly, the user’s password is hashed using the salt that was previously generated and a helper function derive_key on line 105. 
+**Private Methods:**
+- `_display():` Decrypts the smart meters data with the help of the decrypt function and displays a graph to the user. 
+- `_decrypt(data: dict, aes_key: bytes):` Generates a new AES object and decrypts the inputted data with the inputted key. 
+- `_setCredentials(username: str, password: str)`: Ssts most of the fields of the UserCentricSystem class. This is where key pairs are generated and the hash of the password is created. 
+- `_authenticate(username: str, password: str)`: Checks whether a hash of the user’s inputted password matches that stored in our system. 
+- `_prompt_credentials(new_user: bool = False)`: Determines whether an instance is a new or a returning user and runs authentication accordingly. 
+- `_user_dashboard()`: Displays options for users to display their data or logout. 
+- `_derive_key(password: str, salt: bytes, key_length: int)`: Generates a random hash of the user’s password using a random salt and SHA-256 hash. 
+
+When a user first generates their username and password, the `_setCredentials` function on line 40 initializes multiple values. First, the individual’s username is set and saved. Next, a random 16 byte string, referred to as the _salt_, is generated from the Crypto.Random package. Similarly, an RSA key pair is generated where the keys are each 2048 bits of length. The user’s public key is utilized to encrypt the user’s smart meter’s symmetric key. Lastly, the user’s password is hashed using the salt that was previously generated and a helper function `_derive_key` on line 105. 
 
 #### 3.5.1 Hashing Passwords
 
@@ -222,7 +224,7 @@ Hashing passwords provides an additional layer of security since if a hacker wer
 #### 3.5.2 Displaying Data 
 As previously mentioned, there is a smart meter associated with every User Centric System instance. The smart meter’s encryption key can therefore be encrypted with the user’s RSA public key in order for safe transfer of the key between the two components, effectively resolving the key distribution problem. We utilize this process in our display function on line 21. The smart meter’s AES key is decrypted using the user’s private key, allowing for access of the raw consumption data. This data is then graphed using a data visualization library, Plotly.  
 
-We want to emphasize that our system ensures the secure delivery of this data and the creation of an actual interface used by customers to view this data was decided to be out of our scope. This interface will handle the specifics of display and potentially incorporate other functionalities. Our file is simply to demonstrate a simulation of the flow of the data, a basic example of a user system, and ensure that suppliers don’t need to directly observe customer data. 
+We want to emphasize that our system ensures the secure delivery of this data and the creation of an actual interface used by customers to view this data was decided to be out of our scope. This interface will handle the specifics of display and potentially incorporate other functionalities. Our implementation is meant to demonstrate a simulation of the flow of the data, a basic example of a user system, and ensure that suppliers don’t need to directly observe customer data. 
 
 
 ### 3.6 UI
