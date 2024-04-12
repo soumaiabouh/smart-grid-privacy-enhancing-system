@@ -252,8 +252,25 @@ As previously mentioned, there is a smart meter associated with every User Centr
 We want to emphasize that our system ensures the secure delivery of this data and the creation of an actual interface used by customers to view this data was decided to be out of our scope. This interface will handle the specifics of display and potentially incorporate other functionalities. Our implementation is meant to demonstrate a simulation of the flow of the data, a basic example of a user system, and ensure that suppliers don’t need to directly observe customer data. 
 
 
-### 3.6 UI
-*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+### 3.7 Running the System
+The `main.py` file in the `src` directory showcases the interactions among various components of the system through a simple command-line interface, effectively showcasing the integration and functionality of the entire setup. To begin, users should `pip install` all the modules listed in the README files. In the context of this description, the term "users" refers specifically to administrators who need to interact with the MDMS. The MDMS UI, discussed in section 3.6, uses a basic implementation of the billing function to show how a user interface might be integrated with the system. However, the functions described below are more robust and provide a deeper level of interaction and data processing capability.
+
+**Source Code Execution:**
+
+1.	**Clear Screen Function:** This function is employed at the beginning of each session to clear the terminal screen, ensuring a clutter-free interface. It is tailored to work across different operating systems, utilizing specific commands (cls for Windows, clear for Unix-like systems) to maintain a uniform user experience.
+
+2.	**Print Menu Function:** Upon execution, this function displays the main menu, dynamically adjusting to fit the terminal's width. The menu options allow the user to choose from running neighborhood statistics, executing billing calculations, or exiting the system. This interface is designed to facilitate easy navigation through the system's capabilities.
+
+3.	**Run Neighborhood Stats Function:** This function is crucial for gathering and analyzing neighborhood energy data. It begins by creating instances of SmartMeter for various predefined datasets. Each SmartMeter instance is initialized with a PES public key and a specific dataset file. These meters are then collectively managed by the DataConcentrator, which aggregates their encrypted data. The DataConcentrator retrieves, aggregates, and then sends this data to the MDMS, ensuring the data remains encrypted throughout the process. This step demonstrates the system’s ability to handle multiple data sources securely and perform aggregation without compromising the privacy of the data. 
+
+    The function simulates a typical data generation and aggregation cycle over several iterations, using the tqdm library to visually represent progress. Once the data collection and aggregation are complete, it announces that the data is being sent to the database, highlighting the seamless flow of data within the system.
+
+4.	**Run Billing Calculations Function:** When this option is selected, it sets up an environment for billing analysis by initializing smart meters with detailed consumption datasets. Each SmartMeter processes its data, which is then aggregated by the DataConcentrator. Users can interactively select a specific smart meter to calculate and view billing information based on its energy consumption. This function not only processes the encrypted aggregated data but also calculates the cost associated with the consumption using predefined energy rates.
+
+    This detailed interaction allows the user to view the total energy consumption and corresponding billing amount for any chosen smart meter. The function provides a practical application of how encrypted data can be securely used to generate meaningful financial information, crucial for real-time billing applications.
+
+5.	**Main Execution Loop:** This loop continuously prompts the user for input, responding to their selections by calling the appropriate functions. This ensures the system remains interactive and responsive, allowing for continuous operation until the user chooses to exit. 
+
 
 ## 4. Conclusion
 ### 4.1 Limitations 
