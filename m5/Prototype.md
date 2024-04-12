@@ -114,37 +114,57 @@ Ultimately, the success of AES implementation depends on proper key management. 
 *[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
 ### 3.3 Privacy Enhancing System
-*[Give intro, explain purpose of this and how it's supposed to be integrated]*
+The Privacy Enhancing System (PES) serves as an integral part of our system, with the specific purpose of securely aggregating individual energy consumption records. This system integrates with the current smart meter setup, significantly improving user privacy without interrupting the steady stream of data required by energy providers for billing and analysis purposes.
+
+Paillier encryption, utilized within the PES, is notable for its additive homomorphic feature. It allows for arithmetic operations, such as summing, on encrypted values without decrypting them, thus maintaining the confidentiality of individual data. Although Paillier encryption introduces some computational overhead due to the complexity of homomorphic operations, the impact on system performance is minimal because the data is aggregated incrementally. Thus, the overhead does not significantly impact the overall system's performance.
+
+Nevertheless, we acknowledge that extensive computations are necessary when transmitting aggregated data to the Meter Data Management System (MDMS). To maintain system efficiency, particularly during these critical operations, we opted to re-encrypt the aggregated data using RSA. RSA provides a balance between robust security and manageable computational demands.  This re-encryption ensures that only the MDMS, which has the corresponding RSA private key, can decrypt and access the aggregated data. 
+
+This choice ensures that the added processing time due to Paillier's homomorphic capabilities does not adversely affect the timely delivery of data to the MDMS. Therefore, the PES can securely process and transmit aggregated data to energy suppliers, enabling them to access the necessary information for billing and analytics without compromising individual user privacy.
+
 
 #### 3.3.1 Source Code Overview
-*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
 
+We provide below a UML diagram representing the internal structure of the PES class.
 
+<p align="center">
+  <img src="images/privacy-enhancing-system-class.JPG" width=500px />
+</p>
 
-##### [DRAFT] How to ensure the individual data is not retrievable from the database's standpoint?
-I have data that is too granular, and I want to encrypt it, aggregate it using Paillier encryption, and then store the result of the aggregation in a database where it should be possible to decrypt the result. Now, if I share the key used in Paillier encryption to the database system, it could be possible to retrieve the granular data, but I want to prevent that while minizing security risks. How? By getting rid of the granular data as soon as we're done with. 
+_**Figure 4:** PrivacyEnhancingSystem Class UML Diagram._
 
-We encrypt the data using Paillier, then aggregate, and before sending anything to the database, we get rid of those individual readings from the Privacy Enhancement Subsystem. Then, we send the decryption key to the entities managing the database system so that they can operate on it (predictions, statistical analysis, bill calculation) If anything goes haywire, we're still good, since smart meters are designed to retain readings for a certain period. 
+As illustrated in the source code and the corresponding UML diagram, the PES is structured to support secure data handling and privacy-preserving operations:
 
-##### [DRAFT] Predictions and the statistical analysis
-For the predictions and the statistical analysis, the entirity of the data from n smart meters from the same region can be aggregated over a certain period of time (1 hour). No need for data on the individual families. 
+**Attributes:**
 
-##### [DRAFT] Bill calculations
-For the bill calculations, the data could be aggregated over a longer period of time, and then sent off. For example, for a single household, could send the total energy consumption over the last 2 hours instead of every 5 min. 
+- `rsa_key_pair`: An RSA key pair essential for secure data communication. The private key is kept within the PES to decrypt information, while the public key is shared with smart meters to encrypt their data before sending.
+- `rsa_public_key`: The public component of the RSA key pair, provided to smart meters to enable encryption.
+- `mdms_key`: The public key of the Meter Data Management System (MDMS), used by the PES to encrypt aggregated data ensuring that only the MDMS can decrypt it.
+- `paillier_public_key` and `paillier_private_key`: A pair of keys for the homomorphic encryption, allowing the PES to compute on encrypted data without needing to decrypt it, hence maintaining user privacy.
+- `paillier_encrypted_data_list`: A secure storage for encrypted energy readings, which the PES uses to collect data over time for batch processing and aggregation.
+
+**Public Methods:**
+
+- `__init__()`: Sets up the PES with the necessary RSA and Paillier keys and establishes a link with the MDMS.
+- `get_public_key()`: Shares the RSA public key with smart meters, which they use to encrypt their AES keys.
+- `aggregate_and_encrypt()`: The main public method that manages the flow of data from decryption to re-encryption, ensuring data is handled securely throughout the process.
+
+**Private Methods:**
+- `_decrypt_data_sm()`: A private method that decrypts data from smart meters with the RSA private key, readying it for processing.
+- `_paillier_encrypt_and_store()`: Uses the Paillier public key to re-encrypt decrypted data homomorphically, allowing aggregation while preserving privacy.
+- `_aggregate_data()` and `_rsa_encrypt_aggregate()`: Aggregate decrypted data and then re-encrypt it using the MDMS public key so that only the MDMS can view the final results.
 
 
 #### 3.3.2 Paillier Encryption Implementation
-[Explain how it has been implemented, choice of algorithm - walk through the code, how it influenced the choice of the source code language]
+In implementing Paillier encryption for the Privacy Enhancing System, we carefully selected the algorithm and software library to ensure the system was practical, secure, and easy to use. We chose Python as our programming language because it is widely used and supports a variety of cryptographic libraries.
 
-[DRAFT]
+**Modules considered:**
+- [`python-paillier`](https://github.com/data61/python-paillier): This Python library is easily installed via pip, Python's package installer. It is user-friendly and supports essential operations needed for homomorphic encryption, such as adding constants to encrypted values, multiplying encrypted values by constants, and adding together encrypted values. Its simplicity and functionality made it an excellent fit for our system requirements.
+- [`pailliercryptolib`](https://github.com/intel/pailliercryptolib_python): Optimized for Intel CPUs, this library works well with Ubuntu and Red Hat Enterprise Linux. It could be particularly useful in a controlled environment and might require setting up a specific operating system or using Docker containers to manage dependencies. 
 
-Modules considered:
-- [python-paillier](https://github.com/data61/python-paillier): A python library that can be installed via `pip install phe`. Easy to use, and allows for constant addition and multiplication on an encrypted value, as well as the addition of encrypted values. 
-- [pailliercryptolib](https://github.com/intel/pailliercryptolib_python): Python library best suited for Intel CPUs. Works on the Ubuntu operating system as well Red Hat Enterprise Linux. Could potentially be used by installing the necessary dependencies in a docker container. 
+We chose `python-paillier` for its straightforward integration with our Python-based system. Its ease of installation and compatibility with our development environment were key factors in this decision. The library enables our system to carry out necessary encrypted computations efficiently without the need for complex setups or specialized hardware.
 
-**Performance check:** The performance depends on the hardware used, as well as the length of the encryption and decryption keys chosen. Best length? 
-TODO: with a big amount of data, verify how significantly the performance changes in terms of time.
-
+This choice influenced the overall system design, reaffirming Python as our preferred language due to its strong support for cryptographic functions and its popularity in data security applications. Functions from the `python-paillier` library are used in our source code to encrypt, add, and multiply values as needed, seamlessly integrating with the rest of our system’s operations.
 
 ### 3.4 MDMS
 The MDMS is an interface supplied to companies using our software. It ensures that the data these companies can view is aggregated and de-identified, thus providing better user privacy. The MDMS has two main components: the MDMS UI and the MDMS database.
