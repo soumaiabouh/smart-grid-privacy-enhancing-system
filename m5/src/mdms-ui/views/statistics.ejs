@@ -85,27 +85,25 @@
             if (!storedToken) {
                 // Redirect to the login page if the token is missing
                 window.location.href = "login.html"; // Replace with your login page URL
-            } else {
-                // Validate the token on the server side (not shown here)
-                // If valid, proceed with displaying protected content
-                // Otherwise, redirect to the login page
-            }
+            } 
+
+
             const tableBody = document.getElementById('tableBody');
             const smartMeterTab = document.getElementById('smartMeter-tab');
             const statisticsTab = document.getElementById('statistics-tab');
 
             
-            
+            //this will bring us to the smart meters page
             smartMeterTab.addEventListener('click', () => {
                 window.location.href = "smartMeters";
             });
 
 
-            
+            //event listener for when user selects from the drop down
             document.getElementById('apartmentNums').addEventListener('change', function () {
             const selectedOption = this.value; // Get the selected value
 
-            // Make an AJAX request to your server
+            //tis will call a function in app.js and return the data of the smart meter
             fetch('/process', {
                 method: 'POST',
                 body: JSON.stringify({ option: selectedOption }), // Send data to server
@@ -115,7 +113,8 @@
             })
                 .then(response => response.text())
                 .then(html => {
-                // Update the tab content with the new HTML
+                
+                //set the data of the smart meter on the page
                 document.getElementById('result').innerHTML = html;
             })
                 .catch(error => {
@@ -123,18 +122,19 @@
                 });
         });
 
-        const queryString = window.location.search;
-
-        
+        //this will check if there's a parameter in the url, if so get it and display the 
+        //data of that smart meter
+        const queryString = window.location.search;        
         const params = new URLSearchParams(queryString);
         const valueFromFirstPage = params.get("param1");
         if(valueFromFirstPage != null)
         {
-        const intValue = Number(valueFromFirstPage);
+            const intValue = Number(valueFromFirstPage);
 
-        let element = document.getElementById('apartmentNums');
-        element.value = intValue;
-        element.dispatchEvent(new Event('change'));}
+            let element = document.getElementById('apartmentNums');
+            element.value = intValue;
+            element.dispatchEvent(new Event('change'));
+        }
 
         </script>
     </div>
