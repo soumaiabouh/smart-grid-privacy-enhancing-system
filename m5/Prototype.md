@@ -24,11 +24,24 @@ The most pressing function and privacy requirement of the Smarter Metering syste
 
 ## 3. Implementation of the System 
 
-[First give overview - could use UML diagram here]
+The aim of this project is to enhance privacy for user data by aggregating it, allowing individuals to view their own detailed consumption while also enabling energy suppliers to conduct analyses and calculate billing. The system simulation demonstrates the potential integration of a Privacy Enhancing System (PES) without significantly altering the existing operations of smart meters, data concentrators, and the Meter Data Management System (MDMS). Additionally, a user-centric system has been developed to enable users to access their detailed consumption data.
 
-In order to demonstrate and implement our system, we have generated a simulation of smart meter readings using data from a 2016 data set from the University of Massachusetts Amherst. 
-- Choice of code language etc 
-- Basic overview
+<p align="center">
+  <img src="images/class-diagram-overview.JPG" width=1200px />
+</p>
+
+_**Figure 1.** UML Class Diagram of the system. Only the class names were kept in the diagram for conciseness and to emphasize on the relationships between the classes._
+
+
+In the process flow described:
+
+1. A PES instance is created to generate a public key for the smart meters' use, along with instances of the MDMS manager and a DataConcentrator. The PES public key is crucial for encrypting the AES key of the smart meters, ensuring PES can decrypt the data securely, as indicated by the dependency relationship in the diagram above.
+2. Multiple Smart Meter instances are then created, simulating meter readings from a 2016 dataset provided by the University of Massachusetts Amherst. Each row in the dataset files represents a one-minute reading interval.
+3. These Smart Meter instances are added to the DataConcentrator, which compiles the data and sends a request to the PES to aggregate all readings received up to that point.
+4. The aggregated data is transmitted to the MDMS via the MDMS manager.
+5. The UserCentricSystem is dependent on a Smart Meter instance to operate, indicated by a composition link. Upon initializing a UserCentricSystem object with a Smart Meter, a user account may be set up at the first system start-up. Once the user logs in successfully, they can access their detailed consumption data exclusively.
+
+In the next subsections, we will be diving deeper into each component of the system, the choices made during implementation, and examine how these decisions align with the objectives established in this report and its predecessor.
 
 ### 3.1 Simulation of Generation of Readings from Smart Meter 
 The smart meter class, available in smart_meter.py, encapsulates the functionality of a smart meter, which collects energy consumption data and transmits it to the PES. 
