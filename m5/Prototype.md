@@ -224,6 +224,10 @@ The UML diagram for the MdmsManager class provides a representation of its inter
 - `calculate_neighborhood_daily_consumption()`: Obtains the daily consumption levels for smart meters in the records.
 - `generate_consumption_graph()`: Generates a graph for the neighborhood daily energy consumption. 
 
+**Private Methods:**
+- `_decrypt_data(aggregated_data: dict)`: Decrypts the aggregated data. 
+
+
 #### 3.4.2 MDMS UI
 The MDMS UI is developed as a Node.js application. Upon launching the app, users are provided with a URL that directs them to a login page. As we were more focused on the privacy involving the data aggregation and granularity, implementing a login which verifies if the user is a valid based off a database was out of our scope. The login page is designed for administrators from the company utilizing our software. Once logged into the MDMS, administrators can view smart meters and their related statistics. Selecting the statistics link navigates to a page that displays power consumption and billing information for the chosen smart meter. 
 
