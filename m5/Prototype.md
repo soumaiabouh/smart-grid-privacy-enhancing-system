@@ -109,6 +109,8 @@ Ultimately, the success of AES implementation depends on proper key management. 
 
 ### 3.2 Data Concentrator
 
+The Data Concentrator acts as the middleman in our system. Its purpose is to connect the other system components and transfer data between them. Although this component could be removed - the smart meters can be directly connected to the PES, and the PES can be directly connected to the MDMS - it would make the system much more complicated to change, and the various references to the connecting components would be scattered across the system. The structure of the DataConcentrator class is as follows:
+
 <p align="center">
   <img src="images/data-concentrator-class.JPG" width=500px />
 </p>
