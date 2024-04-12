@@ -29,9 +29,15 @@ username: adminTester
 password: password
 ```
 
-2. For the interactions between the PES and other components, run the `main.py` file.
+2. For the interactions between the PES and other components, navigate to the m5/src folder and run the `main.py` file.
 
-3. For the UCS, run the `user-centric-system.py` file.
+3. For the UCS, navigate to the m5/src folder and run the `user-centric-system.py` file.
 
 ## Examples
-Please refer to the videos linked in the presentation slides to see the system in action.
+The following videos, linked in the presentation slides, to see the system in action.
+
+[UCS demo​](https://mcgill-my.sharepoint.com/:v:/g/personal/soumaia_bouhouia_mail_mcgill_ca/EZD9Pml6oiZKnirsnowofBcB0pj7qc2q7EcwiHR6FjGwMA?e=JddkCW&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+
+[PES demo​](https://mcgill-my.sharepoint.com/:v:/g/personal/soumaia_bouhouia_mail_mcgill_ca/EXIiFQfAM3JKmqdSNK7sUxgB9Y09ix42t2CUVv_mkGxHcw?e=U61NiR&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
+
+[UI/MDMS demo](https://mcgill-my.sharepoint.com/:v:/g/personal/vanessa_akhras_mail_mcgill_ca/Ee-os_SiHWRMkyPx-GlZkukBZGWHVmiGgGSF71AHsPhdvg?e=FWDDgb)
