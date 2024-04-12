@@ -115,7 +115,7 @@ The Data Concentrator acts as the middleman in our system. Its purpose is to con
   <img src="images/data-concentrator-class.JPG" width=500px />
 </p>
 
-_**Figure 2:** DataConcentrator Class UML Diagram._
+_**Figure 3:** DataConcentrator Class UML Diagram._
 
 The UML diagram for the DataConcentrator class provides a representation of its internal composition, detailing its process to send requests to the PES to aggregate the collected readings.
 
@@ -201,7 +201,7 @@ The Meter Data Management System (MDMS) serves as a key interface for companies 
 </p>
 
 
-_**Figure 2:** MdmsManager Class UML Diagram._
+_**Figure 5:** MdmsManager Class UML Diagram._
 
 
 
@@ -248,7 +248,7 @@ One of our main requirements was the ability for customers to have secure access
   <img src="images/user-centric-system-class.JPG" width=500px />
 </p>
 
-_**Figure 2:** UserCentricSystem Class UML Diagram._
+_**Figure 6:** UserCentricSystem Class UML Diagram._
 
 The UML diagram for the UserCentricSystem class provides a representation of its internal composition, detailing the process to provide data to users. 
 
