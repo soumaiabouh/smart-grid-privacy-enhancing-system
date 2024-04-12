@@ -164,7 +164,23 @@ Within the app.js file, there are multiple functions that query data from the da
 
 
 ### 3.5 User Centric System
-One of our main requirements was the ability for customers to have secure access to their own energy consumption data. This aspect of our system is achieved through the user_centric_system.py class which is accessible within the folder src and referred to in the following sections.  
+One of our main requirements was the ability for customers to have secure access to their own energy consumption data. This aspect of our system is achieved through the user_centric_system.py class which is accessible within the folder src and referred to in the following sections. 
+
+<p align="center">
+  <img src="images/user-centric-system-class.JPG" width=500px />
+</p>
+
+_**Figure 2:** UserCentricSystem Class UML Diagram._
+
+The UML diagram for the UserCentricSystem class provides a representation of its internal composition, detailing the process to provide data to users. 
+
+**Attributes:**
+- `sm`: An instance of a SmartMeter; this is the smart meter associated with the user account.
+- `username`: A string inputted by the user that is used when they log back in to their account.
+- `encrypted_aes_key`: This is the smart meter’s AES key after it has been encrypted with the user’s public key.
+- `salt`: This is a unique 16 byte string utilized for the password based key derivation function. 
+- `hashed_password`: This is the hashed user password that is used for authentication purposes when the user logs in. 
+- `rsa_key_pair`: A RSA.Key instance, specifically used for encryption and decryption of the smart meter symmetric key. 
 
 When a user first generates their username and password, the setCredentials function on line 40 initializes multiple values. First, the individual’s username is set and saved. Next, a random 16 byte string, referred to as the _salt_, is generated from the Crypto.Random package. Similarly, an RSA key pair is generated where the keys are each 2048 bits of length. The user’s public key is utilized to encrypt the user’s smart meter’s symmetric key. Lastly, the user’s password is hashed using the salt that was previously generated and a helper function derive_key on line 105. 
 
