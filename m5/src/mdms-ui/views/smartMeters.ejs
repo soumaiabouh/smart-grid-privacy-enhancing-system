@@ -39,7 +39,7 @@
         table {
             width: 100%;
             margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow lines */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
         th, td {
             padding: 12px;
@@ -83,23 +83,19 @@
             const storedToken = localStorage.getItem("authToken");
 
             if (!storedToken) {
+
                 // Redirect to the login page if the token is missing
-                window.location.href = "login.html"; // Replace with your login page URL
-            } else {
-                // Validate the token on the server side (not shown here)
-                // If valid, proceed with displaying protected content
-                // Otherwise, redirect to the login page
-            }
+                window.location.href = "login.html"; 
+            } 
+
+
             const tableBody = document.getElementById('tableBody');
             const statisticsTab = document.getElementById('statistics-tab');
-
-            // Function to populate the table with statistics data
             
 
             
-
+            //this will bring us to the statistics page
             statisticsTab.addEventListener('click', () => {
-                // Call your function here
                 window.location.href = "statistics";
             });
         </script>

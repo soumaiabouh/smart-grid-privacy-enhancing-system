@@ -8,21 +8,27 @@ const uri = "mongodb+srv://User1:TestPassword9028_@cluster0.boy2x7w.mongodb.net/
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
+
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
-//app.set('view engine', 'ejs');
 
 
+//gets called by the statistics.ejs file
+//updates the statistics page based on the smart meter chose
 app.post('/process', async (req, res) => {
+
+  //get the smart meter chosen and turn value into a Number
   const selectedOption = req.body.option;
   const intValue = Number(selectedOption);
 
-  const database = client.db("SmartMeters"); // Replace with your database name
-  const collection = database.collection("multipleApartments"); // Replace with your collection name
+  //get the databse and collection and query for the apartment we selected
+  const database = client.db("SmartMeters"); 
+  const collection = database.collection("multipleApartments"); 
   const apartments = await collection.find({apartment: intValue});
     
 
+    //store the power consumtion values of the selected apartment
     const powers = [];
 
     await apartments.forEach(document => {
@@ -32,15 +38,19 @@ app.post('/process', async (req, res) => {
 
     let sum = 0;
 
-    // Iterate through each element in the array
+    // Iterate through each element in the powers array and find the sum of power consumption
     for (let i = 0; i < powers.length; i++) {
         sum += powers[i];
     }
 
+    //get the statistics file content
     const ejsContent = fs.readFileSync('views/statistics.ejs', 'utf8');
 
+    //convert the comsumptions to have 2 decimals
     const consumptionForPriceCalculation = (sum/1000).toFixed(2);
     const consumptionkW  = sum.toFixed(2)
+
+    //calculate the price and insert into statistics page
     const price = (consumptionForPriceCalculation* 0.073*24).toFixed(2);
     const val = `<br><label >The total power consumption for the last 3 days is: ${consumptionkW} kW</label><br><label >The total price is: ${price} $</label>`;
     const renderedContent = ejsContent.replace('<!-- INSERT_POWER_DATA -->', val);
@@ -49,27 +59,20 @@ app.post('/process', async (req, res) => {
     res.send(val);
 
 
-  //console.log("Powers:", powers);
-
-
-  // Process the arguments (e.g., call a function)
-  // ...
-
-  // Send a response back to the client
-  //res.json({ message: 'Option received and processed.' });
+  
 });
 
-
+//gets called by the login.html page once succesfully logged in
 app.get('/smartMeters', async (req, res) => {
-  // Read the content of smartMeters.ejs (assuming it's in the same folder)
-  
 
   try {
   
-    
+    //get the database and collection
     const database = client.db("SmartMeters"); // Replace with your database name
     const collection = database.collection("multipleApartments"); // Replace with your collection name
     const resultArray = [];
+
+    //the following code will get the current smart meters available
 
     // Loop through apartment numbers from 101 to 110
     for (let apartmentNumber = 101; apartmentNumber <= 110; apartmentNumber++) {
@@ -89,34 +92,12 @@ app.get('/smartMeters', async (req, res) => {
     }
 
 
-    //const apartments = await collection.findOne({apartment : 101});
-    //IMPORTANT
-    /*const apartments = await collection.find().limit(5);
-    
 
-    const ids = [];
-    const Apartments = [];
-    const times = [];
-    const powers = [];
-
-    await apartments.forEach(document => {
-      ids.push(document._id);
-      Apartments.push(document.apartment);
-      times.push(document.time);
-      powers.push(document.power);
-    });
-
-    console.log("IDs:", ids);
-    console.log("Apartments:", apartments);
-    console.log("Times:", times);
-    console.log("Powers:", powers);*/
-
-
-
+    //get the smartMeters.ehs page contnent and edit it with the apartment values
     
     const ejsContent = fs.readFileSync('views/smartMeters.ejs', 'utf8');
 
-    //console.log(generateApartmentRows(resultArray));
+
     const renderedContent = ejsContent.replace('<!-- INSERT_APARTMENT_DATA -->', generateApartmentRows(resultArray));
     
     
@@ -127,11 +108,15 @@ app.get('/smartMeters', async (req, res) => {
 }
 });
 
+//gets called by the smartMeters.ejs file when clicking on the tab statistics
 app.get('/statistics', async (req, res) => {
-  // Read the content of smartMeters.ejs (assuming it's in the same folder)
+
+  //get the database and collection
   const database = client.db("SmartMeters"); // Replace with your database name
     const collection = database.collection("multipleApartments"); // Replace with your collection name
     const resultArray = [];
+
+    //this will get all apartments
 
     // Loop through apartment numbers from 101 to 110
     for (let apartmentNumber = 101; apartmentNumber <= 110; apartmentNumber++) {
@@ -151,7 +136,7 @@ app.get('/statistics', async (req, res) => {
   
 
   try {
-      
+      //get the contenst of the statistics page and insert the apartment data into the <select> drop down
     const ejsContent = fs.readFileSync('views/statistics.ejs', 'utf8');
 
     
@@ -166,13 +151,10 @@ app.get('/statistics', async (req, res) => {
 });
 
 
-
+//this will generate the rows of the smart meters page
 function generateApartmentRows(array) {
-  // if (!Array.isArray(apartments)) {
-  //     console.error('Apartments data is not an array.');
-  //     console.log(apartments.apartment);
-  //     return ''; // Return an empty string or handle the error as needed
-  // }
+ 
+  //get the values of the inputed apartments
   const rows = [];
   for (const apartments of array){
     const row = {
@@ -183,10 +165,8 @@ function generateApartmentRows(array) {
   };
   rows.push(row);
   }
-  
-  
 
-//<td>${row.time}</td>
+  //create and return the rows shown on the smart meters page
   return rows.map(row => `
 
       <tr>
@@ -197,12 +177,10 @@ function generateApartmentRows(array) {
   `).join('');
 }
 
+//this will create the <select> drop down on the statistics page
 function generateStatsDropDown(array) {
-  // if (!Array.isArray(apartments)) {
-  //     console.error('Apartments data is not an array.');
-  //     console.log(apartments.apartment);
-  //     return ''; // Return an empty string or handle the error as needed
-  // }
+  
+  //get the values of the inputed apartments
   const rows = [];
   for (const apartments of array){
     const row = {
@@ -213,10 +191,8 @@ function generateStatsDropDown(array) {
   };
   rows.push(row);
   }
-  
-  
 
-//<td>${row.time}</td>
+  //create and return the options showsn in the satistics drop down
   return rows.map(row => `
   <option value="${row.number}">${row.number}</option>
  
@@ -224,71 +200,36 @@ function generateStatsDropDown(array) {
 }
 
 
-app.get('/display-apartments', async (req, res) => {
-  try {
-    // Fetch apartments where "apartment" is set to 101
-    const apartments = await collection.find({ apartment: '101' });
-
-    // Render the EJS template with the fetched data
-    res.render('apartments.ejs', { apartments });
-} catch (error) {
-    console.error('Error fetching apartments:', error);
-    res.status(500).send('Internal server error');
-}
-});
 
 
 // Define the route for the login page
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
-app.get('/public/smartMeters', async (req, res) => {
-  //const data = await fetchData(); // Retrieve data from MongoDB
-  const data = { username: 'exampleUser' };
-    res.render('smartMeters', { data }); // Render your HTML template
-});
 
-// Start the server
+
+// Start the server, make the server start on the login page
 app.listen(app.get('port'), () => {
     console.log(`Server running at http://localhost:${app.get('port')}/login`);
 });
 
 async function main() {
-  //const uri = "mongodb+srv://User1:TestPassword9028_@cluster0.boy2x7w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-  //const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  
 
   try {
+    //connect to the mongodb database
     await client.connect();
     console.log('Connected to MongoDB Atlas');
+
     
-    const database = client.db('SmartMeters'); // Replace with your database name
-    const collection = database.collection('multipleApartments'); // Replace with your collection name
-
-    //const doc = { name: 'Neapolitan pizza', shape: 'round' };
-    //const result = await collection.insertOne(doc);
-
-    //console.log(`A document was inserted with the _id: ${result.insertedId}`);
   } catch (error) {
     console.error('Error:', error);
   } finally {
-    //await client.close();
+    
   }
 }
 
 main().catch(console.error);
 
-async function fetchData() {
-    const uri = "mongodb+srv://User1:TestPassword9028_@cluster0.boy2x7w.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-  
-    try {
-      await client.connect();
-      const database = client.db('SmartMeters');
-      const collection = database.collection('multipleApartments');
-      //const data = await collection.find({}).toArray();
-      //return data;
-    } finally {
-      await client.close();
-    }
-  }
+
   

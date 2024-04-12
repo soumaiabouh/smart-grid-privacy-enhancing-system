@@ -83,44 +83,33 @@
     <script>
         function handleLogin() {
             
-            // Assume successful login for demonstration purposes
-            // You can add your own logic to validate credentials here
+            //get the username and password values
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
 	    
-            // Replace with your actual authentication logic
+            //check if the username and password are valid
             if (username === "adminTester" && password === "password") {
-    		// Redirect to smartMeters.html
-		const username = document.getElementById("username").value;
-		localStorage.setItem("username", username);
-		const token = "your_generated_token_here";
-		localStorage.setItem("authToken", token);
+                // Redirect to smartMeters.html
 
-    		window.location.href = "smartMeters";
-	    } else {
-		localStorage.removeItem("username");					localStorage.removeItem("authToken");
-             alert("Invalid credentials. Please try again.");
-	    }/*
-            try {
-            const response =  fetch('/afterlogIn'); // Replace with your actual route
-            const ejsContent =  response.text();
-            document.getElementById('ejsContent').innerHTML = ejsContent;
-            } catch (error) {
-                console.error('Error fetching .ejs content:', error);
+                //put the username in storage so that we can validate login when accessing smart meters or statistics page
+                const username = document.getElementById("username").value;
+                localStorage.setItem("username", username);
+                const token = "your_generated_token_here";
+                localStorage.setItem("authToken", token);
+
+                //navigate to the smart meters page
+                window.location.href = "smartMeters";
+            } else {
+
+                //remove any values from local storage to ensure we cant access the sart meter or statistics page using
+                //only the url
+                localStorage.removeItem("username");					
+                localStorage.removeItem("authToken");
+                alert("Invalid credentials. Please try again.");
             }
-        }*/
     }
 
-    document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch('/smartMeters'); // Replace with your actual route
-        const ejsContent = await response.text();
-        document.getElementById('ejsContent').innerHTML = ejsContent;
-    } catch (error) {
-        console.error('Error fetching .ejs content:', error);
-    }
-});
     </script>
 </head>
 <body>
