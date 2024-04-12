@@ -108,7 +108,31 @@ Ultimately, the success of AES implementation depends on proper key management. 
 
 
 ### 3.2 Data Concentrator
-*[Go over parts of the source code or simply refer to it, and explain how it fits the requirements stated in section 2]*
+
+<p align="center">
+  <img src="images/data-concentrator-class.JPG" width=500px />
+</p>
+
+_**Figure 2:** DataConcentrator Class UML Diagram._
+
+The UML diagram for the DataConcentrator class provides a representation of its internal composition, detailing its process to send requests to the PES to aggregate the collected readings.
+
+**Attributes:**
+- `smList`: A list of smart meters, representing the smart meters in the current community. 
+- `pes`: An instance of a Privacy enhancing system. 
+- `mdms_manager`: An instance of a Mdms manager. 
+- `aggregated_data_dict`: Dictionary to store the aggregated data. 
+- `last_processed_indices`: List that maps smart meter IDs to the last processed indices to avoid re-aggregating. 
+
+
+**Public Methods:**
+- `__init__(pes: PES, mdms_manager: MdmsManager)`: Initializes the instance of the data concentrator with the inputted instance of a PES and MdmsManager. 
+- `add_smart_meter(sm: SmartMeter)`: Adds smart meters to the smList field indicated above. 
+- `add_smart_meters(smList: SmartMeter)`: Adds a list of smart meters to the smList field indicated above. 
+- `get_aggregated_data()`: For each smart meter in the smList, a request is made to the PES instance to aggregate and encrypt the data. 
+- `get_aggregated_data_sm(sm: SmartMeter)`: Makes a request to the PES instance to aggregate and encrypt the data for a single smart meter. 
+- `send_encrypted_data_to_mdms()`: Sends the aggregated data dictionary to the mdms. 
+
 
 ### 3.3 Privacy Enhancing System
 *[Give intro, explain purpose of this and how it's supposed to be integrated]*
