@@ -16,28 +16,25 @@ By integrating the Smarter Metering system's PES and secure data transmission pr
 
 
 ## 2. Requirements
-[recap on requirements we described in M3 linked to the problem statement detailed in M1 and M3 - also mention the problem statement]
 
-The main goal is to balance consumer privacy with energy suppliers' need for energy consumption data for billing and analysis purposes. Our functional and privacy requirements, detailed in M3, were met through the following design decisions:
+The main goal is to balance consumer privacy with energy suppliers' need for energy consumption data for billing and analysis purposes while still allowing customers to view their own data. Our functional and privacy requirements, detailed in M3, were met through the following design decisions:
 
 ### 2.1 Data Privacy, Access, and Minimization: 
-1. **Private Access to Detailed Data:** Our system allows the customer's detailed energy consumption data to be only accessible by the customer. This is achieved by having the User Centric System (UCS) [LINK], which acquires the AES-encrypted data directly from the customer's smart meter. Then, the customer can retrieve the detailed data after authenticating themselves using a username and password. An RSA key pair is used to distribute the smart meter's symmetric AES key to the User Centric System.
-2. **Restricted Supplier and Third-Party Access:** Our system ensures that suppliers and possible third parties do not have the capability to view individual and detailed customer energy consumption. This is done by storing two types of data in the Meter Data Management System (MDMS). We either have an individual's data, which has been aggregated over a longer period of time, or a neighbourhood's data, where the data from all customers in the neighbourhood is aggregated to show energy consumption in shorter intervals of time.
+1. **Private Access to Detailed Data:** Our system allows the customer's detailed energy consumption data to be only accessible by the customer. This is achieved by having the [User Centric System (UCS)](#35-user-centric-system), which acquires the AES-encrypted data directly from the customer's smart meter. Then, the customer can retrieve the detailed data after authenticating themselves using a username and password. An RSA key pair is used to distribute the smart meter's symmetric AES key to the User Centric System.
+2. **Restricted Supplier and Third-Party Access:** Our system ensures that suppliers and possible third parties do not have the capability to view individual and detailed customer energy consumption. This is done by storing two types of data in the [Meter Data Management System (MDMS)](#34-mdms). We either have an individual's data, which has been aggregated over a longer period of time, or a neighbourhood's data, where the data from all customers in the neighbourhood is aggregated to show energy consumption in shorter intervals of time.
 3. **Data Minimization:** To avoid collection of personal information beyond what is essential for providing services, only the necessary data required for billing and system operation is sent to the MDMS. 
 
 ### 2.2. Data Encryption, Data Anonymity, and Customer Confidentiality
-1. **Anonymization and End-to-End Encryption:** The most pressing function and privacy requirement of the Smarter Metering system is the anonymity of smart meter data and customer confidentiality during billing and analysis. Our system achieves this through multiple steps of encryption. Specifically, the data is immediately encrypted with AES at collection by the Smart Meter [LINK] and then decrypted and re-encrypted immediately with the Paillier encryption scheme in the PES. The Paillier cryptosystem is known for its homomorphic properties that allow computations to be performed on encrypted data without decrypting it. This enables the utility company to perform necessary operations like billing and monitoring energy consumption trends on encrypted meter readings without compromising individual users’ privacy. This scheme renders it unnecessary for raw individual data to be handled at any time. 
+1. **Anonymization and End-to-End Encryption:** The most pressing function and privacy requirement of the Smarter Metering system is the anonymity of smart meter data and customer confidentiality during billing and analysis. Our system achieves this through multiple steps of encryption. Specifically, the data is immediately encrypted with AES at collection by the [Smart Meter](#31-smart-meter-simulation) and then decrypted and re-encrypted immediately with the Paillier encryption scheme in the [Privacy Enhancing System (PES)](#33-privacy-enhancing-system). The Paillier cryptosystem is known for its homomorphic properties that allow computations to be performed on encrypted data without decrypting it. This enables the utility company to perform necessary operations like billing and monitoring energy consumption trends on encrypted meter readings without compromising individual users’ privacy. This scheme renders it unnecessary for raw individual data to be handled at any time. 
 
 ### 2.3 Communication and Data Handling
-1.	**Smart Meter to MDMS Communication:** Our system include a secure communication component between the smart meters and the Meter Data Management System (MDMS) that encrypts data transmission.
-2.	**Billing Data Averaging:** For billing purposes, the PES [LINK] component of our system sends averaged out data about each customer over longer intervals to prevent fine-grained consumption patterns from being revealed. The data is sent to the MDMS [LINK].
+1.	**Smart Meter to MDMS Communication:** Our system include a secure communication component between the smart meters and the [Meter Data Management System (MDMS)](#34-mdms) that encrypts data transmission.
+2.	**Billing Data Averaging:** For billing purposes, the [Privacy Enhancing System (PES)](#33-privacy-enhancing-system) component of our system sends averaged out data about each customer over longer intervals to prevent fine-grained consumption patterns from being revealed. The data is sent to the MDMS.
 3.	**Supplier-Side Aggregation:** To inform the supplier about energy demands, the PES aggregates more detailed data among members of a neighborhood, ensuring individual user data remains private.
 
 ### 2.4 System Reliability and Performance
 1.	**Real-Time Processing:** Our system is capable of processing real-time data for immediate access by the customer using their private key. There is minimal overhead in the UCS.
 2.	**Data Integrity and Accuracy:** The chosen additional encryption and aggregation steps in our system do not affect the integrity and accuracy of data, which is important to ensure that billing calculations or reporting and analysis based on the encrypted and aggregated data are correct and reliable. 
-
-[other requirements]
 
 ## 3. Implementation of the System 
 
