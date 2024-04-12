@@ -24,7 +24,7 @@ The most pressing function and privacy requirement of the Smarter Metering syste
 
 ## 3. Implementation of the System 
 
-The aim of this project is to enhance privacy for user data by aggregating it, allowing individuals to view their own detailed consumption while also enabling energy suppliers to conduct analyses and calculate billing. The system simulation demonstrates the potential integration of a Privacy Enhancing System (PES) without significantly altering the existing operations of smart meters, data concentrators, and the Meter Data Management System (MDMS). Additionally, a user-centric system has been developed to enable users to access their detailed consumption data.
+The aim of this project is to enhance privacy for user data by aggregating it, allowing individuals to view their own detailed consumption while also enabling energy suppliers to conduct analyses and calculate billing. The system simulation demonstrates the potential integration of a Privacy Enhancing System (PES) without significantly altering the existing operations of smart meters, data concentrators, and the Meter Data Management System (MDMS). Additionally, a user-centric system has been developed to enable users to access their detailed consumption data. We chose the implement the system using Python due to the availability of the Paillier Encryption module, `phe`. 
 
 <p align="center">
   <img src="images/class-diagram-overview.JPG" width=1200px />
@@ -43,7 +43,7 @@ In the process flow described:
 
 In the next subsections, we will be diving deeper into each component of the system, the choices made during implementation, and examine how these decisions align with the objectives established in this report and its predecessor.
 
-### 3.1 Simulation of Generation of Readings from Smart Meter 
+### 3.1 Smart Meter Simulation 
 The smart meter class, available in smart_meter.py, encapsulates the functionality of a smart meter, which collects energy consumption data and transmits it to the PES. 
 
 #### 3.1.1 Source Code Overview
@@ -51,6 +51,36 @@ Upon initialization, the smart meter instance requires the PES public key, a fil
 
 Importantly, the generation of consumption data is simulated with the load_data function on line 16. The openpyxl library for reading and writing Excel files was utilized in order to load an existing Excel workbook from a file so that it can be manipulated within our script. 
 
+<p align="center">
+  <img src="images/smart-meter-class.JPG" width=500px />
+</p>
+
+_**Figure 2:** SmartMeter Class UML Diagram._
+
+The UML diagram for the SmartMeter class provides a representation of its internal composition, detailing both the data it stores and the functionalities it offers.
+
+**Attributes:**
+
+- `pes_public_key`: An instance of RSA.PublicKey used to encrypt the AES key, ensuring that only the PES can decrypt the energy consumption data sent from the smart meter.
+- `aes_key`: A 256-bit key used by the smart meter for AES encryption of its data readings.
+- `encrypted_aes_key`: This is the AES key after it has been encrypted with the PES public key, ready to be securely transmitted to the PES.
+- `id`: A unique byte sequence that serves as the identifier for the smart meter, distinguishing it from others in the network.
+- `encrypted_data_list`: A collection that holds dictionaries mapping timestamps to encrypted data readings, encapsulating each data point securely.
+
+**Public Methods:**
+
+- `get_encrypted_data():` Retrieves the list of encrypted data points, which includes the encrypted readings alongside their associated timestamps. Used by the Data Concentrator to get the readings.
+- `get_id():` Returns the unique identifier of the smart meter, allowing for verification and tracking within the system.
+- `get_encrypted_aes_key():` Provides the encrypted version of the AES key, which can only be decrypted by the PES with the corresponding private RSA key.
+- `generate_data(filename: str, timerange: int)`: Loads additional data readings from a specified file within a certain time range, encrypting and storing them internally.
+
+**Private Methods:**
+
+- `_generate_key()`: Produces a random 256-bit AES key for the encryption of data readings.
+- `_generate_id()`: Generates a unique random identifier for the smart meter.
+- `_encrypt_data_and_store(timestamp: str, reading: float)`: Encrypts individual readings along with their timestamps and stores them in the encrypted_data_list.
+- `_encrypt_aes_key()`: Encrypts the smart meter’s AES key with the PES's public key using RSA encryption.
+- `_load_data(filename: str, start_row: int, end_row: int)`: Internal method to load and encrypt data readings from a file, starting and ending at specified rows.
 
 #### 3.1.2 AES Encryption Implementation 
 Consistent with current smart meter system implementations, we utilized AES encryption in our simulation in the initial generation and transition of the smart meter data. This was achieved through utilizing a Python package, PyCryptodome, that contains low level cryptographic primitives. Our research demonstrated that this package is widely used for cryptographic operations and is considered secure when used correctly.
