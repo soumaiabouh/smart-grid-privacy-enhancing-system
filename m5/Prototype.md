@@ -84,11 +84,13 @@ TODO: with a big amount of data, verify how significantly the performance change
 The MDMS is an interface supplied to companies using our software. It ensures that the data these companies can view is aggregated and de-identified, thus providing better user privacy. The MDMS has two main components: the MDMS UI and the MDMS database.
 
 #### 3.4.1 MDMS Manager
+
+#### 3.4.2 MDMS UI
 The MDMS Manager is a Node app. When running the app, the user receives a URL. The URL brings the user to a login page. This page is for an admin from the company using our product. Once in the MDMS, the admin can look at smart meters and the relative statistics. The statistics link brings the admin to the statistics page and displays the power consumption and bill for the selected smart meter.
 
-In section 2, one of the main requirements is anonymity and confidentiality. These are done in previous steps using AES as well as Pallier. The MDMS manager ensures that the data displayed to the admin does not divulge which smart meter belongs to whom, as the IDs are encrypted. The data is pulled from the MDMS database, further explained in section 3.4.2. As the data from the database is aggregated and encrypted, this enforces that the admin cannot infer consumer behavior or household routines from the data that they have access to.
+In section 2, one of the main requirements is anonymity and confidentiality. These are done in previous steps using AES as well as Pallier. The MDMS manager ensures that the data displayed to the admin does not divulge which smart meter belongs to whom, as the IDs are encrypted. The data is pulled from the MDMS database, further explained in section 3.4.3. As the data from the database is aggregated and encrypted, this enforces that the admin cannot infer consumer behavior or household routines from the data that they have access to.
 
-#### 3.4.1 MDMS Database
+#### 3.4.3 MDMS Database
 To simulate smart meter data production data from an open source is used. The data is in the c555w24/m5/src/data folder. There are CSV files for each apartment with a smart meter that contain the power consumption collected using a 1 minute time interval over a year. This data is aggregated by the PES, as explained in section 1. Once aggregated by the PES and made less granular by Pallier, the data is encrypted using RSA rather than keeping the data Pallier encrypted. Pallier encryption is powerful, but it introduces a significant overhand when it performs multiple calculations within a short amount of time. This is problematic in the context of interacting with the MDMS Manager UI. This is why RSA is a better choice in this scenario. The RSA data is stored on the MDMS Database, which is a MongoDB Atlas database. 
 
 In the c555w24/m5/src/mdms-ui folder, there is a file called app.js. This is the only file in the Node app that contains code to access the MongoDB database. It connects to the database by calling "MongoClient" on a link provided by MongoDB and then using a connect function on the object returned.
