@@ -182,6 +182,18 @@ The UML diagram for the UserCentricSystem class provides a representation of its
 - `hashed_password`: This is the hashed user password that is used for authentication purposes when the user logs in. 
 - `rsa_key_pair`: A RSA.Key instance, specifically used for encryption and decryption of the smart meter symmetric key. 
 
+**Public Methods:**
+- `__init__(sm: SmartMeter):` Initializes the user instance, mainly through associating an inputted smart meter with a user. 
+- `display():` Decrypts the smart meters data with the help of the decrypt function and displays a graph to the user. 
+- `decrypt(data: dict, aes_key: bytes):` Generates a new AES object and decrypts the inputted data with the inputted key. 
+- `setCredentials(username: str, password: str)`: Ssts most of the fields of the UserCentricSystem class. This is where key pairs are generated and the hash of the password is created. 
+- `get_public():`: Returns the user’s public key. 
+- `authenticate(username: str, password: str)`: Checks whether a hash of the user’s inputted password matches that stored in our system. 
+- `prompt_credentials(new_user: bool = False)`: Determines whether an instance is a new or a returning user and runs authentication accordingly. 
+- `user_dashboard()`: Displays options for users to display their data or logout. 
+- `login()`: Function that runs the entire system and initiates prompting for credentials and running the user dashboard. 
+- `derive_key(password: str, salt: bytes, key_length: int)`: Generates a random hash of the user’s password using a random salt and SHA-256 hash. 
+
 When a user first generates their username and password, the setCredentials function on line 40 initializes multiple values. First, the individual’s username is set and saved. Next, a random 16 byte string, referred to as the _salt_, is generated from the Crypto.Random package. Similarly, an RSA key pair is generated where the keys are each 2048 bits of length. The user’s public key is utilized to encrypt the user’s smart meter’s symmetric key. Lastly, the user’s password is hashed using the salt that was previously generated and a helper function derive_key on line 105. 
 
 #### 3.5.1 Hashing Passwords
