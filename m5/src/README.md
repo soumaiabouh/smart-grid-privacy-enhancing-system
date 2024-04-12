@@ -34,7 +34,7 @@ password: password
 3. For the UCS, navigate to the m5/src folder and run the `user-centric-system.py` file.
 
 ## Examples
-The following videos, linked in the presentation slides, to see the system in action.
+The following videos, linked in the presentation slides, show the system in action.
 
 [UCS demo​](https://mcgill-my.sharepoint.com/:v:/g/personal/soumaia_bouhouia_mail_mcgill_ca/EZD9Pml6oiZKnirsnowofBcB0pj7qc2q7EcwiHR6FjGwMA?e=JddkCW&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
 
