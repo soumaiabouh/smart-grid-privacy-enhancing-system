@@ -47,15 +47,19 @@ In the next subsections, we will be diving deeper into each component of the sys
 The smart meter class, available in smart_meter.py, encapsulates the functionality of a smart meter, which collects energy consumption data and transmits it to the PES. 
 
 #### 3.1.1 Source Code Overview
-Upon initialization, the smart meter instance requires the PES public key, a filename containing energy consumption data and an optional parameter specifying the number of readings to load initially. During initialization, the system generates a random AES key for data encryption, encrypts it using PKCS-OAEP (Public-Key Cryptography Standards - Optional Asymmetric Encryption Padding) encryption with the PES public key, and generates a unique identifier for the smart meter. 
-PKCS-OAEP is designed to enhance the security of RSA encryption by adding randomness to the plaintext before encryption. 
+Upon initialization, the smart meter instance requires the PES public key, a filename containing energy consumption data and an optional parameter specifying the number of readings to load initially. During initialization, the system generates a random AES key for data encryption, encrypts it using PKCS-OAEP (Public-Key Cryptography Standards - Optional Asymmetric Encryption Padding) encryption with the PES public key, and generates a unique identifier for the smart meter. PKCS-OAEP is designed to enhance the security of RSA encryption by adding randomness to the plaintext before encryption. 
+
+Importantly, the generation of consumption data is simulated with the load_data function on line 16. The openpyxl library for reading and writing Excel files was utilized in order to load an existing Excel workbook from a file so that it can be manipulated within our script. 
 
 
 #### 3.1.2 AES Encryption Implementation 
-Consistent with current smart meter system implementations, we utilized AES encryption in our simulation in the initial generation and transition of the smart meter data. This was achieved through utilizing a Python package, PyCryptodome, that contains low level cryptographic primitives. Our research demonstrated that this package is widely used for cryptographic operations and is considered secure when used correctly. 
+Consistent with current smart meter system implementations, we utilized AES encryption in our simulation in the initial generation and transition of the smart meter data. This was achieved through utilizing a Python package, PyCryptodome, that contains low level cryptographic primitives. Our research demonstrated that this package is widely used for cryptographic operations and is considered secure when used correctly.
+
 
 For our meter readings, we specifically used Galois/Counter Mode (GCM). This mode offers the added benefit of data integrity alongside encryption, which is particularly important regarding our main goals to ensure data remains confidential and that it has not been tampered with. For our smart meters, we decided to implement 256 bit keys since our priority was increased security. Longer keys typically increase the difficulty of any cryptanalysis or brute force attacks and may provide an additional security margin. 
-Ultimately, the success of AES implementation depends on proper key management. 
+
+
+Ultimately, the success of AES implementation depends on proper key management. The key distribution problem was resolved by encrypting the smart meters symmetric key with the PES’s public RSA key. This guaranteed that the PES was the sole party with access to the key and therefore to the encrypted data.   
 
 
 ### 3.2 Data Concentrator
