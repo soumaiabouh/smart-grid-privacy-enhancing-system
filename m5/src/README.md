@@ -18,7 +18,7 @@ npm install express
 
 ## Usage
 
-1. To run the MDMS UI, the user has to navigate to the m5/src/mdms-ui folder and run:
+##### 1. To run the MDMS UI, the user has to navigate to the m5/src/mdms-ui folder and run:
 
 ```bash
  node app.js
@@ -29,9 +29,9 @@ username: adminTester
 password: password
 ```
 
-2. For the interactions between the PES and other components, navigate to the m5/src folder and run the `main.py` file.
+##### 2. For the interactions between the PES and other components, navigate to the m5/src folder and run the `main.py` file.
 
-3. For the UCS, navigate to the m5/src folder and run the `user-centric-system.py` file.
+##### 3. For the UCS, navigate to the m5/src folder and run the `user-centric-system.py` file.
 
 ## Examples
 The following videos, linked in the presentation slides, show the system in action.
