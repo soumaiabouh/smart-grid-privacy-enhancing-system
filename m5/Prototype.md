@@ -293,7 +293,7 @@ As previously mentioned, there is a smart meter associated with every User Centr
 We want to emphasize that our system ensures the secure delivery of this data and the creation of an actual interface used by customers to view this data was decided to be out of our scope. This interface will handle the specifics of display and potentially incorporate other functionalities. Our implementation is meant to demonstrate a simulation of the flow of the data, a basic example of a user system, and ensure that suppliers don’t need to directly observe customer data. 
 
 
-### 3.7 Running the System
+### 3.6 Running the System
 The `main.py` file in the `src` directory showcases the interactions among various components of the system through a simple command-line interface, effectively showcasing the integration and functionality of the entire setup. To begin, users should `pip install` all the modules listed in the README files. In the context of this description, the term "users" refers specifically to administrators who need to interact with the MDMS. The MDMS UI, discussed in section 3.6, uses a basic implementation of the billing function to show how a user interface might be integrated with the system. However, the functions described below are more robust and provide a deeper level of interaction and data processing capability.
 
 **Source Code Execution:**
