@@ -195,6 +195,15 @@ This choice influenced the overall system design, reaffirming Python as our pref
 The Meter Data Management System (MDMS) serves as a key interface for companies utilizing our software. It ensures that the data accessible to these companies is aggregated and anonymized, enhancing user privacy. The MDMS comprises two primary components: the MDMS User Interface (UI) and the MDMS database.
 
 #### 3.4.1 MDMS Manager
+The MdmsManager class is essential in managing and analyzing data within the MDMS. It is specifically designed to handle the secure storage, retrieval, and processing of aggregated data from the smart meters.
+
+**Key features of the MdmsManager class include:**
+- **RSA Encryption**: It generates an RSA key pair to encrypt and decrypt data securely. This ensures that only authorized systems can access the sensitive data.
+- **MongoDB Integration**: The class connects to a MongoDB database, where it stores all encrypted data. This setup facilitates efficient data management and enhances system scalability.
+- **Data Processing**: It offers several methods to decrypt data, send data securely to the MDMS, calculate total energy consumption for individual meters, and aggregate neighborhood consumption data.
+- **Graphical Representation**: The class can generate graphs using matplotlib to visually display daily energy consumption, aiding in analysis and reporting.
+
+We provide below more details regarding the implementation of the MDMS Manager within our system.
 
 <p align="center">
   <img src="images/mdms-manager-class.JPG" width=500px />
@@ -202,8 +211,6 @@ The Meter Data Management System (MDMS) serves as a key interface for companies 
 
 
 _**Figure 5:** MdmsManager Class UML Diagram._
-
-
 
 The UML diagram for the MdmsManager class provides a representation of its internal composition, detailing how data is aggregated and anonymized. 
 
