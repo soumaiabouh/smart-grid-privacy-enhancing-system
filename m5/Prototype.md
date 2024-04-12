@@ -212,9 +212,7 @@ The UML diagram for the MdmsManager class provides a representation of its inter
 - `rsa_key_pair`: An RSA key pair generated for the mdms. 
 - `rsa_public_key`: The public key of the mdms. 
 - `aggregated_data_dict`: Dictionary to store aggregated smart meter data.
-- `client`: 
-- `db`: Dictionary to store the aggregated data. 
-- `collection`: 
+- `client`, `db` and `collection`: Attributes used in setting up the MongoDB instance and accessing the data.
 
 
 **Public Methods:**
