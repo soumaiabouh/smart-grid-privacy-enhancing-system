@@ -1,93 +1,148 @@
-# C555W24-T7
+# Smart Grid Privacy-Enhancing System
 
+A comprehensive research and implementation project for protecting consumer privacy in smart meter systems while maintaining functionality for energy billing and demand analysis.
 
+## Overview
 
-## Getting started
+This project addresses critical privacy concerns in smart grid technologies. Fine-grained energy consumption data collected by smart meters can reveal personal routines, household characteristics, occupancy patterns, and appliance usage—even with just one week of data. The Smart Grid Privacy-Enhancing System provides a solution through multi-layered encryption and data aggregation techniques to preserve consumer privacy without sacrificing the utility company's need for billing and energy analysis.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Project Structure
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+### m1 - Domain Research & Analysis
+Foundational research into smart meter technology and privacy implications.
 
-## Add your files
+- **Domain.md**: Comprehensive analysis of smart meters including:
+  - Smart meter technology and global adoption trends
+  - Energy disaggregation techniques (ILM and NILM)
+  - Privacy risks and inference capabilities from consumption data
+  - Real-world case study examining how personal information can be extracted from smart meter readings
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- **Contributions.md**: Team contributions and project milestones
+- **additional-documents/**: Supporting research materials and datasets
 
-```
-cd existing_repo
-git remote add origin https://gitlab.cs.mcgill.ca/fsun14/c555w24-t7.git
-git branch -M main
-git push -uf origin main
-```
+### m3 - System Architecture & Design
+Detailed architectural design and comparative analysis.
 
-## Integrate with your tools
+- **Architecture.md**: Complete system architecture specification including:
+  - System purpose and privacy requirements
+  - Comparative analysis of existing smart meter security solutions
+  - Functional requirements for data privacy, encryption, and communication
+  - Stakeholder analysis (utilities, consumers, analysts)
+  - Privacy by design principles implementation
 
-- [ ] [Set up project integrations](https://gitlab.cs.mcgill.ca/fsun14/c555w24-t7/-/settings/integrations)
+- **CONTRIBUTING.md**: Guidelines for contributions
 
-## Collaborate with your team
+### m5 - Prototype Implementation
+Complete working prototype of the privacy-enhancing system.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+- **README.md**: Installation and usage instructions
+- **Prototype.md**: Detailed implementation report including:
+  - System component descriptions and design decisions
+  - Encryption architecture (AES, Paillier homomorphic encryption, RSA)
+  - Data flow and aggregation strategies
+  - Code structure and class diagrams
 
-## Test and Deploy
+- **Contributing.md**: Contribution guidelines
+- **src/**: Python implementation of the system
+  - `main.py`: Main entry point for system simulation
+  - `smart_meter.py`: Smart meter simulation with AES encryption
+  - `privacy_enhancing_system.py`: Core privacy module with Paillier encryption
+  - `data_concentrator.py`: Data aggregation and collection
+  - `mdms_manager.py`: Meter Data Management System integration
+  - `user_centric_system.py`: Secure user interface for data access
+  - `data/`: Sample datasets (2016 apartment electrical usage data from UMass)
+  
+- **mdms-ui/**: Web-based user interface
+  - Node.js/Express.js application for viewing aggregated data and managing access
+  - User authentication and role-based access control
+  - Real-time dashboard for energy monitoring
 
-Use the built-in continuous integration in GitLab.
+## Key Features
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- **Multi-layer Encryption**: AES encryption at smart meters → Paillier homomorphic encryption in Privacy Enhancing System → RSA for user access
+- **Homomorphic Encryption**: Enables billing calculations and analysis directly on encrypted data without decryption
+- **Data Aggregation**: Neighborhood-level aggregation prevents identification of individual consumption patterns
+- **User Privacy**: Customers can access their detailed consumption data with secure authentication, while utility companies only receive aggregated/averaged data
+- **Privacy by Design**: System follows privacy-first principles while maintaining all smart grid functionality
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+### Requirements
+
+- Python 3.7+
+- Node.js and npm
+- pip package manager
+
+### Setup
+
+Install required Python packages:
+
+```bash
+pip install pycryptodome
+pip install phe
+pip install tqdm
+pip install openpyxl
+pip install pymongo
+```
+
+Install Node.js dependencies:
+
+```bash
+npm install express mongoose
+```
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### 1. Privacy Enhancing System
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Navigate to `m5/src/` and run the main system:
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+```bash
+python main.py
+```
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+This simulates:
+- Multiple smart meters collecting energy consumption data
+- Encryption and aggregation in the Privacy Enhancing System
+- Data transmission to the Meter Data Management System
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+### 2. Meter Data Management System (MDMS) UI
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+Navigate to `m5/src/mdms-ui/` and start the web interface:
 
-## License
-For open source projects, say how it is licensed.
+```bash
+node app.js
+```
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Access the dashboard with:
+- **Username**: `adminTester`
+- **Password**: `password`
+
+The UI displays aggregated energy consumption data and system metrics.
+
+### 3. User-Centric System (UCS)
+
+For users to access their detailed consumption data:
+
+```bash
+python user_centric_system.py
+```
+
+Users can authenticate and securely view their individual smart meter readings.
+
+## Architecture Highlights
+
+- **Smart Meter**: Generates consumption readings and encrypts with AES before transmission
+- **Data Concentrator**: Collects data from multiple meters
+- **Privacy Enhancing System (PES)**: Decrypts AES → Re-encrypts with Paillier → Aggregates before sending to MDMS
+- **MDMS**: Stores aggregated/averaged data for billing and analysis
+- **User-Centric System**: Provides secure individual access to personal consumption data
+- **MDMS UI**: Visualization and management interface for utility providers
+
+## Team
+
+**Group 7**: Ella Reck, Soumaia Bouhouia, Felicia Sun, Vanessa Akhras
+
+## References
+
+The project includes comprehensive citations to academic research on smart meter privacy, energy disaggregation, cryptographic techniques, and privacy-by-design principles. See the documentation in m1 and m3 for detailed references.
